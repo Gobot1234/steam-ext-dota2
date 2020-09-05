@@ -8,7 +8,7 @@ with open("requirements.txt") as f:
     requirements = f.read().splitlines()
     f.close()
 
-with open("steam/ext/tf2/__init__.py") as f:
+with open("steam/ext/dota/__init__.py") as f:
     search = re.search(r'^__version__\s*=\s*"([^"]*)"', f.read(), re.MULTILINE)
 
 if search is None:
@@ -36,18 +36,18 @@ with open("README.md") as f:
     readme = f.read()
 
 setup(
-    name="steam-ext-tf2",
+    name="steam-ext-dota",
     author="Gobot1234",
-    url="https://github.com/Gobot1234/steam-ext-tf2",
+    url="https://github.com/Gobot1234/steam-ext-dota",
     project_urls={
-        "Issue tracker": "https://github.com/Gobot1234/steam-ext-tf2/issues",
+        "Issue tracker": "https://github.com/Gobot1234/steam-ext-dota/issues",
     },
     version=version,
     packages=[
-        "steam.ext.tf2",
+        "steam.ext.dota",
     ],
     license="MIT",
-    description="An extension for steam.py to interact with Team Fortress 2",
+    description="An extension for steam.py to interact with the DOTA 2 game co-ordinator",
     long_description=readme,
     long_description_content_type="text/markdown",
     include_package_data=True,
