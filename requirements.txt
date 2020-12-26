@@ -1,1 +1,1 @@
-steamio>=0.3.2
+steamio>=0.6.0

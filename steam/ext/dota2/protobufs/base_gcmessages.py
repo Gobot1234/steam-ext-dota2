@@ -60,7 +60,7 @@ class CMsgResetStrangeGemCountResponseEResetGem(betterproto.Enum):
     SocketCannotBeReset = 4
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCStorePurchaseInitLineItem(betterproto.Message):
     item_def_id: int = betterproto.uint32_field(1)
     quantity: int = betterproto.uint32_field(2)
@@ -69,7 +69,7 @@ class CGCStorePurchaseInitLineItem(betterproto.Message):
     source_reference_id: int = betterproto.uint64_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCStorePurchaseInit(betterproto.Message):
     country: str = betterproto.string_field(1)
     language: int = betterproto.int32_field(2)
@@ -77,18 +77,18 @@ class CMsgGCStorePurchaseInit(betterproto.Message):
     line_items: List["CGCStorePurchaseInitLineItem"] = betterproto.message_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCStorePurchaseInitResponse(betterproto.Message):
     result: int = betterproto.int32_field(1)
     txn_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSystemBroadcast(betterproto.Message):
     message: str = betterproto.string_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientPingData(betterproto.Message):
     relay_codes: List[float] = betterproto.fixed32_field(4)
     relay_pings: List[int] = betterproto.uint32_field(5)
@@ -97,7 +97,7 @@ class CMsgClientPingData(betterproto.Message):
     region_ping_failed_bitmask: int = betterproto.uint32_field(10)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgInviteToParty(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     client_version: int = betterproto.uint32_field(2)
@@ -106,20 +106,20 @@ class CMsgInviteToParty(betterproto.Message):
     ping_data: "CMsgClientPingData" = betterproto.message_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgInviteToLobby(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     client_version: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgInvitationCreated(betterproto.Message):
     group_id: int = betterproto.uint64_field(1)
     steam_id: float = betterproto.fixed64_field(2)
     user_offline: bool = betterproto.bool_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPartyInviteResponse(betterproto.Message):
     party_id: int = betterproto.uint64_field(1)
     accept: bool = betterproto.bool_field(2)
@@ -127,7 +127,7 @@ class CMsgPartyInviteResponse(betterproto.Message):
     ping_data: "CMsgClientPingData" = betterproto.message_field(8)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgLobbyInviteResponse(betterproto.Message):
     lobby_id: float = betterproto.fixed64_field(1)
     accept: bool = betterproto.bool_field(2)
@@ -136,36 +136,36 @@ class CMsgLobbyInviteResponse(betterproto.Message):
     custom_game_timestamp: float = betterproto.fixed32_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgKickFromParty(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgLeaveParty(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgCustomGameInstallStatus(betterproto.Message):
     status: "ECustomGameInstallStatus" = betterproto.enum_field(1)
     message: str = betterproto.string_field(2)
     latest_timestamp_from_steam: float = betterproto.fixed32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgServerAvailable(betterproto.Message):
     custom_game_install_status: "CMsgCustomGameInstallStatus" = (
         betterproto.message_field(1)
     )
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgLANServerAvailable(betterproto.Message):
     lobby_id: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconGameAccountClient(betterproto.Message):
     additional_backpack_slots: int = betterproto.uint32_field(1)
     trial_account: bool = betterproto.bool_field(2)
@@ -177,7 +177,7 @@ class CSOEconGameAccountClient(betterproto.Message):
     made_first_purchase: bool = betterproto.bool_field(9)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOItemCriteriaCondition(betterproto.Message):
     op: int = betterproto.int32_field(1)
     field: str = betterproto.string_field(2)
@@ -186,7 +186,7 @@ class CSOItemCriteriaCondition(betterproto.Message):
     string_value: str = betterproto.string_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOItemCriteria(betterproto.Message):
     item_level: int = betterproto.uint32_field(1)
     item_quality: int = betterproto.int32_field(2)
@@ -199,7 +199,7 @@ class CSOItemCriteria(betterproto.Message):
     recent_only: bool = betterproto.bool_field(10)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOItemRecipe(betterproto.Message):
     def_index: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
@@ -222,38 +222,38 @@ class CSOItemRecipe(betterproto.Message):
     input_item_dupe_counts: List[int] = betterproto.uint32_field(22)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgApplyStrangePart(betterproto.Message):
     strange_part_item_id: int = betterproto.uint64_field(1)
     item_item_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgApplyPennantUpgrade(betterproto.Message):
     upgrade_item_id: int = betterproto.uint64_field(1)
     pennant_item_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgApplyEggEssence(betterproto.Message):
     essence_item_id: int = betterproto.uint64_field(1)
     egg_item_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItemAttribute(betterproto.Message):
     def_index: int = betterproto.uint32_field(1)
     value: int = betterproto.uint32_field(2)
     value_bytes: bytes = betterproto.bytes_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItemEquipped(betterproto.Message):
     new_class: int = betterproto.uint32_field(1)
     new_slot: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItem(betterproto.Message):
     id: int = betterproto.uint64_field(1)
     account_id: int = betterproto.uint32_field(2)
@@ -271,12 +271,12 @@ class CSOEconItem(betterproto.Message):
     equipped_state: List["CSOEconItemEquipped"] = betterproto.message_field(18)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSortItems(betterproto.Message):
     sort_type: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconClaimCode(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     code_type: int = betterproto.uint32_field(2)
@@ -284,35 +284,35 @@ class CSOEconClaimCode(betterproto.Message):
     code: str = betterproto.string_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgUpdateItemSchema(betterproto.Message):
     items_game: bytes = betterproto.bytes_field(1)
     item_schema_version: float = betterproto.fixed32_field(2)
     items_game_url: str = betterproto.string_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCError(betterproto.Message):
     error_text: str = betterproto.string_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgRequestInventoryRefresh(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgConVarValue(betterproto.Message):
     name: str = betterproto.string_field(1)
     value: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgReplicateConVars(betterproto.Message):
     convars: List["CMsgConVarValue"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgItemAcknowledged(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     inventory: int = betterproto.uint32_field(2)
@@ -322,27 +322,27 @@ class CMsgItemAcknowledged(betterproto.Message):
     origin: int = betterproto.uint32_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSetItemPositions(betterproto.Message):
     item_positions: List[
         "CMsgSetItemPositionsItemPosition"
     ] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSetItemPositionsItemPosition(betterproto.Message):
     item_id: int = betterproto.uint64_field(1)
     position: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCNameItemNotification(betterproto.Message):
     player_steamid: float = betterproto.fixed64_field(1)
     item_def_index: int = betterproto.uint32_field(2)
     item_name_custom: str = betterproto.string_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCClientDisplayNotification(betterproto.Message):
     notification_title_localization_key: str = betterproto.string_field(1)
     notification_body_localization_key: str = betterproto.string_field(2)
@@ -350,12 +350,12 @@ class CMsgGCClientDisplayNotification(betterproto.Message):
     body_substring_values: List[str] = betterproto.string_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCShowItemsPickedUp(betterproto.Message):
     player_steamid: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCIncrementKillCountResponse(betterproto.Message):
     killer_account_id: int = betterproto.uint32_field(1)
     num_kills: int = betterproto.uint32_field(2)
@@ -363,7 +363,7 @@ class CMsgGCIncrementKillCountResponse(betterproto.Message):
     level_type: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItemDropRateBonus(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     expiration_date: float = betterproto.fixed32_field(2)
@@ -375,7 +375,7 @@ class CSOEconItemDropRateBonus(betterproto.Message):
     booster_type: int = betterproto.uint32_field(8)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItemLeagueViewPass(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     league_id: int = betterproto.uint32_field(2)
@@ -383,14 +383,14 @@ class CSOEconItemLeagueViewPass(betterproto.Message):
     grant_reason: int = betterproto.uint32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItemEventTicket(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     event_id: int = betterproto.uint32_field(2)
     item_id: int = betterproto.uint64_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CSOEconItemTournamentPassport(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     league_id: int = betterproto.uint32_field(2)
@@ -402,104 +402,104 @@ class CSOEconItemTournamentPassport(betterproto.Message):
     reward_flags: int = betterproto.uint32_field(8)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCStorePurchaseCancel(betterproto.Message):
     txn_id: int = betterproto.uint64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCStorePurchaseCancelResponse(betterproto.Message):
     result: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCStorePurchaseFinalize(betterproto.Message):
     txn_id: int = betterproto.uint64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCStorePurchaseFinalizeResponse(betterproto.Message):
     result: int = betterproto.uint32_field(1)
     item_ids: List[int] = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCBannedWordListUpdated(betterproto.Message):
     group_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCDirtySDOCache(betterproto.Message):
     sdo_type: int = betterproto.uint32_field(1)
     key_uint64: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCDirtyMultipleSDOCache(betterproto.Message):
     sdo_type: int = betterproto.uint32_field(1)
     key_uint64: List[int] = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCApplyLocalizationDiff(betterproto.Message):
     language: int = betterproto.uint32_field(1)
     packed_diff: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCApplyLocalizationDiffResponse(betterproto.Message):
     success: bool = betterproto.bool_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCCollectItem(betterproto.Message):
     collection_item_id: int = betterproto.uint64_field(1)
     subject_item_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSDONoMemcached(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCUpdateSQLKeyValue(betterproto.Message):
     key_name: str = betterproto.string_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCServerVersionUpdated(betterproto.Message):
     server_version: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCClientVersionUpdated(betterproto.Message):
     client_version: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCWebAPIAccountChanged(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgRecipeComponent(betterproto.Message):
     subject_item_id: int = betterproto.uint64_field(1)
     attribute_index: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgFulfillDynamicRecipeComponent(betterproto.Message):
     tool_item_id: int = betterproto.uint64_field(1)
     consumption_components: List["CMsgRecipeComponent"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCClientMarketDataRequest(betterproto.Message):
     user_currency: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCClientMarketDataEntry(betterproto.Message):
     item_def_index: int = betterproto.uint32_field(1)
     item_quality: int = betterproto.uint32_field(2)
@@ -507,93 +507,93 @@ class CMsgGCClientMarketDataEntry(betterproto.Message):
     price_in_local_currency: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCClientMarketData(betterproto.Message):
     entries: List["CMsgGCClientMarketDataEntry"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgExtractGems(betterproto.Message):
     tool_item_id: int = betterproto.uint64_field(1)
     item_item_id: int = betterproto.uint64_field(2)
     item_socket_id: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgExtractGemsResponse(betterproto.Message):
     item_id: int = betterproto.uint64_field(1)
     response: "CMsgExtractGemsResponseEExtractGems" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAddSocket(betterproto.Message):
     tool_item_id: int = betterproto.uint64_field(1)
     item_item_id: int = betterproto.uint64_field(2)
     unusual: bool = betterproto.bool_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAddSocketResponse(betterproto.Message):
     item_id: int = betterproto.uint64_field(1)
     updated_socket_index: List[int] = betterproto.uint32_field(2)
     response: "CMsgAddSocketResponseEAddSocket" = betterproto.enum_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAddItemToSocketData(betterproto.Message):
     gem_item_id: int = betterproto.uint64_field(1)
     socket_index: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAddItemToSocket(betterproto.Message):
     item_item_id: int = betterproto.uint64_field(1)
     gems_to_socket: List["CMsgAddItemToSocketData"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAddItemToSocketResponse(betterproto.Message):
     item_item_id: int = betterproto.uint64_field(1)
     updated_socket_index: List[int] = betterproto.uint32_field(2)
     response: "CMsgAddItemToSocketResponseEAddGem" = betterproto.enum_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgResetStrangeGemCount(betterproto.Message):
     item_item_id: int = betterproto.uint64_field(1)
     socket_index: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgResetStrangeGemCountResponse(betterproto.Message):
     response: "CMsgResetStrangeGemCountResponseEResetGem" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientPollFileRequest(betterproto.Message):
     file_name: str = betterproto.string_field(1)
     client_version: int = betterproto.uint32_field(2)
     poll_id: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientPollFileResponse(betterproto.Message):
     poll_id: int = betterproto.uint32_field(1)
     file_size: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCPerformManualOp(betterproto.Message):
     op_id: int = betterproto.uint64_field(1)
     group_code: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCPerformManualOpCompleted(betterproto.Message):
     success: bool = betterproto.bool_field(1)
     source_gc: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToGCReloadServerRegionSettings(betterproto.Message):
     pass

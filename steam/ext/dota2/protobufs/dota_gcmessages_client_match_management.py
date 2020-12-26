@@ -50,7 +50,7 @@ class EStartFindingMatchResult(betterproto.Enum):
     MatchmakingBusy = 132
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgStartFindingMatch(betterproto.Message):
     key: str = betterproto.string_field(1)
     matchgroups: int = betterproto.uint32_field(2)
@@ -74,7 +74,7 @@ class CMsgStartFindingMatch(betterproto.Message):
     custom_game_difficulty_mask: int = betterproto.uint32_field(21)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgStartFindingMatchResult(betterproto.Message):
     legacy_generic_eresult: int = betterproto.uint32_field(1)
     result: "EStartFindingMatchResult" = betterproto.enum_field(2)
@@ -84,12 +84,12 @@ class CMsgStartFindingMatchResult(betterproto.Message):
     result_metadata: int = betterproto.uint32_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgStopFindingMatch(betterproto.Message):
     accept_cooldown: bool = betterproto.bool_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPartyBuilderOptions(betterproto.Message):
     additional_slots: int = betterproto.uint32_field(1)
     match_type: "MatchType" = betterproto.enum_field(2)
@@ -98,26 +98,26 @@ class CMsgPartyBuilderOptions(betterproto.Message):
     language: "MatchLanguages" = betterproto.enum_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgReadyUp(betterproto.Message):
     state: "DOTALobbyReadyState" = betterproto.enum_field(1)
     ready_up_key: float = betterproto.fixed64_field(2)
     hardware_specs: "CDOTAClientHardwareSpecs" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgReadyUpStatus(betterproto.Message):
     lobby_id: float = betterproto.fixed64_field(1)
     accepted_ids: List[int] = betterproto.uint32_field(2)
     declined_ids: List[int] = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAbandonCurrentGame(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbySetDetails(betterproto.Message):
     lobby_id: int = betterproto.uint64_field(1)
     game_name: str = betterproto.string_field(2)
@@ -162,7 +162,7 @@ class CMsgPracticeLobbySetDetails(betterproto.Message):
     league_node_id: int = betterproto.uint32_field(49)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyCreate(betterproto.Message):
     search_key: str = betterproto.string_field(1)
     pass_key: str = betterproto.string_field(5)
@@ -171,7 +171,7 @@ class CMsgPracticeLobbyCreate(betterproto.Message):
     save_game: "CMsgPracticeLobbyCreateSaveGame" = betterproto.message_field(8)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyCreateSaveGame(betterproto.Message):
     data: bytes = betterproto.bytes_field(1)
     version: int = betterproto.int32_field(2)
@@ -179,19 +179,19 @@ class CMsgPracticeLobbyCreateSaveGame(betterproto.Message):
     signature: float = betterproto.fixed64_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbySetTeamSlot(betterproto.Message):
     team: "DOTA_GC_TEAM" = betterproto.enum_field(1)
     slot: int = betterproto.uint32_field(2)
     bot_difficulty: "DOTABotDifficulty" = betterproto.enum_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbySetCoach(betterproto.Message):
     team: "DOTA_GC_TEAM" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyJoinBroadcastChannel(betterproto.Message):
     channel: int = betterproto.uint32_field(1)
     preferred_description: str = betterproto.string_field(2)
@@ -199,54 +199,54 @@ class CMsgPracticeLobbyJoinBroadcastChannel(betterproto.Message):
     preferred_language_code: str = betterproto.string_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyCloseBroadcastChannel(betterproto.Message):
     channel: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyToggleBroadcastChannelCameramanStatus(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyKick(betterproto.Message):
     account_id: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyKickFromTeam(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyLeave(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyLaunch(betterproto.Message):
     client_version: int = betterproto.uint32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgApplyTeamToPracticeLobby(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClearPracticeLobbyTeam(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyList(betterproto.Message):
     pass_key: str = betterproto.string_field(2)
     region: int = betterproto.uint32_field(3)
     game_mode: "DOTA_GameMode" = betterproto.enum_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyListResponseEntry(betterproto.Message):
     id: int = betterproto.uint64_field(1)
     members: List[
@@ -266,29 +266,29 @@ class CMsgPracticeLobbyListResponseEntry(betterproto.Message):
     lan_host_ping_location: str = betterproto.string_field(20)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyListResponseEntryCLobbyMember(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     player_name: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyListResponse(betterproto.Message):
     lobbies: List["CMsgPracticeLobbyListResponseEntry"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgLobbyList(betterproto.Message):
     server_region: int = betterproto.uint32_field(1)
     game_mode: "DOTA_GameMode" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgLobbyListResponse(betterproto.Message):
     lobbies: List["CMsgPracticeLobbyListResponseEntry"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyJoin(betterproto.Message):
     lobby_id: int = betterproto.uint64_field(1)
     client_version: int = betterproto.uint32_field(2)
@@ -297,47 +297,47 @@ class CMsgPracticeLobbyJoin(betterproto.Message):
     custom_game_timestamp: float = betterproto.fixed32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPracticeLobbyJoinResponse(betterproto.Message):
     result: "DOTAJoinLobbyResult" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgFriendPracticeLobbyListRequest(betterproto.Message):
     friends: List[int] = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgFriendPracticeLobbyListResponse(betterproto.Message):
     lobbies: List["CMsgPracticeLobbyListResponseEntry"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgJoinableCustomGameModesRequest(betterproto.Message):
     server_region: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgJoinableCustomGameModesResponseEntry(betterproto.Message):
     custom_game_id: int = betterproto.uint64_field(1)
     lobby_count: int = betterproto.uint32_field(2)
     player_count: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgJoinableCustomGameModesResponse(betterproto.Message):
     game_modes: List[
         "CMsgJoinableCustomGameModesResponseEntry"
     ] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgJoinableCustomLobbiesRequest(betterproto.Message):
     server_region: int = betterproto.uint32_field(1)
     custom_game_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgJoinableCustomLobbiesResponseEntry(betterproto.Message):
     lobby_id: float = betterproto.fixed64_field(1)
     custom_game_id: int = betterproto.uint64_field(2)
@@ -352,14 +352,14 @@ class CMsgJoinableCustomLobbiesResponseEntry(betterproto.Message):
     lan_host_ping_location: str = betterproto.string_field(12)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgJoinableCustomLobbiesResponse(betterproto.Message):
     lobbies: List["CMsgJoinableCustomLobbiesResponseEntry"] = betterproto.message_field(
         1
     )
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgQuickJoinCustomLobby(betterproto.Message):
     legacy_server_region: int = betterproto.uint32_field(1)
     custom_game_id: int = betterproto.uint64_field(2)
@@ -372,19 +372,19 @@ class CMsgQuickJoinCustomLobby(betterproto.Message):
     ping_data: "CMsgClientPingData" = betterproto.message_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgQuickJoinCustomLobbyLegacyRegionPing(betterproto.Message):
     server_region: int = betterproto.uint32_field(1)
     ping: int = betterproto.uint32_field(2)
     region_code: float = betterproto.fixed32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgQuickJoinCustomLobbyResponse(betterproto.Message):
     result: "DOTAJoinLobbyResult" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgBotGameCreate(betterproto.Message):
     search_key: str = betterproto.string_field(1)
     client_version: int = betterproto.uint32_field(2)
@@ -394,7 +394,7 @@ class CMsgBotGameCreate(betterproto.Message):
     difficulty_dire: "DOTABotDifficulty" = betterproto.enum_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgCustomGameCreate(betterproto.Message):
     search_key: str = betterproto.string_field(1)
     client_version: int = betterproto.uint32_field(2)
@@ -404,7 +404,7 @@ class CMsgCustomGameCreate(betterproto.Message):
     custom_game_id: int = betterproto.uint64_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgEventGameCreate(betterproto.Message):
     search_key: str = betterproto.string_field(1)
     client_version: int = betterproto.uint32_field(2)
@@ -414,44 +414,44 @@ class CMsgEventGameCreate(betterproto.Message):
     custom_game_id: int = betterproto.uint64_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTAPartyMemberSetCoach(betterproto.Message):
     wants_coach: bool = betterproto.bool_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTASetGroupLeader(betterproto.Message):
     new_leader_steamid: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTACancelGroupInvites(betterproto.Message):
     invited_steamids: List[float] = betterproto.fixed64_field(1)
     invited_groupids: List[float] = betterproto.fixed64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTASetGroupOpenStatus(betterproto.Message):
     open: bool = betterproto.bool_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTAGroupMergeInvite(betterproto.Message):
     other_group_id: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTAGroupMergeResponse(betterproto.Message):
     initiator_group_id: float = betterproto.fixed64_field(1)
     accept: bool = betterproto.bool_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTAGroupMergeReply(betterproto.Message):
     result: "EDOTAGroupMergeResult" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSpectatorLobbyGameDetails(betterproto.Message):
     language: int = betterproto.uint32_field(1)
     match_id: int = betterproto.uint64_field(2)
@@ -465,14 +465,14 @@ class CMsgSpectatorLobbyGameDetails(betterproto.Message):
     dire_team: "CMsgSpectatorLobbyGameDetailsTeam" = betterproto.message_field(10)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSpectatorLobbyGameDetailsTeam(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
     team_name: str = betterproto.string_field(2)
     team_logo: float = betterproto.fixed64_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSetSpectatorLobbyDetails(betterproto.Message):
     lobby_id: int = betterproto.uint64_field(1)
     lobby_name: str = betterproto.string_field(2)
@@ -480,25 +480,25 @@ class CMsgSetSpectatorLobbyDetails(betterproto.Message):
     game_details: "CMsgSpectatorLobbyGameDetails" = betterproto.message_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgCreateSpectatorLobby(betterproto.Message):
     client_version: int = betterproto.uint32_field(1)
     details: "CMsgSetSpectatorLobbyDetails" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSpectatorLobbyList(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSpectatorLobbyListResponse(betterproto.Message):
     lobbies: List[
         "CMsgSpectatorLobbyListResponseSpectatorLobby"
     ] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSpectatorLobbyListResponseSpectatorLobby(betterproto.Message):
     lobby_id: int = betterproto.uint64_field(1)
     game_name: str = betterproto.string_field(2)
@@ -508,18 +508,18 @@ class CMsgSpectatorLobbyListResponseSpectatorLobby(betterproto.Message):
     game_details: "CMsgSpectatorLobbyGameDetails" = betterproto.message_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestSteamDatagramTicket(betterproto.Message):
     server_steam_id: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestSteamDatagramTicketResponse(betterproto.Message):
     serialized_ticket: bytes = betterproto.bytes_field(1)
     message: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientSteamDatagramTicket(betterproto.Message):
     legacy_time_expiry: float = betterproto.fixed32_field(1)
     legacy_authorized_steam_id: float = betterproto.fixed64_field(2)
@@ -532,23 +532,23 @@ class CMsgGCToClientSteamDatagramTicket(betterproto.Message):
     serialized_ticket: bytes = betterproto.bytes_field(16)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientRequestLaneSelection(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientRequestLaneSelectionResponse(betterproto.Message):
     lane_selection_flags: int = betterproto.uint32_field(1)
     high_priority_disabled: bool = betterproto.bool_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientRequestMMInfo(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCMMInfo(betterproto.Message):
     lane_selection_flags: int = betterproto.uint32_field(1)
     high_priority_disabled: bool = betterproto.bool_field(2)

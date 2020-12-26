@@ -27,7 +27,7 @@ class ELeagueNodeType(betterproto.Enum):
     BestOfTwo = 4
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNode(betterproto.Message):
     name: str = betterproto.string_field(1)
     node_id: int = betterproto.uint32_field(2)
@@ -50,13 +50,13 @@ class CMsgDOTALeagueNode(betterproto.Message):
     stream_ids: List[int] = betterproto.uint32_field(18)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeMatchDetails(betterproto.Message):
     match_id: int = betterproto.uint64_field(1)
     winning_team_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeGroup(betterproto.Message):
     name: str = betterproto.string_field(1)
     node_group_id: int = betterproto.uint32_field(2)
@@ -88,7 +88,7 @@ class CMsgDOTALeagueNodeGroup(betterproto.Message):
     node_groups: List["CMsgDOTALeagueNodeGroup"] = betterproto.message_field(17)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeGroupTeamStanding(betterproto.Message):
     standing: int = betterproto.uint32_field(1)
     team_id: int = betterproto.uint32_field(2)
@@ -101,7 +101,7 @@ class CMsgDOTALeagueNodeGroupTeamStanding(betterproto.Message):
     score: int = betterproto.int64_field(9)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeague(betterproto.Message):
     info: "CMsgDOTALeagueInfo" = betterproto.message_field(1)
     prize_pool: "CMsgDOTALeaguePrizePool" = betterproto.message_field(2)
@@ -112,7 +112,7 @@ class CMsgDOTALeague(betterproto.Message):
     registered_players: List["CMsgDOTALeaguePlayer"] = betterproto.message_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueInfo(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
@@ -130,14 +130,14 @@ class CMsgDOTALeagueInfo(betterproto.Message):
     registration_period: int = betterproto.uint32_field(14)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueAdmin(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     is_primary: bool = betterproto.bool_field(2)
     email_address: str = betterproto.string_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeaguePrizePoolItem(betterproto.Message):
     item_def: int = betterproto.uint32_field(1)
     sales_stop_timestamp: int = betterproto.uint32_field(2)
@@ -145,7 +145,7 @@ class CMsgDOTALeaguePrizePoolItem(betterproto.Message):
     revenue_cents_per_sale: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeaguePrizePool(betterproto.Message):
     base_prize_pool: int = betterproto.uint32_field(1)
     total_prize_pool: int = betterproto.uint32_field(2)
@@ -153,7 +153,7 @@ class CMsgDOTALeaguePrizePool(betterproto.Message):
     prize_pool_items: List["CMsgDOTALeaguePrizePoolItem"] = betterproto.message_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueStream(betterproto.Message):
     stream_id: int = betterproto.uint32_field(1)
     language: int = betterproto.uint32_field(2)
@@ -163,7 +163,7 @@ class CMsgDOTALeagueStream(betterproto.Message):
     vod_url: str = betterproto.string_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueSeriesInfo(betterproto.Message):
     series_id: int = betterproto.uint32_field(1)
     series_type: int = betterproto.uint32_field(2)
@@ -173,14 +173,14 @@ class CMsgDOTALeagueSeriesInfo(betterproto.Message):
     team_id_2: int = betterproto.uint32_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeaguePlayer(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
     team_id: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueInfo(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
@@ -193,17 +193,17 @@ class CMsgDOTALeagueInfo(betterproto.Message):
     status: int = betterproto.uint32_field(9)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueInfoList(betterproto.Message):
     infos: List["CMsgDOTALeagueInfo"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueLiveGames(betterproto.Message):
     games: List["CMsgDOTALeagueLiveGamesLiveGame"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueLiveGamesLiveGame(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     server_steam_id: int = betterproto.uint64_field(2)
@@ -217,53 +217,53 @@ class CMsgDOTALeagueLiveGamesLiveGame(betterproto.Message):
     spectators: int = betterproto.uint32_field(8)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueMessages(betterproto.Message):
     messages: List["CMsgDOTALeagueMessagesMessage"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueMessagesMessage(betterproto.Message):
     author_account_id: int = betterproto.uint32_field(1)
     timestamp: int = betterproto.uint32_field(2)
     message: str = betterproto.string_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeaguePrizePool(betterproto.Message):
     prize_pool: int = betterproto.uint32_field(1)
     increment_per_second: float = betterproto.float_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueInfoListAdminsRequest(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeRequest(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     node_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeResponse(betterproto.Message):
     node: "CMsgDOTALeagueNode" = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueAvailableLobbyNodesRequest(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueAvailableLobbyNodes(betterproto.Message):
     node_infos: List[
         "CMsgDOTALeagueAvailableLobbyNodesNodeInfo"
     ] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueAvailableLobbyNodesNodeInfo(betterproto.Message):
     node_id: int = betterproto.uint32_field(1)
     node_name: str = betterproto.string_field(2)
@@ -272,12 +272,12 @@ class CMsgDOTALeagueAvailableLobbyNodesNodeInfo(betterproto.Message):
     team_id_2: int = betterproto.uint32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeResults(betterproto.Message):
     node_results: List["CMsgDOTALeagueNodeResultsResult"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTALeagueNodeResultsResult(betterproto.Message):
     node_id: int = betterproto.uint32_field(1)
     winning_node_id: int = betterproto.uint32_field(2)
@@ -298,14 +298,14 @@ class CMsgDOTALeagueNodeResultsResult(betterproto.Message):
     match_ids: List[int] = betterproto.uint64_field(17)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCLeagueResults(betterproto.Message):
     results: List["CMsgDOTADPCLeagueResultsResult"] = betterproto.message_field(1)
     points: List[int] = betterproto.uint32_field(2)
     dollars: List[int] = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCLeagueResultsResult(betterproto.Message):
     standing: int = betterproto.uint32_field(1)
     team_id: int = betterproto.uint32_field(2)
@@ -318,12 +318,12 @@ class CMsgDOTADPCLeagueResultsResult(betterproto.Message):
     phase: "ELeaguePhase" = betterproto.enum_field(9)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCTeamResults(betterproto.Message):
     results: List["CMsgDOTADPCTeamResultsResult"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCTeamResultsResult(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     standing: int = betterproto.uint32_field(2)
@@ -332,12 +332,12 @@ class CMsgDOTADPCTeamResultsResult(betterproto.Message):
     timestamp: int = betterproto.uint32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCSeasonResults(betterproto.Message):
     results: List["CMsgDOTADPCSeasonResultsTeamResult"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCSeasonResultsTeamLeagueResult(betterproto.Message):
     timestamp: int = betterproto.uint32_field(1)
     league_id: int = betterproto.uint32_field(2)
@@ -347,7 +347,7 @@ class CMsgDOTADPCSeasonResultsTeamLeagueResult(betterproto.Message):
     audit_action: int = betterproto.uint32_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDOTADPCSeasonResultsTeamResult(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
     team_name: str = betterproto.string_field(2)

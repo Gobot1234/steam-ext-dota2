@@ -8,7 +8,7 @@ from steam.ext import commands
 
 from .state import GCState
 
-__title__ = "steam.ext.tf2"
+__title__ = "steam.ext.dota2"
 __author__ = "Gobot1234"
 __license__ = "MIT"
 __version__ = "1.0.0a"
@@ -23,7 +23,7 @@ class Client(steam.Client):
             except TypeError:
                 options["games"] = [game]
         super().__init__(loop, game=steam.DOTA2, **options)
-        self._connection = GCState(loop=self.loop, client=self, http=self.http)
+        self._connection = GCState(loop=self.loop, client=self)
 
     # TODO docs events
 

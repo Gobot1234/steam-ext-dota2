@@ -342,7 +342,7 @@ class CMsgClientToGCRequestAccountGuildPersonaInfoBatchResponseEResponse(betterp
     InvalidRequest = 5
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildInfo(betterproto.Message):
     guild_name: str = betterproto.string_field(1)
     guild_tag: str = betterproto.string_field(2)
@@ -363,20 +363,20 @@ class CMsgGuildInfo(betterproto.Message):
     guild_motd: str = betterproto.string_field(18)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildSummary(betterproto.Message):
     guild_info: "CMsgGuildInfo" = betterproto.message_field(1)
     member_count: int = betterproto.uint32_field(2)
     event_points: List["CMsgGuildSummaryEventPoints"] = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildSummaryEventPoints(betterproto.Message):
     event_id: int = betterproto.uint32_field(1)
     guild_points: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildRole(betterproto.Message):
     role_id: int = betterproto.uint32_field(1)
     role_name: str = betterproto.string_field(2)
@@ -384,7 +384,7 @@ class CMsgGuildRole(betterproto.Message):
     role_order: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildMember(betterproto.Message):
     member_account_id: int = betterproto.uint32_field(1)
     member_role_id: int = betterproto.uint32_field(2)
@@ -392,14 +392,14 @@ class CMsgGuildMember(betterproto.Message):
     member_last_active_timestamp: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildInvite(betterproto.Message):
     requester_account_id: int = betterproto.uint32_field(1)
     target_account_id: int = betterproto.uint32_field(2)
     timestamp_sent: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildData(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     guild_info: "CMsgGuildInfo" = betterproto.message_field(2)
@@ -408,32 +408,32 @@ class CMsgGuildData(betterproto.Message):
     guild_invites: List["CMsgGuildInvite"] = betterproto.message_field(5)
 
 
-@dataclass
-class CMsgAccountGuildInvite(betterproto.Message):
+@dataclass(eq=False, repr=False)
+class GuildInviteAccountResponse(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     requester_account_id: int = betterproto.uint32_field(2)
     timestamp_sent: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAccountGuildMemberships(betterproto.Message):
     guild_ids: List[int] = betterproto.uint32_field(1)
     guild_invites: List["CMsgAccountGuildInvite"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildPersonaInfo(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     guild_tag: str = betterproto.string_field(2)
     guild_flags: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAccountGuildsPersonaInfo(betterproto.Message):
     guild_persona_infos: List["CMsgGuildPersonaInfo"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildFeedEvent(betterproto.Message):
     feed_event_id: int = betterproto.uint64_field(1)
     timestamp: int = betterproto.uint32_field(2)
@@ -443,179 +443,179 @@ class CMsgGuildFeedEvent(betterproto.Message):
     param_uint_3: int = betterproto.uint32_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCCreateGuild(betterproto.Message):
     guild_info: "CMsgGuildInfo" = betterproto.message_field(1)
     guild_chat_type: "EGuildChatType" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCCreateGuildResponse(betterproto.Message):
     result: "CMsgClientToGCCreateGuildResponseEResponse" = betterproto.enum_field(1)
     guild_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSetGuildInfo(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     guild_info: "CMsgGuildInfo" = betterproto.message_field(2)
     guild_chat_type: "EGuildChatType" = betterproto.enum_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSetGuildInfoResponse(betterproto.Message):
     result: "CMsgClientToGCSetGuildInfoResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildData(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildDataResponse(betterproto.Message):
     result: "CMsgClientToGCRequestGuildDataResponseEResponse" = betterproto.enum_field(1)
     guild_data: "CMsgGuildData" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientGuildDataUpdated(betterproto.Message):
     guild_data: "CMsgGuildData" = betterproto.message_field(1)
     update_flags: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientGuildMembersDataUpdated(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     members_data: List["CMsgGuildMember"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildMembership(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildMembershipResponse(betterproto.Message):
     result: "CMsgClientToGCRequestGuildMembershipResponseEResponse" = betterproto.enum_field(1)
     guild_memberships: "CMsgAccountGuildMemberships" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientGuildMembershipUpdated(betterproto.Message):
     guild_memberships: "CMsgAccountGuildMemberships" = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildSummary(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildSummaryResponse(betterproto.Message):
     result: "CMsgClientToGCRequestGuildSummaryResponseEResponse" = betterproto.enum_field(1)
     guild_summary: "CMsgGuildSummary" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCJoinGuild(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCJoinGuildResponse(betterproto.Message):
     result: "CMsgClientToGCJoinGuildResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCLeaveGuild(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCLeaveGuildResponse(betterproto.Message):
     result: "CMsgClientToGCLeaveGuildResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCKickGuildMember(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     target_account_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCKickGuildMemberResponse(betterproto.Message):
     result: "CMsgClientToGCKickGuildMemberResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSetGuildMemberRole(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     target_account_id: int = betterproto.uint32_field(2)
     target_role_id: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSetGuildMemberRoleResponse(betterproto.Message):
     result: "CMsgClientToGCSetGuildMemberRoleResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCInviteToGuild(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     target_account_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCInviteToGuildResponse(betterproto.Message):
     result: "CMsgClientToGCInviteToGuildResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCDeclineInviteToGuild(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCDeclineInviteToGuildResponse(betterproto.Message):
     result: "CMsgClientToGCDeclineInviteToGuildResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCAcceptInviteToGuild(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCAcceptInviteToGuildResponse(betterproto.Message):
     result: "CMsgClientToGCAcceptInviteToGuildResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCCancelInviteToGuild(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     target_account_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCCancelInviteToGuildResponse(betterproto.Message):
     result: "CMsgClientToGCCancelInviteToGuildResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCAddGuildRole(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     role_name: str = betterproto.string_field(2)
     role_flags: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCAddGuildRoleResponse(betterproto.Message):
     result: "CMsgClientToGCAddGuildRoleResponseEResponse" = betterproto.enum_field(1)
     role_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCModifyGuildRole(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     role_id: int = betterproto.uint32_field(2)
@@ -623,111 +623,111 @@ class CMsgClientToGCModifyGuildRole(betterproto.Message):
     role_flags: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCModifyGuildRoleResponse(betterproto.Message):
     result: "CMsgClientToGCModifyGuildRoleResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRemoveGuildRole(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     role_id: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRemoveGuildRoleResponse(betterproto.Message):
     result: "CMsgClientToGCRemoveGuildRoleResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSetGuildRoleOrder(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     requested_role_ids: List[int] = betterproto.uint32_field(2)
     previous_role_ids: List[int] = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSetGuildRoleOrderResponse(betterproto.Message):
     result: "CMsgClientToGCSetGuildRoleOrderResponseEResponse" = betterproto.enum_field(1)
     confirmed_role_ids: List[int] = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCGuildFeedRequest(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     last_seen_id: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildFeedResponse(betterproto.Message):
     result: "CMsgClientToGCRequestGuildFeedResponseEResponse" = betterproto.enum_field(1)
     guild_id: int = betterproto.uint32_field(2)
     feed_events: List["CMsgGuildFeedEvent"] = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientGuildFeedUpdated(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCAddPlayerToGuildChat(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCAddPlayerToGuildChatResponse(betterproto.Message):
     result: "CMsgClientToGCAddPlayerToGuildChatResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgFindGuildByTagResponse(betterproto.Message):
     result: "CMsgFindGuildByTagResponseEResponse" = betterproto.enum_field(1)
     guild_id: int = betterproto.uint32_field(2)
     guild_summary: "CMsgGuildSummary" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSearchForOpenGuildsResponse(betterproto.Message):
     result: "CMsgSearchForOpenGuildsResponseEResponse" = betterproto.enum_field(1)
     search_results: List["CMsgSearchForOpenGuildsResponseSearchResult"] = betterproto.message_field(2)
     use_whitelist: bool = betterproto.bool_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgSearchForOpenGuildsResponseSearchResult(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     guild_summary: "CMsgGuildSummary" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCReportGuildContent(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     guild_content_flags: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCReportGuildContentResponse(betterproto.Message):
     result: "CMsgClientToGCReportGuildContentResponseEResponse" = betterproto.enum_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestAccountGuildPersonaInfo(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestAccountGuildPersonaInfoResponse(betterproto.Message):
     result: "CMsgClientToGCRequestAccountGuildPersonaInfoResponseEResponse" = betterproto.enum_field(1)
     persona_info: "CMsgAccountGuildsPersonaInfo" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestAccountGuildPersonaInfoBatch(betterproto.Message):
     account_ids: List[int] = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestAccountGuildPersonaInfoBatchResponse(betterproto.Message):
     result: "CMsgClientToGCRequestAccountGuildPersonaInfoBatchResponseEResponse" = betterproto.enum_field(1)
     persona_infos: List["CMsgAccountGuildsPersonaInfo"] = betterproto.message_field(2)

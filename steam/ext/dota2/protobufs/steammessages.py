@@ -7,10 +7,12 @@ from typing import List
 
 import betterproto
 
-from ...protobufs.foobar import *
-
-
-class GCProtoBufMsgSrc(GCProtoBufMsgSrc):
+class GCProtoBufMsgSrc(betterproto.Enum):
+    Unspecified = 0
+    FromSystem = 1
+    FromSteamID = 2
+    FromGC = 3
+    ReplySystem = 4
     SpoofedSteamID = 5
 
 
@@ -62,7 +64,21 @@ class CMsgDPPartnerMicroTxnsResponseEErrorCode(betterproto.Enum):
     InvalidTransactionData = 9
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
+class CMsgProtoBufHeader(betterproto.Message):
+    client_steam_id: float = betterproto.fixed64_field(1)
+    client_session_id: int = betterproto.int32_field(2)
+    source_app_id: int = betterproto.uint32_field(3)
+    job_id_source: float = betterproto.fixed64_field(10)
+    job_id_target: float = betterproto.fixed64_field(11)
+    target_job_name: str = betterproto.string_field(12)
+    eresult: int = betterproto.int32_field(13)
+    error_message: str = betterproto.string_field(14)
+    gc_msg_src: "GCProtoBufMsgSrc" = betterproto.enum_field(200)
+    gc_dir_index_source: int = betterproto.uint32_field(201)
+
+
+@dataclass(eq=False, repr=False)
 class CMsgWebAPIKey(betterproto.Message):
     status: int = betterproto.uint32_field(1)
     account_id: int = betterproto.uint32_field(2)
@@ -71,7 +87,7 @@ class CMsgWebAPIKey(betterproto.Message):
     domain: str = betterproto.string_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgHttpRequest(betterproto.Message):
     request_method: int = betterproto.uint32_field(1)
     hostname: str = betterproto.string_field(2)
@@ -83,19 +99,19 @@ class CMsgHttpRequest(betterproto.Message):
     absolute_timeout: int = betterproto.uint32_field(8)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgHttpRequestRequestHeader(betterproto.Message):
     name: str = betterproto.string_field(1)
     value: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgHttpRequestQueryParam(betterproto.Message):
     name: str = betterproto.string_field(1)
     value: bytes = betterproto.bytes_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgWebAPIRequest(betterproto.Message):
     unused_job_name: str = betterproto.string_field(1)
     interface_name: str = betterproto.string_field(2)
@@ -106,31 +122,31 @@ class CMsgWebAPIRequest(betterproto.Message):
     routing_app_id: int = betterproto.uint32_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgHttpResponse(betterproto.Message):
     status_code: int = betterproto.uint32_field(1)
     headers: List["CMsgHttpResponseResponseHeader"] = betterproto.message_field(2)
     body: bytes = betterproto.bytes_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgHttpResponseResponseHeader(betterproto.Message):
     name: str = betterproto.string_field(1)
     value: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMFindAccounts(betterproto.Message):
     search_type: int = betterproto.uint32_field(1)
     search_string: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMFindAccountsResponse(betterproto.Message):
     steam_id: List[float] = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgNotifyWatchdog(betterproto.Message):
     source: int = betterproto.uint32_field(1)
     alert_type: int = betterproto.uint32_field(2)
@@ -141,32 +157,32 @@ class CMsgNotifyWatchdog(betterproto.Message):
     recipient: str = betterproto.string_field(12)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGetLicenses(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgPackageLicense(betterproto.Message):
     package_id: int = betterproto.uint32_field(1)
     time_created: int = betterproto.uint32_field(2)
     owner_id: int = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGetLicensesResponse(betterproto.Message):
     license: List["CMsgPackageLicense"] = betterproto.message_field(1)
     result: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGetUserGameStats(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     game_id: float = betterproto.fixed64_field(2)
     stats: List[int] = betterproto.uint32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGetUserGameStatsResponse(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     game_id: float = betterproto.fixed64_field(2)
@@ -175,68 +191,68 @@ class CMsgAMGetUserGameStatsResponse(betterproto.Message):
     achievement_blocks: List["CMsgAMGetUserGameStatsResponseAchievementBlocks"] = betterproto.message_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGetUserGameStatsResponseStats(betterproto.Message):
     stat_id: int = betterproto.uint32_field(1)
     stat_value: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGetUserGameStatsResponseAchievementBlocks(betterproto.Message):
     achievement_id: int = betterproto.uint32_field(1)
     achievement_bit_id: int = betterproto.uint32_field(2)
     unlock_time: float = betterproto.fixed32_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetCommandList(betterproto.Message):
     app_id: int = betterproto.uint32_field(1)
     command_prefix: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetCommandListResponse(betterproto.Message):
     command_name: List[str] = betterproto.string_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedGet(betterproto.Message):
     keys: List[str] = betterproto.string_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedGetResponse(betterproto.Message):
     values: List["CGCMsgMemCachedGetResponseValueTag"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedGetResponseValueTag(betterproto.Message):
     found: bool = betterproto.bool_field(1)
     value: bytes = betterproto.bytes_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedSet(betterproto.Message):
     keys: List["CGCMsgMemCachedSetKeyPair"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedSetKeyPair(betterproto.Message):
     name: str = betterproto.string_field(1)
     value: bytes = betterproto.bytes_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedDelete(betterproto.Message):
     keys: List[str] = betterproto.string_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedStats(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgMemCachedStatsResponse(betterproto.Message):
     curr_connections: int = betterproto.uint64_field(1)
     cmd_get: int = betterproto.uint64_field(2)
@@ -254,12 +270,12 @@ class CGCMsgMemCachedStatsResponse(betterproto.Message):
     bytes: int = betterproto.uint64_field(14)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgSQLStats(betterproto.Message):
     schema_catalog: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgSQLStatsResponse(betterproto.Message):
     threads: int = betterproto.uint32_field(1)
     threads_connected: int = betterproto.uint32_field(2)
@@ -272,7 +288,7 @@ class CGCMsgSQLStatsResponse(betterproto.Message):
     errors: int = betterproto.uint32_field(9)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMAddFreeLicense(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     ip_public: int = betterproto.uint32_field(2)
@@ -280,19 +296,19 @@ class CMsgAMAddFreeLicense(betterproto.Message):
     store_country_code: str = betterproto.string_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMAddFreeLicenseResponse(betterproto.Message):
     eresult: int = betterproto.int32_field(1)
     purchase_result_detail: int = betterproto.int32_field(2)
     transid: float = betterproto.fixed64_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgGetIPLocation(betterproto.Message):
     ips: List[float] = betterproto.fixed32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CIPLocationInfo(betterproto.Message):
     ip: int = betterproto.uint32_field(1)
     latitude: float = betterproto.float_field(2)
@@ -302,39 +318,39 @@ class CIPLocationInfo(betterproto.Message):
     city: str = betterproto.string_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgGetIPLocationResponse(betterproto.Message):
     infos: List["CIPLocationInfo"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgGetIPASN(betterproto.Message):
     ips: List[float] = betterproto.fixed32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CIPASNInfo(betterproto.Message):
     ip: float = betterproto.fixed32_field(1)
     asn: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgGetIPASNResponse(betterproto.Message):
     infos: List["CIPASNInfo"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgSystemStatsSchema(betterproto.Message):
     gc_app_id: int = betterproto.uint32_field(1)
     schema_kv: bytes = betterproto.bytes_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgGetSystemStats(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCMsgGetSystemStatsResponse(betterproto.Message):
     gc_app_id: int = betterproto.uint32_field(1)
     stats_kv: bytes = betterproto.bytes_field(2)
@@ -351,7 +367,7 @@ class CGCMsgGetSystemStatsResponse(betterproto.Message):
     logon_jobs: int = betterproto.uint32_field(13)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMSendEmail(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     email_msg_type: int = betterproto.uint32_field(2)
@@ -361,24 +377,24 @@ class CMsgAMSendEmail(betterproto.Message):
     tokens: List["CMsgAMSendEmailReplacementToken"] = betterproto.message_field(7)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMSendEmailReplacementToken(betterproto.Message):
     token_name: str = betterproto.string_field(1)
     token_value: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMSendEmailPersonaNameReplacementToken(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     token_name: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMSendEmailResponse(betterproto.Message):
     eresult: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetEmailTemplate(betterproto.Message):
     app_id: int = betterproto.uint32_field(1)
     email_msg_type: int = betterproto.uint32_field(2)
@@ -386,14 +402,14 @@ class CMsgGCGetEmailTemplate(betterproto.Message):
     email_format: int = betterproto.int32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetEmailTemplateResponse(betterproto.Message):
     eresult: int = betterproto.uint32_field(1)
     template_exists: bool = betterproto.bool_field(2)
     template: str = betterproto.string_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGrantGuestPasses2(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     package_id: int = betterproto.uint32_field(2)
@@ -402,19 +418,19 @@ class CMsgAMGrantGuestPasses2(betterproto.Message):
     action: int = betterproto.int32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAMGrantGuestPasses2Response(betterproto.Message):
     eresult: int = betterproto.int32_field(1)
     passes_granted: int = betterproto.int32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCSystemMsgGetAccountDetails(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     appid: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCSystemMsgGetAccountDetailsResponse(betterproto.Message):
     eresult_deprecated: int = betterproto.uint32_field(1)
     account_name: str = betterproto.string_field(2)
@@ -453,42 +469,42 @@ class CGCSystemMsgGetAccountDetailsResponse(betterproto.Message):
     txn_country_code: str = betterproto.string_field(37)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetPersonaNames(betterproto.Message):
     steamids: List[float] = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetPersonaNamesResponse(betterproto.Message):
     succeeded_lookups: List["CMsgGCGetPersonaNamesResponsePersonaName"] = betterproto.message_field(1)
     failed_lookup_steamids: List[float] = betterproto.fixed64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetPersonaNamesResponsePersonaName(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     persona_name: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCCheckFriendship(betterproto.Message):
     steamid_left: float = betterproto.fixed64_field(1)
     steamid_right: float = betterproto.fixed64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCCheckFriendshipResponse(betterproto.Message):
     success: bool = betterproto.bool_field(1)
     found_friendship: bool = betterproto.bool_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetAppFriendsList(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     include_friendship_timestamps: bool = betterproto.bool_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetAppFriendsListResponse(betterproto.Message):
     success: bool = betterproto.bool_field(1)
     steamids: List[float] = betterproto.fixed64_field(2)
@@ -496,13 +512,13 @@ class CMsgGCGetAppFriendsListResponse(betterproto.Message):
     last_playtimes: List[float] = betterproto.fixed32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetDirectory(betterproto.Message):
     master_dir_index: int = betterproto.uint32_field(1)
     dir: List["CMsgGCMsgMasterSetDirectorySubGC"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetDirectorySubGC(betterproto.Message):
     dir_index: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
@@ -511,23 +527,23 @@ class CMsgGCMsgMasterSetDirectorySubGC(betterproto.Message):
     gc_binary: str = betterproto.string_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetDirectoryResponse(betterproto.Message):
     eresult: int = betterproto.int32_field(1)
     message: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgWebAPIJobRequestForwardResponse(betterproto.Message):
     dir_index: int = betterproto.uint32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCSystemMsgGetPurchaseTrustRequest(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCSystemMsgGetPurchaseTrustResponse(betterproto.Message):
     has_prior_purchase_history: bool = betterproto.bool_field(1)
     has_no_recent_password_resets: bool = betterproto.bool_field(2)
@@ -535,7 +551,7 @@ class CGCSystemMsgGetPurchaseTrustResponse(betterproto.Message):
     time_all_trusted: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCHAccountVacStatusChange(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     app_id: int = betterproto.uint32_field(2)
@@ -544,12 +560,12 @@ class CMsgGCHAccountVacStatusChange(betterproto.Message):
     is_banned_future: bool = betterproto.bool_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetPartnerAccountLink(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCGetPartnerAccountLinkResponse(betterproto.Message):
     pwid: int = betterproto.uint32_field(1)
     nexonid: int = betterproto.uint32_field(2)
@@ -558,7 +574,7 @@ class CMsgGCGetPartnerAccountLinkResponse(betterproto.Message):
     is_adult: bool = betterproto.bool_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCRoutingInfo(betterproto.Message):
     dir_index: List[int] = betterproto.uint32_field(1)
     method: "CMsgGCRoutingInfoRoutingMethod" = betterproto.enum_field(2)
@@ -567,53 +583,53 @@ class CMsgGCRoutingInfo(betterproto.Message):
     webapi_param: str = betterproto.string_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetWebAPIRouting(betterproto.Message):
     entries: List["CMsgGCMsgMasterSetWebAPIRoutingEntry"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetWebAPIRoutingEntry(betterproto.Message):
     interface_name: str = betterproto.string_field(1)
     method_name: str = betterproto.string_field(2)
     routing: "CMsgGCRoutingInfo" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetClientMsgRouting(betterproto.Message):
     entries: List["CMsgGCMsgMasterSetClientMsgRoutingEntry"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetClientMsgRoutingEntry(betterproto.Message):
     msg_type: int = betterproto.uint32_field(1)
     routing: "CMsgGCRoutingInfo" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetWebAPIRoutingResponse(betterproto.Message):
     eresult: int = betterproto.int32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgMasterSetClientMsgRoutingResponse(betterproto.Message):
     eresult: int = betterproto.int32_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgSetOptions(betterproto.Message):
     options: List["CMsgGCMsgSetOptionsOption"] = betterproto.enum_field(1)
     client_msg_ranges: List["CMsgGCMsgSetOptionsMessageRange"] = betterproto.message_field(2)
     gcsql_version: "CMsgGCMsgSetOptionsGCSQLVersion" = betterproto.enum_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCMsgSetOptionsMessageRange(betterproto.Message):
     low: int = betterproto.uint32_field(1)
     high: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCHUpdateSession(betterproto.Message):
     steam_id: float = betterproto.fixed64_field(1)
     app_id: int = betterproto.uint32_field(2)
@@ -626,26 +642,26 @@ class CMsgGCHUpdateSession(betterproto.Message):
     extra_fields: List["CMsgGCHUpdateSessionExtraField"] = betterproto.message_field(9)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCHUpdateSessionExtraField(betterproto.Message):
     name: str = betterproto.string_field(1)
     value: str = betterproto.string_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgNotificationOfSuspiciousActivity(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     appid: int = betterproto.uint32_field(2)
     multiple_instances: "CMsgNotificationOfSuspiciousActivityMultipleGameInstances" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgNotificationOfSuspiciousActivityMultipleGameInstances(betterproto.Message):
     app_instance_count: int = betterproto.uint32_field(1)
     other_steamids: List[float] = betterproto.fixed64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDPPartnerMicroTxns(betterproto.Message):
     appid: int = betterproto.uint32_field(1)
     gc_name: str = betterproto.string_field(2)
@@ -653,7 +669,7 @@ class CMsgDPPartnerMicroTxns(betterproto.Message):
     transactions: List["CMsgDPPartnerMicroTxnsPartnerMicroTxn"] = betterproto.message_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDPPartnerMicroTxnsPartnerMicroTxn(betterproto.Message):
     init_time: int = betterproto.uint32_field(1)
     last_update_time: int = betterproto.uint32_field(2)
@@ -674,7 +690,7 @@ class CMsgDPPartnerMicroTxnsPartnerMicroTxn(betterproto.Message):
     ref_trans_id: int = betterproto.uint64_field(17)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDPPartnerMicroTxnsPartnerInfo(betterproto.Message):
     partner_id: int = betterproto.uint32_field(1)
     partner_name: str = betterproto.string_field(2)
@@ -682,38 +698,38 @@ class CMsgDPPartnerMicroTxnsPartnerInfo(betterproto.Message):
     currency_name: str = betterproto.string_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgDPPartnerMicroTxnsResponse(betterproto.Message):
     eresult: int = betterproto.uint32_field(1)
     eerrorcode: "CMsgDPPartnerMicroTxnsResponseEErrorCode" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCHVacVerificationChange(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     appid: int = betterproto.uint32_field(2)
     is_verified: bool = betterproto.bool_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCHAccountTwoFactorChange(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     appid: int = betterproto.uint32_field(2)
     twofactor_enabled: bool = betterproto.bool_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCCheckClanMembership(betterproto.Message):
     steamid: float = betterproto.fixed64_field(1)
     clanid: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCCheckClanMembershipResponse(betterproto.Message):
     ismember: bool = betterproto.bool_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCSystemMsgReportExternalPurchaseRequest(betterproto.Message):
     appid: int = betterproto.uint32_field(1)
     steamid: float = betterproto.fixed64_field(2)
@@ -730,13 +746,13 @@ class CGCSystemMsgReportExternalPurchaseRequest(betterproto.Message):
     time_created: int = betterproto.uint32_field(13)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CGCSystemMsgReportExternalPurchaseResponse(betterproto.Message):
     transid: float = betterproto.fixed64_field(1)
     orderid: int = betterproto.uint64_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CWorkshopAddSpecialPaymentRequest(betterproto.Message):
     appid: int = betterproto.uint32_field(1)
     gameitemid: int = betterproto.uint32_field(2)
@@ -745,24 +761,24 @@ class CWorkshopAddSpecialPaymentRequest(betterproto.Message):
     payment_row_usd: int = betterproto.uint64_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CWorkshopAddSpecialPaymentResponse(betterproto.Message):
     pass
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CWorkshopGetSpecialPaymentsRequest(betterproto.Message):
     appid: int = betterproto.uint32_field(1)
     gameitemid: int = betterproto.uint32_field(2)
     date: str = betterproto.string_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CWorkshopGetSpecialPaymentsResponse(betterproto.Message):
     special_payments: List["CWorkshopGetSpecialPaymentsResponseSpecialPayment"] = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CWorkshopGetSpecialPaymentsResponseSpecialPayment(betterproto.Message):
     appid: int = betterproto.uint32_field(1)
     gameitemid: int = betterproto.uint32_field(2)

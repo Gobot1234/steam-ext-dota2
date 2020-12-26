@@ -87,7 +87,7 @@ class CMsgClientToGCRequestGuildEventMembersResponseEResponse(betterproto.Enum):
     InvalidGuildEvent = 8
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildContract(betterproto.Message):
     contract_id: int = betterproto.uint64_field(1)
     challenge_instance_id: int = betterproto.uint32_field(2)
@@ -97,12 +97,12 @@ class CMsgGuildContract(betterproto.Message):
     contract_flags: int = betterproto.uint32_field(6)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildContractSlot(betterproto.Message):
     contract: "CMsgGuildContract" = betterproto.message_field(1)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgAccountGuildEventData(betterproto.Message):
     guild_points: int = betterproto.uint32_field(1)
     contracts_refreshed_timestamp: int = betterproto.uint32_field(2)
@@ -111,13 +111,13 @@ class CMsgAccountGuildEventData(betterproto.Message):
     challenges_refresh_timestamp: int = betterproto.uint32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildActiveContracts(betterproto.Message):
     contracts_refreshed_timestamp: int = betterproto.uint32_field(1)
     contracts: List["CMsgGuildContract"] = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildChallenge(betterproto.Message):
     challenge_instance_id: int = betterproto.uint32_field(1)
     challenge_parameter: int = betterproto.uint32_field(2)
@@ -126,19 +126,19 @@ class CMsgGuildChallenge(betterproto.Message):
     challenge_flags: int = betterproto.uint32_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGuildEventMember(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     guild_points_earned: int = betterproto.uint32_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestAccountGuildEventData(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestAccountGuildEventDataResponse(betterproto.Message):
     result: "CMsgClientToGCRequestAccountGuildEventDataResponseEResponse" = (
         betterproto.enum_field(1)
@@ -147,7 +147,7 @@ class CMsgClientToGCRequestAccountGuildEventDataResponse(betterproto.Message):
     event_data: "CMsgAccountGuildEventData" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientAccountGuildEventDataUpdated(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
@@ -156,13 +156,13 @@ class CMsgGCToClientAccountGuildEventDataUpdated(betterproto.Message):
     contracts_updated: bool = betterproto.bool_field(5)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestActiveGuildContracts(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestActiveGuildContractsResponse(betterproto.Message):
     result: "CMsgClientToGCRequestActiveGuildContractsResponseEResponse" = (
         betterproto.enum_field(1)
@@ -171,13 +171,13 @@ class CMsgClientToGCRequestActiveGuildContractsResponse(betterproto.Message):
     active_challenges: "CMsgGuildChallenge" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientActiveGuildContractsUpdated(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSelectGuildContract(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
@@ -185,20 +185,20 @@ class CMsgClientToGCSelectGuildContract(betterproto.Message):
     contract_slot: int = betterproto.uint32_field(4)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCSelectGuildContractResponse(betterproto.Message):
     result: "CMsgClientToGCSelectGuildContractResponseEResponse" = (
         betterproto.enum_field(1)
     )
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestActiveGuildChallenge(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestActiveGuildChallengeResponse(betterproto.Message):
     result: "CMsgClientToGCRequestActiveGuildChallengeResponseEResponse" = (
         betterproto.enum_field(1)
@@ -206,20 +206,20 @@ class CMsgClientToGCRequestActiveGuildChallengeResponse(betterproto.Message):
     active_challenge: "CMsgGuildChallenge" = betterproto.message_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGCToClientActiveGuildChallengeUpdated(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
     active_challenge: "CMsgGuildChallenge" = betterproto.message_field(3)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildEventMembers(betterproto.Message):
     guild_id: int = betterproto.uint32_field(1)
     event_id: "EEvent" = betterproto.enum_field(2)
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgClientToGCRequestGuildEventMembersResponse(betterproto.Message):
     result: "CMsgClientToGCRequestGuildEventMembersResponseEResponse" = (
         betterproto.enum_field(1)
