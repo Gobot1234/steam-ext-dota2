@@ -7,6 +7,38 @@ from typing import List
 
 import betterproto
 
+from .base_gcmessages import CsoEconItem
+from .dota_gcmessages_common import (
+    CAdditionalEquipSlot,
+    CMsgArcanaVoteMatchVotes,
+    CMsgDotaMatch,
+    CMsgDotasdoHeroStatsHistory,
+    CMsgDotaTriviaQuestion,
+    CMsgPlayerHeroRecentAccomplishments,
+    CMsgPlayerRecentAccomplishments,
+    CMsgRecentMatchInfo,
+    CMsgSuccessfulHero,
+    CMsgUnderDraftData,
+    CPartySearchClientParty,
+    EOverwatchConviction,
+)
+from .dota_gcmessages_common_match_management import CsodotaLobbyState, CsodotaPartyState
+from .dota_shared_enums import (
+    CdotaSaveGame,
+    DotaGameMode,
+    DotaMatchVote,
+    DotaSelectionPriorityChoice,
+    EdpcFavoriteType,
+    EEvent,
+    EMatchGroupServerStatus,
+    EMatchOutcome,
+    EOverwatchReportReason,
+    EProfileCardSlotType,
+    MatchType,
+)
+from .econ_gcmessages import CExtraMsgBlock
+from .gcsdk_gcmessages import PartnerAccountType
+
 
 class DotaWatchReplayType(betterproto.Enum):
     Normal = 0
@@ -708,7 +740,7 @@ class CMsgDotaRequestMatches(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDotaRequestMatchesResponse(betterproto.Message):
-    matches: List["_dota_gcmessages_common__.CMsgDotaMatch"] = betterproto.message_field(1)
+    matches: List["CMsgDotaMatch"] = betterproto.message_field(1)
     series: List["CMsgDotaRequestMatchesResponseSeries"] = betterproto.message_field(2)
     request_id: int = betterproto.uint32_field(3)
     total_results: int = betterproto.uint32_field(4)
@@ -717,7 +749,7 @@ class CMsgDotaRequestMatchesResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDotaRequestMatchesResponseSeries(betterproto.Message):
-    matches: List["_dota_gcmessages_common__.CMsgDotaMatch"] = betterproto.message_field(1)
+    matches: List["CMsgDotaMatch"] = betterproto.message_field(1)
     series_id: int = betterproto.uint32_field(2)
     series_type: int = betterproto.uint32_field(3)
 
@@ -833,7 +865,7 @@ class CMsgDotaLobbyMvpAwarded(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDotaKickedFromMatchmakingQueue(betterproto.Message):
-    match_type: "_dota_shared_enums__.MatchType" = betterproto.enum_field(1)
+    match_type: "MatchType" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -844,7 +876,7 @@ class CMsgDotaRequestSaveGames(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgDotaRequestSaveGamesResponse(betterproto.Message):
     steam_id: int = betterproto.fixed64_field(1)
-    save_games: List["_dota_shared_enums__.CdotaSaveGame"] = betterproto.message_field(2)
+    save_games: List["CdotaSaveGame"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -855,8 +887,8 @@ class CMsgGcMatchDetailsRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgGcMatchDetailsResponse(betterproto.Message):
     result: int = betterproto.uint32_field(1)
-    match: "_dota_gcmessages_common__.CMsgDotaMatch" = betterproto.message_field(2)
-    vote: "_dota_shared_enums__.DotaMatchVote" = betterproto.enum_field(3)
+    match: "CMsgDotaMatch" = betterproto.message_field(2)
+    vote: "DotaMatchVote" = betterproto.enum_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -866,7 +898,7 @@ class CMsgServerToGcMatchDetailsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgGcToServerMatchDetailsResponse(betterproto.Message):
-    matches: List["_dota_gcmessages_common__.CMsgDotaMatch"] = betterproto.message_field(1)
+    matches: List["CMsgDotaMatch"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -902,7 +934,7 @@ class CMsgDotaWelcome(betterproto.Message):
     store_item_hash: int = betterproto.uint32_field(5)
     timeplayedconsecutively: int = betterproto.uint32_field(6)
     allow_3_rd_party_match_history: bool = betterproto.bool_field(7)
-    partner_account_type: "_gcsdk_gcmessages__.PartnerAccountType" = betterproto.enum_field(8)
+    partner_account_type: "PartnerAccountType" = betterproto.enum_field(8)
     partner_account_state: int = betterproto.uint32_field(11)
     last_time_played: int = betterproto.uint32_field(12)
     last_ip_address: int = betterproto.uint32_field(13)
@@ -916,13 +948,13 @@ class CMsgDotaWelcome(betterproto.Message):
     is_perfect_world_test_account: bool = betterproto.bool_field(24)
     extra_messages: List["CMsgDotaWelcomeCExtraMsg"] = betterproto.message_field(26)
     minimum_recent_item_id: int = betterproto.uint64_field(27)
-    active_event: "_dota_shared_enums__.EEvent" = betterproto.enum_field(28)
+    active_event: "EEvent" = betterproto.enum_field(28)
     additional_user_message: int = betterproto.uint32_field(29)
     custom_game_whitelist_version: int = betterproto.uint32_field(30)
     party_search_friend_invites: "CMsgGcToClientPartySearchInvites" = betterproto.message_field(31)
     remaining_playtime: int = betterproto.int32_field(32)
     disable_guild_persona_info: bool = betterproto.bool_field(33)
-    extra_message_blocks: List["_econ_gcmessages__.CExtraMsgBlock"] = betterproto.message_field(34)
+    extra_message_blocks: List["CExtraMsgBlock"] = betterproto.message_field(34)
 
 
 @dataclass(eq=False, repr=False)
@@ -969,7 +1001,7 @@ class CMsgDotaMatchVotesPlayerVote(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgCastMatchVote(betterproto.Message):
     match_id: int = betterproto.uint64_field(1)
-    vote: "_dota_shared_enums__.DotaMatchVote" = betterproto.enum_field(2)
+    vote: "DotaMatchVote" = betterproto.enum_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -981,7 +1013,7 @@ class CMsgRetrieveMatchVote(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgMatchVoteResponse(betterproto.Message):
     eresult: int = betterproto.uint32_field(1)
-    vote: "_dota_shared_enums__.DotaMatchVote" = betterproto.enum_field(2)
+    vote: "DotaMatchVote" = betterproto.enum_field(2)
     positive_votes: int = betterproto.uint32_field(3)
     negative_votes: int = betterproto.uint32_field(4)
 
@@ -1028,7 +1060,7 @@ class CMsgDotaHalloweenHighScoreRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgDotaHalloweenHighScoreResponse(betterproto.Message):
     score: int = betterproto.uint32_field(1)
-    match: "_dota_gcmessages_common__.CMsgDotaMatch" = betterproto.message_field(2)
+    match: "CMsgDotaMatch" = betterproto.message_field(2)
     eresult: int = betterproto.uint32_field(3)
     round: int = betterproto.int32_field(4)
 
@@ -1055,7 +1087,7 @@ class CMsgMatchmakingMatchGroupInfo(betterproto.Message):
     players_searching: int = betterproto.uint32_field(1)
     auto_region_select_ping_penalty: int = betterproto.sint32_field(2)
     auto_region_select_ping_penalty_custom: int = betterproto.sint32_field(4)
-    status: "_dota_shared_enums__.EMatchGroupServerStatus" = betterproto.enum_field(3)
+    status: "EMatchGroupServerStatus" = betterproto.enum_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -1697,7 +1729,7 @@ class CMsgGcToClientTournamentItemDrop(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcSetAdditionalEquips(betterproto.Message):
-    equips: List["_dota_gcmessages_common__.CAdditionalEquipSlot"] = betterproto.message_field(1)
+    equips: List["CAdditionalEquipSlot"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -1712,7 +1744,7 @@ class CMsgClientToGcGetAdditionalEquips(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcGetAdditionalEquipsResponse(betterproto.Message):
-    equips: List["_dota_gcmessages_common__.CAdditionalEquipSlot"] = betterproto.message_field(1)
+    equips: List["CAdditionalEquipSlot"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -1794,7 +1826,7 @@ class CMsgClientToGcSetProfileCardSlots(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcSetProfileCardSlotsCardSlot(betterproto.Message):
     slot_id: int = betterproto.uint32_field(1)
-    slot_type: "_dota_shared_enums__.EProfileCardSlotType" = betterproto.enum_field(2)
+    slot_type: "EProfileCardSlotType" = betterproto.enum_field(2)
     slot_value: int = betterproto.uint64_field(3)
 
 
@@ -1823,7 +1855,7 @@ class CMsgGcToClientHeroStatueCreateResult(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgGcToClientEventStatusChanged(betterproto.Message):
-    active_event: "_dota_shared_enums__.EEvent" = betterproto.enum_field(2)
+    active_event: "EEvent" = betterproto.enum_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -1924,7 +1956,7 @@ class CMsgGcToClientFriendsPlayedCustomGameResponse(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgDotaPartyRichPresence(betterproto.Message):
     party_id: int = betterproto.fixed64_field(1)
-    party_state: "_dota_gcmessages_common_match_management__.CsodotaPartyState" = betterproto.enum_field(2)
+    party_state: "CsodotaPartyState" = betterproto.enum_field(2)
     open: bool = betterproto.bool_field(3)
     low_priority: bool = betterproto.bool_field(5)
     team_id: int = betterproto.uint32_field(7)
@@ -1954,9 +1986,9 @@ class CMsgDotaPartyRichPresenceWeekendTourney(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgDotaLobbyRichPresence(betterproto.Message):
     lobby_id: int = betterproto.fixed64_field(1)
-    lobby_state: "_dota_gcmessages_common_match_management__.CsodotaLobbyState" = betterproto.enum_field(2)
+    lobby_state: "CsodotaLobbyState" = betterproto.enum_field(2)
     password: bool = betterproto.bool_field(3)
-    game_mode: "_dota_shared_enums__.DotaGameMode" = betterproto.enum_field(4)
+    game_mode: "DotaGameMode" = betterproto.enum_field(4)
     member_count: int = betterproto.uint32_field(5)
     max_member_count: int = betterproto.uint32_field(6)
     custom_game_id: int = betterproto.fixed64_field(7)
@@ -2038,7 +2070,7 @@ class CMsgGcGetHeroStatsHistory(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgGcGetHeroStatsHistoryResponse(betterproto.Message):
     hero_id: int = betterproto.uint32_field(1)
-    records: List["_dota_gcmessages_common__.CMsgDotasdoHeroStatsHistory"] = betterproto.message_field(2)
+    records: List["CMsgDotasdoHeroStatsHistory"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -2103,7 +2135,7 @@ class CMsgGcToClientArcanaVotesUpdate(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcGetEventGoals(betterproto.Message):
-    event_ids: List["_dota_shared_enums__.EEvent"] = betterproto.enum_field(1)
+    event_ids: List["EEvent"] = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -2113,7 +2145,7 @@ class CMsgEventGoals(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgEventGoalsEventGoal(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     goal_id: int = betterproto.uint32_field(2)
     value: int = betterproto.uint64_field(3)
 
@@ -2235,7 +2267,7 @@ class CMsgClientToGcTeammateStatsResponseTeammateStat(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcVoteForArcana(betterproto.Message):
-    matches: List["_dota_gcmessages_common__.CMsgArcanaVoteMatchVotes"] = betterproto.message_field(1)
+    matches: List["CMsgArcanaVoteMatchVotes"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -2281,7 +2313,7 @@ class CMsgClientToGcRequestArcanaVotesRemainingResponse(betterproto.Message):
     votes_remaining: int = betterproto.uint32_field(2)
     votes_total: int = betterproto.uint32_field(3)
     matches_previously_voted_for: List[
-        "_dota_gcmessages_common__.CMsgArcanaVoteMatchVotes"
+        "CMsgArcanaVoteMatchVotes"
     ] = betterproto.message_field(4)
 
 
@@ -2293,7 +2325,7 @@ class CMsgClientToGcRequestEventPointLogV2(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcRequestEventPointLogResponseV2(betterproto.Message):
     result: bool = betterproto.bool_field(1)
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(2)
+    event_id: "EEvent" = betterproto.enum_field(2)
     log_entries: List["CMsgClientToGcRequestEventPointLogResponseV2LogEntry"] = betterproto.message_field(3)
 
 
@@ -2318,7 +2350,7 @@ class CMsgClientToGcAddTi6TreeProgress(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcRequestSlarkGameResult(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     slot_chosen: int = betterproto.uint32_field(2)
     week: int = betterproto.uint32_field(3)
 
@@ -2870,7 +2902,7 @@ class CMsgDotaSetFavoriteTeam(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDotaTriviaCurrentQuestions(betterproto.Message):
-    questions: List["_dota_gcmessages_common__.CMsgDotaTriviaQuestion"] = betterproto.message_field(1)
+    questions: List["CMsgDotaTriviaQuestion"] = betterproto.message_field(1)
     trivia_enabled: bool = betterproto.bool_field(2)
 
 
@@ -2994,7 +3026,7 @@ class CMsgDotaClientToGcQuickStatsResponseSimpleStats(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDotaSelectionPriorityChoiceRequest(betterproto.Message):
-    choice: "_dota_shared_enums__.DotaSelectionPriorityChoice" = betterproto.enum_field(1)
+    choice: "DotaSelectionPriorityChoice" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -3036,7 +3068,7 @@ class CMsgDotaGetRecentPlayTimeFriendsResponse(betterproto.Message):
 class CMsgPurchaseItemWithEventPoints(betterproto.Message):
     item_def: int = betterproto.uint32_field(1)
     quantity: int = betterproto.uint32_field(2)
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(3)
+    event_id: "EEvent" = betterproto.enum_field(3)
     use_premium_points: bool = betterproto.bool_field(4)
 
 
@@ -3117,7 +3149,7 @@ class CMsgPurchaseHeroRandomRelicResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcRequestPlusWeeklyChallengeResult(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     week: int = betterproto.uint32_field(2)
 
 
@@ -3133,21 +3165,21 @@ class CMsgProfileRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgProfileResponse(betterproto.Message):
-    background_item: "_base_gcmessages__.CsoEconItem" = betterproto.message_field(1)
+    background_item: "CsoEconItem" = betterproto.message_field(1)
     featured_heroes: List["CMsgProfileResponseFeaturedHero"] = betterproto.message_field(2)
     recent_matches: List["CMsgProfileResponseMatchInfo"] = betterproto.message_field(3)
-    successful_heroes: List["_dota_gcmessages_common__.CMsgSuccessfulHero"] = betterproto.message_field(4)
-    recent_match_details: "_dota_gcmessages_common__.CMsgRecentMatchInfo" = betterproto.message_field(5)
+    successful_heroes: List["CMsgSuccessfulHero"] = betterproto.message_field(4)
+    recent_match_details: "CMsgRecentMatchInfo" = betterproto.message_field(5)
     result: "CMsgProfileResponseEResponse" = betterproto.enum_field(6)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgProfileResponseFeaturedHero(betterproto.Message):
     hero_id: int = betterproto.uint32_field(1)
-    equipped_econ_items: List["_base_gcmessages__.CsoEconItem"] = betterproto.message_field(2)
+    equipped_econ_items: List["CsoEconItem"] = betterproto.message_field(2)
     manually_set: bool = betterproto.bool_field(3)
     plus_hero_xp: int = betterproto.uint32_field(4)
-    plus_hero_relics_item: "_base_gcmessages__.CsoEconItem" = betterproto.message_field(5)
+    plus_hero_relics_item: "CsoEconItem" = betterproto.message_field(5)
 
 
 @dataclass(eq=False, repr=False)
@@ -3415,7 +3447,7 @@ class CMsgDotaMutationListMutation(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgEventTipsSummaryRequest(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     account_id: int = betterproto.uint32_field(2)
 
 
@@ -3547,7 +3579,7 @@ class CMsgDotadpcUserInfo(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDevGrantEventPoints(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     event_points: int = betterproto.uint32_field(2)
     premium_points: int = betterproto.uint32_field(3)
 
@@ -3559,7 +3591,7 @@ class CMsgDevGrantEventPointsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDevGrantEventAction(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     action_id: int = betterproto.uint32_field(2)
     action_score: int = betterproto.uint32_field(3)
 
@@ -3571,7 +3603,7 @@ class CMsgDevGrantEventActionResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDevDeleteEventActions(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     start_action_id: int = betterproto.uint32_field(2)
     end_action_id: int = betterproto.uint32_field(3)
     remove_audit: bool = betterproto.bool_field(4)
@@ -3584,7 +3616,7 @@ class CMsgDevDeleteEventActionsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgDevResetEventState(betterproto.Message):
-    event_id: "_dota_shared_enums__.EEvent" = betterproto.enum_field(1)
+    event_id: "EEvent" = betterproto.enum_field(1)
     remove_audit: bool = betterproto.bool_field(2)
 
 
@@ -3663,7 +3695,7 @@ class CMsgClientToGcRequestActiveBeaconParties(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgGcToClientRequestActiveBeaconPartiesResponse(betterproto.Message):
     response: "CMsgGcToClientRequestActiveBeaconPartiesResponseEResponse" = betterproto.enum_field(1)
-    active_parties: List["_dota_gcmessages_common__.CPartySearchClientParty"] = betterproto.message_field(2)
+    active_parties: List["CPartySearchClientParty"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -3737,7 +3769,7 @@ class CMsgClientToGcRequestPlayerRecentAccomplishments(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcRequestPlayerRecentAccomplishmentsResponse(betterproto.Message):
     result: "CMsgClientToGcRequestPlayerRecentAccomplishmentsResponseEResponse" = betterproto.enum_field(1)
-    player_accomplishments: "_dota_gcmessages_common__.CMsgPlayerRecentAccomplishments" = betterproto.message_field(2)
+    player_accomplishments: "CMsgPlayerRecentAccomplishments" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -3749,13 +3781,13 @@ class CMsgClientToGcRequestPlayerHeroRecentAccomplishments(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcRequestPlayerHeroRecentAccomplishmentsResponse(betterproto.Message):
     result: "CMsgClientToGcRequestPlayerHeroRecentAccomplishmentsResponseEResponse" = betterproto.enum_field(1)
-    hero_accomplishments: "_dota_gcmessages_common__.CMsgPlayerHeroRecentAccomplishments" = betterproto.message_field(2)
+    hero_accomplishments: "CMsgPlayerHeroRecentAccomplishments" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgPlayerCoachMatch(betterproto.Message):
     match_id: int = betterproto.uint64_field(1)
-    match_outcome: "_dota_shared_enums__.EMatchOutcome" = betterproto.enum_field(2)
+    match_outcome: "EMatchOutcome" = betterproto.enum_field(2)
     coached_team: int = betterproto.uint32_field(3)
     start_time: int = betterproto.fixed32_field(4)
     duration: int = betterproto.uint32_field(5)
@@ -3881,7 +3913,7 @@ class CMsgClientToGcUnderDraftResponse(betterproto.Message):
     result: "EUnderDraftResponse" = betterproto.enum_field(1)
     account_id: int = betterproto.uint32_field(2)
     event_id: int = betterproto.uint32_field(3)
-    draft_data: "_dota_gcmessages_common__.CMsgUnderDraftData" = betterproto.message_field(4)
+    draft_data: "CMsgUnderDraftData" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -3893,7 +3925,7 @@ class CMsgClientToGcUnderDraftReroll(betterproto.Message):
 class CMsgClientToGcUnderDraftRerollResponse(betterproto.Message):
     result: "EUnderDraftResponse" = betterproto.enum_field(1)
     event_id: int = betterproto.uint32_field(2)
-    draft_data: "_dota_gcmessages_common__.CMsgUnderDraftData" = betterproto.message_field(3)
+    draft_data: "CMsgUnderDraftData" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -3912,7 +3944,7 @@ class CMsgClientToGcUnderDraftBuyResponse(betterproto.Message):
     result: "EUnderDraftResponse" = betterproto.enum_field(1)
     event_id: int = betterproto.uint32_field(2)
     slot_id: int = betterproto.uint32_field(3)
-    draft_data: "_dota_gcmessages_common__.CMsgUnderDraftData" = betterproto.message_field(4)
+    draft_data: "CMsgUnderDraftData" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -3924,7 +3956,7 @@ class CMsgClientToGcUnderDraftRollBackBench(betterproto.Message):
 class CMsgClientToGcUnderDraftRollBackBenchResponse(betterproto.Message):
     result: "EUnderDraftResponse" = betterproto.enum_field(1)
     event_id: int = betterproto.uint32_field(2)
-    draft_data: "_dota_gcmessages_common__.CMsgUnderDraftData" = betterproto.message_field(3)
+    draft_data: "CMsgUnderDraftData" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -3938,7 +3970,7 @@ class CMsgClientToGcUnderDraftSellResponse(betterproto.Message):
     result: "EUnderDraftResponse" = betterproto.enum_field(1)
     event_id: int = betterproto.uint32_field(2)
     slot_id: int = betterproto.uint32_field(3)
-    draft_data: "_dota_gcmessages_common__.CMsgUnderDraftData" = betterproto.message_field(4)
+    draft_data: "CMsgUnderDraftData" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -4078,7 +4110,7 @@ class CMsgClientToGcGetOwMatchDetailsResponse(betterproto.Message):
     overwatch_salt: int = betterproto.uint32_field(5)
     target_player_slot: int = betterproto.uint32_field(6)
     markers: List["CMsgClientToGcGetOwMatchDetailsResponseMarker"] = betterproto.message_field(7)
-    report_reason: "_dota_shared_enums__.EOverwatchReportReason" = betterproto.enum_field(8)
+    report_reason: "EOverwatchReportReason" = betterproto.enum_field(8)
     target_hero_id: int = betterproto.uint32_field(9)
 
 
@@ -4092,8 +4124,8 @@ class CMsgClientToGcGetOwMatchDetailsResponseMarker(betterproto.Message):
 class CMsgClientToGcSubmitOwConviction(betterproto.Message):
     overwatch_replay_id: int = betterproto.uint64_field(1)
     target_player_slot: int = betterproto.uint32_field(2)
-    cheating_conviction: "_dota_gcmessages_common__.EOverwatchConviction" = betterproto.enum_field(3)
-    griefing_conviction: "_dota_gcmessages_common__.EOverwatchConviction" = betterproto.enum_field(4)
+    cheating_conviction: "EOverwatchConviction" = betterproto.enum_field(3)
+    griefing_conviction: "EOverwatchConviction" = betterproto.enum_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -4152,13 +4184,13 @@ class CMsgClientToGcGetDpcFavoritesResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcGetDpcFavoritesResponseFavorite(betterproto.Message):
-    favorite_type: "_dota_shared_enums__.EdpcFavoriteType" = betterproto.enum_field(1)
+    favorite_type: "EdpcFavoriteType" = betterproto.enum_field(1)
     favorite_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcSetDpcFavoriteState(betterproto.Message):
-    favorite_type: "_dota_shared_enums__.EdpcFavoriteType" = betterproto.enum_field(1)
+    favorite_type: "EdpcFavoriteType" = betterproto.enum_field(1)
     favorite_id: int = betterproto.uint32_field(2)
     enabled: bool = betterproto.bool_field(3)
 
@@ -4166,13 +4198,3 @@ class CMsgClientToGcSetDpcFavoriteState(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CMsgClientToGcSetDpcFavoriteStateResponse(betterproto.Message):
     result: "CMsgClientToGcSetDpcFavoriteStateResponseEResponse" = betterproto.enum_field(1)
-
-
-from .. import (
-    base_gcmessages as _base_gcmessages__,
-    dota_gcmessages_common as _dota_gcmessages_common__,
-    dota_gcmessages_common_match_management as _dota_gcmessages_common_match_management__,
-    dota_shared_enums as _dota_shared_enums__,
-    econ_gcmessages as _econ_gcmessages__,
-    gcsdk_gcmessages as _gcsdk_gcmessages__,
-)

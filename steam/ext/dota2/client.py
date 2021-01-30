@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Any
 
 from typing_extensions import Final
 
@@ -22,7 +22,7 @@ __all__ = (
 class Client(Client):
     GAME: Final[Game] = DOTA2
 
-    def __init__(self, loop: Optional[asyncio.AbstractEventLoop] = None, **options):
+    def __init__(self, **options: Any):
         game = options.pop("game", None)
         if game is not None:  # don't let them overwrite the main game
             try:
@@ -30,12 +30,13 @@ class Client(Client):
             except (TypeError, KeyError):
                 options["games"] = [game]
         options["game"] = DOTA2
-        super().__init__(loop, **options)
-        self._connection = GCState(client=self, http=self.http, **options)
+        super().__init__(**options)
+        self._connection = GCState(client=self, **options)
         self._gc_connect_task: Optional[asyncio.Task] = None
 
     # boring subclass stuff
 
+    """
     async def start(self, *args, **kwargs) -> None:
         self._gc_connect_task = self.loop.create_task(self._on_gc_connect())
         await super().start(*args, **kwargs)
@@ -52,6 +53,7 @@ class Client(Client):
         await self.ws.send_gc_message(GCMsg(Language.ClientGoodbye))
         self._gc_connect_task.cancel()
         await super().close()
+        """
 
     if TYPE_CHECKING:
 
