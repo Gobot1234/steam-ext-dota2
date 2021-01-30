@@ -7,10 +7,10 @@ from typing import List
 
 import betterproto
 
-from .dota_shared_enums import DOTAChatChannelType
+from .dota_shared_enums import DotaChatChannelType
 
 
-class CMsgGCToClientPrivateChatResponseResult(betterproto.Enum):
+class CMsgGcToClientPrivateChatResponseResult(betterproto.Enum):
     Success = 0
     FailureCreationLock = 1
     FailureSqlTransaction = 2
@@ -28,7 +28,7 @@ class CMsgGCToClientPrivateChatResponseResult(betterproto.Enum):
     FailureAlreadyAdmin = 15
 
 
-class CMsgDOTAJoinChatChannelResponseResult(betterproto.Enum):
+class CMsgDotaJoinChatChannelResponseResult(betterproto.Enum):
     JoinSuccess = 0
     InvalidChannelType = 1
     AccountNotFound = 2
@@ -47,80 +47,80 @@ class CMsgDOTAJoinChatChannelResponseResult(betterproto.Enum):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCPrivateChatInvite(betterproto.Message):
+class CMsgClientToGcPrivateChatInvite(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
     invited_account_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCPrivateChatKick(betterproto.Message):
+class CMsgClientToGcPrivateChatKick(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
     kick_account_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCPrivateChatPromote(betterproto.Message):
+class CMsgClientToGcPrivateChatPromote(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
     promote_account_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCPrivateChatDemote(betterproto.Message):
+class CMsgClientToGcPrivateChatDemote(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
     demote_account_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientPrivateChatResponse(betterproto.Message):
+class CMsgGcToClientPrivateChatResponse(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
-    result: "CMsgGCToClientPrivateChatResponseResult" = betterproto.enum_field(2)
+    result: "CMsgGcToClientPrivateChatResponseResult" = betterproto.enum_field(2)
     username: str = betterproto.string_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCPrivateChatInfoRequest(betterproto.Message):
+class CMsgClientToGcPrivateChatInfoRequest(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientPrivateChatInfoResponse(betterproto.Message):
+class CMsgGcToClientPrivateChatInfoResponse(betterproto.Message):
     private_chat_channel_name: str = betterproto.string_field(1)
-    members: List["CMsgGCToClientPrivateChatInfoResponseMember"] = betterproto.message_field(2)
+    members: List["CMsgGcToClientPrivateChatInfoResponseMember"] = betterproto.message_field(2)
     creator: int = betterproto.uint32_field(3)
     creation_date: int = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientPrivateChatInfoResponseMember(betterproto.Message):
+class CMsgGcToClientPrivateChatInfoResponseMember(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
     status: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAJoinChatChannel(betterproto.Message):
+class CMsgDotaJoinChatChannel(betterproto.Message):
     channel_name: str = betterproto.string_field(2)
-    channel_type: "DOTAChatChannelType" = betterproto.enum_field(4)
+    channel_type: "DotaChatChannelType" = betterproto.enum_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTALeaveChatChannel(betterproto.Message):
+class CMsgDotaLeaveChatChannel(betterproto.Message):
     channel_id: int = betterproto.uint64_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCChatReportPublicSpam(betterproto.Message):
+class CMsgGcChatReportPublicSpam(betterproto.Message):
     channel_id: int = betterproto.uint64_field(1)
     channel_user_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAClientIgnoredUser(betterproto.Message):
+class CMsgDotaClientIgnoredUser(betterproto.Message):
     ignored_account_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatMessage(betterproto.Message):
+class CMsgDotaChatMessage(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     channel_id: int = betterproto.uint64_field(2)
     persona_name: str = betterproto.string_field(3)
@@ -137,7 +137,7 @@ class CMsgDOTAChatMessage(betterproto.Message):
     player_id: int = betterproto.int32_field(14)
     share_profile_account_id: int = betterproto.uint32_field(15)
     channel_user_id: int = betterproto.uint32_field(16)
-    dice_roll: "CMsgDOTAChatMessageDiceRoll" = betterproto.message_field(17)
+    dice_roll: "CMsgDotaChatMessageDiceRoll" = betterproto.message_field(17)
     share_party_id: int = betterproto.uint64_field(18)
     share_lobby_id: int = betterproto.uint64_field(19)
     share_lobby_custom_game_id: int = betterproto.uint64_field(20)
@@ -150,7 +150,7 @@ class CMsgDOTAChatMessage(betterproto.Message):
     suggest_pick_hero_id: int = betterproto.uint32_field(26)
     suggest_pick_hero_role: str = betterproto.string_field(27)
     suggest_ban_hero_id: int = betterproto.uint32_field(30)
-    trivia_answer: "CMsgDOTAChatMessageTriviaAnswered" = betterproto.message_field(32)
+    trivia_answer: "CMsgDotaChatMessageTriviaAnswered" = betterproto.message_field(32)
     requested_ability_id: int = betterproto.uint32_field(33)
     chat_flags: int = betterproto.uint32_field(34)
     started_finding_match: bool = betterproto.bool_field(35)
@@ -158,14 +158,14 @@ class CMsgDOTAChatMessage(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatMessageDiceRoll(betterproto.Message):
+class CMsgDotaChatMessageDiceRoll(betterproto.Message):
     roll_min: int = betterproto.int32_field(1)
     roll_max: int = betterproto.int32_field(2)
     result: int = betterproto.int32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatMessageTriviaAnswered(betterproto.Message):
+class CMsgDotaChatMessageTriviaAnswered(betterproto.Message):
     question_id: int = betterproto.uint32_field(1)
     answer_index: int = betterproto.uint32_field(2)
     party_questions_correct: int = betterproto.uint32_field(3)
@@ -174,121 +174,121 @@ class CMsgDOTAChatMessageTriviaAnswered(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatMember(betterproto.Message):
-    steam_id: float = betterproto.fixed64_field(1)
+class CMsgDotaChatMember(betterproto.Message):
+    steam_id: int = betterproto.fixed64_field(1)
     persona_name: str = betterproto.string_field(2)
     channel_user_id: int = betterproto.uint32_field(3)
     status: int = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAJoinChatChannelResponse(betterproto.Message):
+class CMsgDotaJoinChatChannelResponse(betterproto.Message):
     response: int = betterproto.uint32_field(1)
     channel_name: str = betterproto.string_field(2)
-    channel_id: float = betterproto.fixed64_field(3)
+    channel_id: int = betterproto.fixed64_field(3)
     max_members: int = betterproto.uint32_field(4)
-    members: List["CMsgDOTAChatMember"] = betterproto.message_field(5)
-    channel_type: "DOTAChatChannelType" = betterproto.enum_field(6)
-    result: "CMsgDOTAJoinChatChannelResponseResult" = betterproto.enum_field(7)
+    members: List["CMsgDotaChatMember"] = betterproto.message_field(5)
+    channel_type: "DotaChatChannelType" = betterproto.enum_field(6)
+    result: "CMsgDotaJoinChatChannelResponseResult" = betterproto.enum_field(7)
     gc_initiated_join: bool = betterproto.bool_field(8)
     channel_user_id: int = betterproto.uint32_field(9)
     welcome_message: str = betterproto.string_field(10)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatChannelFullUpdate(betterproto.Message):
-    channel_id: float = betterproto.fixed64_field(1)
-    members: List["CMsgDOTAChatMember"] = betterproto.message_field(2)
+class CMsgDotaChatChannelFullUpdate(betterproto.Message):
+    channel_id: int = betterproto.fixed64_field(1)
+    members: List["CMsgDotaChatMember"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAOtherJoinedChatChannel(betterproto.Message):
-    channel_id: float = betterproto.fixed64_field(1)
+class CMsgDotaOtherJoinedChatChannel(betterproto.Message):
+    channel_id: int = betterproto.fixed64_field(1)
     persona_name: str = betterproto.string_field(2)
-    steam_id: float = betterproto.fixed64_field(3)
+    steam_id: int = betterproto.fixed64_field(3)
     channel_user_id: int = betterproto.uint32_field(4)
     status: int = betterproto.uint32_field(5)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAOtherLeftChatChannel(betterproto.Message):
-    channel_id: float = betterproto.fixed64_field(1)
-    steam_id: float = betterproto.fixed64_field(2)
+class CMsgDotaOtherLeftChatChannel(betterproto.Message):
+    channel_id: int = betterproto.fixed64_field(1)
+    steam_id: int = betterproto.fixed64_field(2)
     channel_user_id: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatChannelMemberUpdate(betterproto.Message):
-    channel_id: float = betterproto.fixed64_field(1)
-    left_steam_ids: List[float] = betterproto.fixed64_field(2)
-    joined_members: List["CMsgDOTAChatChannelMemberUpdateJoinedMember"] = betterproto.message_field(3)
+class CMsgDotaChatChannelMemberUpdate(betterproto.Message):
+    channel_id: int = betterproto.fixed64_field(1)
+    left_steam_ids: List[int] = betterproto.fixed64_field(2)
+    joined_members: List["CMsgDotaChatChannelMemberUpdateJoinedMember"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatChannelMemberUpdateJoinedMember(betterproto.Message):
-    steam_id: float = betterproto.fixed64_field(1)
+class CMsgDotaChatChannelMemberUpdateJoinedMember(betterproto.Message):
+    steam_id: int = betterproto.fixed64_field(1)
     persona_name: str = betterproto.string_field(2)
     channel_user_id: int = betterproto.uint32_field(3)
     status: int = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTARequestChatChannelList(betterproto.Message):
+class CMsgDotaRequestChatChannelList(betterproto.Message):
     pass
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTARequestChatChannelListResponse(betterproto.Message):
-    channels: List["CMsgDOTARequestChatChannelListResponseChatChannel"] = betterproto.message_field(1)
+class CMsgDotaRequestChatChannelListResponse(betterproto.Message):
+    channels: List["CMsgDotaRequestChatChannelListResponseChatChannel"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTARequestChatChannelListResponseChatChannel(betterproto.Message):
+class CMsgDotaRequestChatChannelListResponseChatChannel(betterproto.Message):
     channel_name: str = betterproto.string_field(1)
     num_members: int = betterproto.uint32_field(2)
-    channel_type: "DOTAChatChannelType" = betterproto.enum_field(3)
+    channel_type: "DotaChatChannelType" = betterproto.enum_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatGetUserList(betterproto.Message):
-    channel_id: float = betterproto.fixed64_field(1)
+class CMsgDotaChatGetUserList(betterproto.Message):
+    channel_id: int = betterproto.fixed64_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatGetUserListResponse(betterproto.Message):
-    channel_id: float = betterproto.fixed64_field(1)
-    members: List["CMsgDOTAChatGetUserListResponseMember"] = betterproto.message_field(2)
+class CMsgDotaChatGetUserListResponse(betterproto.Message):
+    channel_id: int = betterproto.fixed64_field(1)
+    members: List["CMsgDotaChatGetUserListResponseMember"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatGetUserListResponseMember(betterproto.Message):
-    steam_id: float = betterproto.fixed64_field(1)
+class CMsgDotaChatGetUserListResponseMember(betterproto.Message):
+    steam_id: int = betterproto.fixed64_field(1)
     persona_name: str = betterproto.string_field(2)
     channel_user_id: int = betterproto.uint32_field(3)
     status: int = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatGetMemberCount(betterproto.Message):
+class CMsgDotaChatGetMemberCount(betterproto.Message):
     channel_name: str = betterproto.string_field(1)
-    channel_type: "DOTAChatChannelType" = betterproto.enum_field(2)
+    channel_type: "DotaChatChannelType" = betterproto.enum_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatGetMemberCountResponse(betterproto.Message):
+class CMsgDotaChatGetMemberCountResponse(betterproto.Message):
     channel_name: str = betterproto.string_field(1)
-    channel_type: "DOTAChatChannelType" = betterproto.enum_field(2)
+    channel_type: "DotaChatChannelType" = betterproto.enum_field(2)
     member_count: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatRegionsEnabled(betterproto.Message):
+class CMsgDotaChatRegionsEnabled(betterproto.Message):
     enable_all_regions: bool = betterproto.bool_field(1)
-    enabled_regions: List["CMsgDOTAChatRegionsEnabledRegion"] = betterproto.message_field(2)
+    enabled_regions: List["CMsgDotaChatRegionsEnabledRegion"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAChatRegionsEnabledRegion(betterproto.Message):
+class CMsgDotaChatRegionsEnabledRegion(betterproto.Message):
     min_latitude: float = betterproto.float_field(1)
     max_latitude: float = betterproto.float_field(2)
     min_longitude: float = betterproto.float_field(3)

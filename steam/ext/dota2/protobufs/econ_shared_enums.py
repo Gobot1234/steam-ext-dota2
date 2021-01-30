@@ -7,11 +7,7 @@ from dataclasses import dataclass
 import betterproto
 
 
-class EGCEconBaseMsg(betterproto.Enum):
-    GCGenericResult = 2579
-
-
-class EGCMsgResponse(betterproto.Enum):
+class EgcMsgResponse(betterproto.Enum):
     OK = 0
     Denied = 1
     ServerError = 2
@@ -23,14 +19,14 @@ class EGCMsgResponse(betterproto.Enum):
     FailedToCreate = 8
 
 
-class EGCPartnerRequestResponse(betterproto.Enum):
+class EgcPartnerRequestResponse(betterproto.Enum):
     OK = 1
     BadAccount = 2
     NotLinked = 3
     UnsupportedPartnerType = 4
 
 
-class EGCMsgUseItemResponse(betterproto.Enum):
+class EgcMsgUseItemResponse(betterproto.Enum):
     ItemUsed = 0
     GiftNoOtherPlayers = 1
     ServerError = 2
@@ -47,7 +43,7 @@ class EGCMsgUseItemResponse(betterproto.Enum):
     ItemUsed_Compendium = 13
 
 
-@dataclass
+@dataclass(eq=False, repr=False)
 class CMsgGenericResult(betterproto.Message):
     eresult: int = betterproto.uint32_field(1)
     debug_message: str = betterproto.string_field(2)

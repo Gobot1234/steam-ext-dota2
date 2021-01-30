@@ -8,36 +8,36 @@ from typing import List
 import betterproto
 
 
-class DOTAGameMode(betterproto.Enum):
+class DotaGameMode(betterproto.Enum):
     NONE = 0
-    Ap = 1
-    Cm = 2
-    Rd = 3
-    Sd = 4
-    Ar = 5
+    AP = 1
+    CM = 2
+    RD = 3
+    SD = 4
+    AR = 5
     Intro = 6
-    Hw = 7
+    HW = 7
     ReverseCm = 8
     Xmas = 9
     Tutorial = 10
-    Mo = 11
-    Lp = 12
+    MO = 11
+    LP = 12
     Pool1 = 13
-    Fh = 14
+    FH = 14
     Custom = 15
-    Cd = 16
-    Bd = 17
+    CD = 16
+    BD = 17
     AbilityDraft = 18
     Event = 19
-    Ardm = 20
-    _1v1Mid = 21
+    ARDM = 20
+    _1V1Mid = 21
     AllDraft = 22
     Turbo = 23
     Mutation = 24
     CoachesChallenge = 25
 
 
-class DOTAGameState(betterproto.Enum):
+class DotaGameState(betterproto.Enum):
     Init = 0
     WaitForPlayersToLoad = 1
     HeroSelection = 2
@@ -52,13 +52,13 @@ class DOTAGameState(betterproto.Enum):
     Last = 11
 
 
-class DOTAGCTeam(betterproto.Enum):
+class DotaGcTeam(betterproto.Enum):
     GoodGuys = 0
     BadGuys = 1
     Broadcaster = 2
     Spectator = 3
     PlayerPool = 4
-    NoTeam = 5
+    Noteam = 5
 
 
 class EEvent(betterproto.Enum):
@@ -67,8 +67,8 @@ class EEvent(betterproto.Enum):
     SpringFestival = 2
     Frostivus2013 = 3
     Compendium2014 = 4
-    NexonPCBang = 5
-    PWRDDac2015 = 6
+    NexonPcBang = 5
+    PwrdDac2015 = 6
     NewBloom2015 = 7
     International2015 = 8
     FallMajor2015 = 9
@@ -93,10 +93,12 @@ class EEvent(betterproto.Enum):
     NewBloom2020 = 28
     International2020 = 29
     TeamFandom = 30
-    Count = 31
+    Diretide2020 = 31
+    Spring2021 = 32
+    Count = 33
 
 
-class DOTALeaverStatus(betterproto.Enum):
+class DotaLeaverStatus(betterproto.Enum):
     NONE = 0
     Disconnected = 1
     DisconnectedTooLong = 2
@@ -108,7 +110,7 @@ class DOTALeaverStatus(betterproto.Enum):
     Declined = 8
 
 
-class DOTAConnectionStateT(betterproto.Enum):
+class DotaConnectionState(betterproto.Enum):
     Unknown = 0
     NotYetConnected = 1
     Connected = 2
@@ -147,7 +149,7 @@ class FantasySelectionMode(betterproto.Enum):
     CardBased = 9
 
 
-class DOTAChatChannelType(betterproto.Enum):
+class DotaChatChannelType(betterproto.Enum):
     Regional = 0
     Custom = 1
     Party = 2
@@ -188,31 +190,31 @@ class EMatchGroupServerStatus(betterproto.Enum):
     Offline = 2
 
 
-class DOTACMPick(betterproto.Enum):
+class DotaCmPick(betterproto.Enum):
     Random = 0
     GoodGuys = 1
     BadGuys = 2
 
 
-class DOTALowPriorityBanType(betterproto.Enum):
+class DotaLowPriorityBanType(betterproto.Enum):
     Abandon = 0
     Reports = 1
     SecondaryAbandon = 2
     PreGameRole = 3
 
 
-class DOTALobbyReadyState(betterproto.Enum):
+class DotaLobbyReadyState(betterproto.Enum):
     Undeclared = 0
     Accepted = 1
     Declined = 2
 
 
-class DOTAGameVersion(betterproto.Enum):
+class DotaGameVersion(betterproto.Enum):
     Current = 0
     Stable = 1
 
 
-class DOTAJoinLobbyResult(betterproto.Enum):
+class DotaJoinLobbyResult(betterproto.Enum):
     Success = 0
     AlreadyInGame = 1
     InvalidLobby = 2
@@ -230,12 +232,12 @@ class DOTAJoinLobbyResult(betterproto.Enum):
     NoPlaytime = 14
 
 
-class DOTASelectionPriorityRules(betterproto.Enum):
+class DotaSelectionPriorityRules(betterproto.Enum):
     Manual = 0
     Automatic = 1
 
 
-class DOTASelectionPriorityChoice(betterproto.Enum):
+class DotaSelectionPriorityChoice(betterproto.Enum):
     Invalid = 0
     FirstPick = 1
     SecondPick = 2
@@ -243,32 +245,31 @@ class DOTASelectionPriorityChoice(betterproto.Enum):
     Dire = 4
 
 
-class DOTAMatchVote(betterproto.Enum):
+class DotaMatchVote(betterproto.Enum):
     Invalid = 0
     Positive = 1
     Negative = 2
 
 
-class DOTALobbyVisibility(betterproto.Enum):
+class DotaLobbyVisibility(betterproto.Enum):
     Public = 0
     Friends = 1
     Unlisted = 2
 
 
-class EDOTAPlayerMMRType(betterproto.Enum):
+class EdotaPlayerMmrType(betterproto.Enum):
     Invalid = 0
     GeneralHidden = 1
     GeneralCompetitive = 3
     SoloCompetitive2019 = 4
-    _1v1Competitive_UNUSED = 5
     GeneralSeasonalRanked = 6
     SoloSeasonalRanked = 7
-    Competitive_Core = 8
-    Competitive_Support = 9
-    Competitive_Classic = 10
+    CompetitiveCore = 8
+    CompetitiveSupport = 9
+    CompetitiveClassic = 10
 
 
-class EDOTAMMRBoostType(betterproto.Enum):
+class EdotammrBoostType(betterproto.Enum):
     NONE = 0
     Leader = 1
     Follower = 2
@@ -291,7 +292,7 @@ class MatchType(betterproto.Enum):
     Gauntlet = 13
 
 
-class DOTABotDifficulty(betterproto.Enum):
+class DotaBotDifficulty(betterproto.Enum):
     Passive = 0
     Easy = 1
     Medium = 2
@@ -303,7 +304,7 @@ class DOTABotDifficulty(betterproto.Enum):
     Extra3 = 8
 
 
-class DOTABotMode(betterproto.Enum):
+class DotaBotMode(betterproto.Enum):
     NONE = 0
     Laning = 1
     Attack = 2
@@ -357,12 +358,12 @@ class EMatchOutcome(betterproto.Enum):
     Unknown = 0
     RadVictory = 2
     DireVictory = 3
-    NotScored_PoorNetworkConditions = 64
-    NotScored_Leaver = 65
-    NotScored_ServerCrash = 66
-    NotScored_NeverStarted = 67
-    NotScored_Canceled = 68
-    NotScored_Suspicious = 69
+    NotScoredPoorNetworkConditions = 64
+    NotScoredLeaver = 65
+    NotScoredServerCrash = 66
+    NotScoredNeverStarted = 67
+    NotScoredCanceled = 68
+    NotScoredSuspicious = 69
 
 
 class ELaneType(betterproto.Enum):
@@ -375,12 +376,12 @@ class ELaneType(betterproto.Enum):
 
 
 class EBadgeType(betterproto.Enum):
-    TI7Midweek = 1
-    TI7Finals = 2
-    TI7AllEvent = 3
-    TI8Midweek = 4
-    TI8Finals = 5
-    TI8AllEvent = 6
+    Ti7Midweek = 1
+    Ti7Finals = 2
+    Ti7AllEvent = 3
+    Ti8Midweek = 4
+    Ti8Finals = 5
+    Ti8AllEvent = 6
 
 
 class ELeagueStatus(betterproto.Enum):
@@ -395,10 +396,10 @@ class ELeagueStatus(betterproto.Enum):
 
 class ELeagueRegion(betterproto.Enum):
     Unset = 0
-    NA = 1
-    SA = 2
+    Na = 1
+    Sa = 2
     Europe = 3
-    CIS = 4
+    Cis = 4
     China = 5
     Sea = 6
 
@@ -411,16 +412,18 @@ class ELeagueTier(betterproto.Enum):
     Major = 4
     International = 5
     DpcQualifier = 6
+    DpcLeagueQualifier = 7
+    DpcLeague = 8
 
 
 class ELeagueTierCategory(betterproto.Enum):
-    CategoryAmateur = 1
-    CategoryProfessional = 2
-    CategoryDpc = 3
+    Amateur = 1
+    Professional = 2
+    Dpc = 3
 
 
 class ELeagueFlags(betterproto.Enum):
-    FlagsNone = 0
+    NONE = 0
     AcceptedAgreement = 1
     PaymentEmailSent = 2
     CompendiumAllowed = 4
@@ -486,7 +489,7 @@ class ELeagueAuditAction(betterproto.Enum):
     NodeEdit = 209
 
 
-class DOTACombatLogTypes(betterproto.Enum):
+class DotaCombatlogTypes(betterproto.Enum):
     Invalid = -1
     Damage = 0
     Heal = 1
@@ -533,14 +536,14 @@ class DOTACombatLogTypes(betterproto.Enum):
     KillEaterEvent = 42
 
 
-class EDPCFavoriteType(betterproto.Enum):
+class EdpcFavoriteType(betterproto.Enum):
     All = 0
     Player = 1
     Team = 2
     League = 3
 
 
-class EDPCPushNotification(betterproto.Enum):
+class EdpcPushNotification(betterproto.Enum):
     MatchStarting = 1
     PlayerLeftTeam = 10
     PlayerJoinedTeam = 11
@@ -557,52 +560,59 @@ class EEventActionScoreMode(betterproto.Enum):
     Min = 1
 
 
+class EOverwatchReportReason(betterproto.Enum):
+    Unknown = 0
+    Cheating = 1
+    Feeding = 2
+    Griefing = 3
+    Suspicious = 4
+    AbilityAbuse = 5
+
+
 @dataclass(eq=False, repr=False)
-class CDOTAClientHardwareSpecs(betterproto.Message):
+class CdotaClientHardwareSpecs(betterproto.Message):
     logical_processors: int = betterproto.uint32_field(1)
-    cpu_cycles_per_second: float = betterproto.fixed64_field(2)
-    total_physical_memory: float = betterproto.fixed64_field(3)
+    cpu_cycles_per_second: int = betterproto.fixed64_field(2)
+    total_physical_memory: int = betterproto.fixed64_field(3)
     is_64_bit_os: bool = betterproto.bool_field(4)
     upload_measurement: int = betterproto.uint64_field(5)
     prefer_not_host: bool = betterproto.bool_field(6)
 
 
 @dataclass(eq=False, repr=False)
-class CDOTASaveGame(betterproto.Message):
+class CdotaSaveGame(betterproto.Message):
     match_id: int = betterproto.uint64_field(5)
     save_time: int = betterproto.uint32_field(2)
-    players: List["CDOTASaveGamePlayer"] = betterproto.message_field(3)
-    save_instances: List["CDOTASaveGameSaveInstance"] = betterproto.message_field(4)
+    players: List["CdotaSaveGamePlayer"] = betterproto.message_field(3)
+    save_instances: List["CdotaSaveGameSaveInstance"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CDOTASaveGamePlayer(betterproto.Message):
-    team: "DOTA_GC_TEAM" = betterproto.enum_field(1)
+class CdotaSaveGamePlayer(betterproto.Message):
+    team: "DotaGcTeam" = betterproto.enum_field(1)
     name: str = betterproto.string_field(2)
     hero: str = betterproto.string_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CDOTASaveGameSaveInstance(betterproto.Message):
+class CdotaSaveGameSaveInstance(betterproto.Message):
     game_time: int = betterproto.uint32_field(2)
     team1_score: int = betterproto.uint32_field(3)
     team2_score: int = betterproto.uint32_field(4)
-    player_positions: List[
-        "CDOTASaveGameSaveInstancePlayerPositions"
-    ] = betterproto.message_field(5)
+    player_positions: List["CdotaSaveGameSaveInstancePlayerPositions"] = betterproto.message_field(5)
     save_id: int = betterproto.uint32_field(6)
     save_time: int = betterproto.uint32_field(7)
 
 
 @dataclass(eq=False, repr=False)
-class CDOTASaveGameCDOTASaveGameSaveInstancePlayerPositions(betterproto.Message):
+class CdotaSaveGameSaveInstancePlayerPositions(betterproto.Message):
     x: float = betterproto.float_field(1)
     y: float = betterproto.float_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTACombatLogEntry(betterproto.Message):
-    type: "DOTACombatLogTypes" = betterproto.enum_field(1)
+class CMsgDotaCombatLogEntry(betterproto.Message):
+    type: "DotaCombatlogTypes" = betterproto.enum_field(1)
     target_name: int = betterproto.uint32_field(2)
     target_source_name: int = betterproto.uint32_field(3)
     attacker_name: int = betterproto.uint32_field(4)

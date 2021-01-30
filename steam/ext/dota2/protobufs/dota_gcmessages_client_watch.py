@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import List
 
 import betterproto
+from Downloads.files.dota_gcmessages_common import CMsgDotaMatch, CMsgDotaMatchMinimal
 
 
 class CMsgSpectateFriendGameResponseEWatchLiveResult(betterproto.Enum):
@@ -28,16 +29,16 @@ class CMsgSpectateFriendGameResponseEWatchLiveResult(betterproto.Enum):
 class CMsgWatchGameResponseWatchGameResult(betterproto.Enum):
     Pending = 0
     Ready = 1
-    GameserverNotFound = 2
+    Gameservernotfound = 2
     Unavailable = 3
     Cancelled = 4
-    IncompatibleVersion = 5
-    MissingLeagueSubscription = 6
-    LobbyNotFound = 7
+    Incompatibleversion = 5
+    Missingleaguesubscription = 6
+    Lobbynotfound = 7
 
 
 @dataclass(eq=False, repr=False)
-class CSourceTVGameSmall(betterproto.Message):
+class CSourceTvGameSmall(betterproto.Message):
     activate_time: int = betterproto.uint32_field(1)
     deactivate_time: int = betterproto.uint32_field(2)
     server_steam_id: int = betterproto.uint64_field(3)
@@ -53,8 +54,8 @@ class CSourceTVGameSmall(betterproto.Message):
     series_id: int = betterproto.uint32_field(13)
     team_name_radiant: str = betterproto.string_field(15)
     team_name_dire: str = betterproto.string_field(16)
-    team_logo_radiant: float = betterproto.fixed64_field(24)
-    team_logo_dire: float = betterproto.fixed64_field(25)
+    team_logo_radiant: int = betterproto.fixed64_field(24)
+    team_logo_dire: int = betterproto.fixed64_field(25)
     team_id_radiant: int = betterproto.uint32_field(30)
     team_id_dire: int = betterproto.uint32_field(31)
     sort_score: int = betterproto.uint32_field(17)
@@ -62,8 +63,8 @@ class CSourceTVGameSmall(betterproto.Message):
     radiant_lead: int = betterproto.int32_field(19)
     radiant_score: int = betterproto.uint32_field(20)
     dire_score: int = betterproto.uint32_field(21)
-    players: List["CSourceTVGameSmallPlayer"] = betterproto.message_field(22)
-    building_state: float = betterproto.fixed32_field(23)
+    players: List["CSourceTvGameSmallPlayer"] = betterproto.message_field(22)
+    building_state: int = betterproto.fixed32_field(23)
     weekend_tourney_tournament_id: int = betterproto.uint32_field(26)
     weekend_tourney_division: int = betterproto.uint32_field(27)
     weekend_tourney_skill_level: int = betterproto.uint32_field(28)
@@ -72,13 +73,13 @@ class CSourceTVGameSmall(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CSourceTVGameSmallPlayer(betterproto.Message):
+class CSourceTvGameSmallPlayer(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     hero_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCFindTopSourceTVGames(betterproto.Message):
+class CMsgClientToGcFindTopSourceTvGames(betterproto.Message):
     search_key: str = betterproto.string_field(1)
     league_id: int = betterproto.uint32_field(2)
     hero_id: int = betterproto.uint32_field(3)
@@ -88,63 +89,63 @@ class CMsgClientToGCFindTopSourceTVGames(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientFindTopSourceTVGamesResponse(betterproto.Message):
+class CMsgGcToClientFindTopSourceTvGamesResponse(betterproto.Message):
     search_key: str = betterproto.string_field(1)
     league_id: int = betterproto.uint32_field(2)
     hero_id: int = betterproto.uint32_field(3)
     start_game: int = betterproto.uint32_field(4)
     num_games: int = betterproto.uint32_field(5)
     game_list_index: int = betterproto.uint32_field(6)
-    game_list: List["CSourceTVGameSmall"] = betterproto.message_field(7)
+    game_list: List["CSourceTvGameSmall"] = betterproto.message_field(7)
     specific_games: bool = betterproto.bool_field(8)
-    bot_game: "CSourceTVGameSmall" = betterproto.message_field(9)
+    bot_game: "CSourceTvGameSmall" = betterproto.message_field(9)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientTopWeekendTourneyGames(betterproto.Message):
-    live_games: List["CSourceTVGameSmall"] = betterproto.message_field(1)
+class CMsgGcToClientTopWeekendTourneyGames(betterproto.Message):
+    live_games: List["CSourceTvGameSmall"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCTopMatchesRequest(betterproto.Message):
+class CMsgClientToGcTopMatchesRequest(betterproto.Message):
     hero_id: int = betterproto.uint32_field(1)
     player_account_id: int = betterproto.uint32_field(2)
     team_id: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCTopLeagueMatchesRequest(betterproto.Message):
+class CMsgClientToGcTopLeagueMatchesRequest(betterproto.Message):
     pass
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCTopFriendMatchesRequest(betterproto.Message):
+class CMsgClientToGcTopFriendMatchesRequest(betterproto.Message):
     pass
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCMatchesMinimalRequest(betterproto.Message):
+class CMsgClientToGcMatchesMinimalRequest(betterproto.Message):
     match_ids: List[int] = betterproto.uint64_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCMatchesMinimalResponse(betterproto.Message):
-    matches: List["CMsgDOTAMatchMinimal"] = betterproto.message_field(1)
+class CMsgClientToGcMatchesMinimalResponse(betterproto.Message):
+    matches: List["CMsgDotaMatchMinimal"] = betterproto.message_field(1)
     last_match: bool = betterproto.bool_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientTopLeagueMatchesResponse(betterproto.Message):
-    matches: List["CMsgDOTAMatchMinimal"] = betterproto.message_field(2)
+class CMsgGcToClientTopLeagueMatchesResponse(betterproto.Message):
+    matches: List["CMsgDotaMatchMinimal"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientTopFriendMatchesResponse(betterproto.Message):
-    matches: List["CMsgDOTAMatchMinimal"] = betterproto.message_field(1)
+class CMsgGcToClientTopFriendMatchesResponse(betterproto.Message):
+    matches: List["CMsgDotaMatchMinimal"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCFindTopMatches(betterproto.Message):
+class CMsgClientToGcFindTopMatches(betterproto.Message):
     start_game: int = betterproto.uint32_field(1)
     league_id: int = betterproto.uint32_field(2)
     hero_id: int = betterproto.uint32_field(3)
@@ -154,29 +155,29 @@ class CMsgClientToGCFindTopMatches(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgGCToClientFindTopLeagueMatchesResponse(betterproto.Message):
+class CMsgGcToClientFindTopLeagueMatchesResponse(betterproto.Message):
     start_game: int = betterproto.uint32_field(1)
     league_id: int = betterproto.uint32_field(2)
     hero_id: int = betterproto.uint32_field(3)
     match_ids: List[int] = betterproto.uint32_field(4)
-    matches: List["CMsgDOTAMatch"] = betterproto.message_field(5)
+    matches: List["CMsgDotaMatch"] = betterproto.message_field(5)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgSpectateFriendGame(betterproto.Message):
-    steam_id: float = betterproto.fixed64_field(1)
+    steam_id: int = betterproto.fixed64_field(1)
     live: bool = betterproto.bool_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgSpectateFriendGameResponse(betterproto.Message):
-    server_steamid: float = betterproto.fixed64_field(4)
+    server_steamid: int = betterproto.fixed64_field(4)
     watch_live_result: "CMsgSpectateFriendGameResponseEWatchLiveResult" = betterproto.enum_field(5)
 
 
 @dataclass(eq=False, repr=False)
-class CDOTAReplayDownloadInfo(betterproto.Message):
-    match: "CMsgDOTAMatchMinimal" = betterproto.message_field(1)
+class CdotaReplayDownloadInfo(betterproto.Message):
+    match: "CMsgDotaMatchMinimal" = betterproto.message_field(1)
     title: str = betterproto.string_field(2)
     description: str = betterproto.string_field(3)
     size: int = betterproto.uint32_field(4)
@@ -185,16 +186,16 @@ class CDOTAReplayDownloadInfo(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CDOTAReplayDownloadInfoHighlight(betterproto.Message):
+class CdotaReplayDownloadInfoHighlight(betterproto.Message):
     timestamp: int = betterproto.uint32_field(1)
     description: str = betterproto.string_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgWatchGame(betterproto.Message):
-    server_steamid: float = betterproto.fixed64_field(1)
+    server_steamid: int = betterproto.fixed64_field(1)
     client_version: int = betterproto.uint32_field(2)
-    watch_server_steamid: float = betterproto.fixed64_field(3)
+    watch_server_steamid: int = betterproto.fixed64_field(3)
     lobby_id: int = betterproto.uint64_field(4)
     regions: List[int] = betterproto.uint32_field(5)
 
@@ -210,20 +211,20 @@ class CMsgWatchGameResponse(betterproto.Message):
     source_tv_public_addr: int = betterproto.uint32_field(2)
     source_tv_private_addr: int = betterproto.uint32_field(3)
     source_tv_port: int = betterproto.uint32_field(4)
-    game_server_steamid: float = betterproto.fixed64_field(5)
-    watch_server_steamid: float = betterproto.fixed64_field(6)
-    watch_tv_unique_secret_code: float = betterproto.fixed64_field(7)
+    game_server_steamid: int = betterproto.fixed64_field(5)
+    watch_server_steamid: int = betterproto.fixed64_field(6)
+    watch_tv_unique_secret_code: int = betterproto.fixed64_field(7)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgPartyLeaderWatchGamePrompt(betterproto.Message):
-    game_server_steamid: float = betterproto.fixed64_field(5)
+    game_server_steamid: int = betterproto.fixed64_field(5)
 
 
 @dataclass(eq=False, repr=False)
-class CDOTABroadcasterInfo(betterproto.Message):
+class CdotaBroadcasterInfo(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
-    server_steam_id: float = betterproto.fixed64_field(2)
+    server_steam_id: int = betterproto.fixed64_field(2)
     live: bool = betterproto.bool_field(3)
     team_name_radiant: str = betterproto.string_field(4)
     team_name_dire: str = betterproto.string_field(5)
@@ -235,17 +236,17 @@ class CDOTABroadcasterInfo(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTASeries(betterproto.Message):
+class CMsgDotaSeries(betterproto.Message):
     series_id: int = betterproto.uint32_field(1)
     series_type: int = betterproto.uint32_field(2)
-    team_1: "CMsgDOTASeriesTeamInfo" = betterproto.message_field(3)
-    team_2: "CMsgDOTASeriesTeamInfo" = betterproto.message_field(4)
-    match_minimal: List["CMsgDOTAMatchMinimal"] = betterproto.message_field(5)
-    live_game: "CMsgDOTASeriesLiveGame" = betterproto.message_field(6)
+    team_1: "CMsgDotaSeriesTeamInfo" = betterproto.message_field(3)
+    team_2: "CMsgDotaSeriesTeamInfo" = betterproto.message_field(4)
+    match_minimal: List["CMsgDotaMatchMinimal"] = betterproto.message_field(5)
+    live_game: "CMsgDotaSeriesLiveGame" = betterproto.message_field(6)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTASeriesTeamInfo(betterproto.Message):
+class CMsgDotaSeriesTeamInfo(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
     team_name: str = betterproto.string_field(2)
     team_logo_url: str = betterproto.string_field(3)
@@ -253,9 +254,9 @@ class CMsgDOTASeriesTeamInfo(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTASeriesLiveGame(betterproto.Message):
-    server_steam_id: float = betterproto.fixed64_field(1)
-    team_radiant: "CMsgDOTASeriesTeamInfo" = betterproto.message_field(2)
-    team_dire: "CMsgDOTASeriesTeamInfo" = betterproto.message_field(3)
+class CMsgDotaSeriesLiveGame(betterproto.Message):
+    server_steam_id: int = betterproto.fixed64_field(1)
+    team_radiant: "CMsgDotaSeriesTeamInfo" = betterproto.message_field(2)
+    team_dire: "CMsgDotaSeriesTeamInfo" = betterproto.message_field(3)
     team_radiant_score: int = betterproto.uint32_field(4)
     team_dire_score: int = betterproto.uint32_field(5)

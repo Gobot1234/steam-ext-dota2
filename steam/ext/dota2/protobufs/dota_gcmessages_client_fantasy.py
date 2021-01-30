@@ -10,7 +10,7 @@ import betterproto
 from .dota_shared_enums import FantasyRoles, FantasySelectionMode
 
 
-class DOTA2013PassportSelectionIndices(betterproto.Enum):
+class Dota2013PassportSelectionIndices(betterproto.Enum):
     AllstarPlayer0 = 0
     AllstarPlayer1 = 1
     AllstarPlayer2 = 2
@@ -109,214 +109,214 @@ class DOTA2013PassportSelectionIndices(betterproto.Enum):
     Solo7 = 95
 
 
-class CMsgDOTACreateFantasyLeagueResponseEResult(betterproto.Enum):
+class CMsgDotaCreateFantasyLeagueResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorTooManyLeagues = 2
-    ErrorInvalidTeamCount = 3
-    ErrorCreationDisabled = 4
+    Unspecified = 1
+    TooManyLeagues = 2
+    InvalidTeamCount = 3
+    CreationDisabled = 4
 
 
-class CMsgDOTAFantasyLeagueEditInfoResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueEditInfoResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyLeagueFindResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueFindResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorLeagueNotFound = 1
-    ErrorBadPassword = 2
-    ErrorUnspecified = 3
-    ErrorFull = 4
-    ErrorAlreadyMember = 5
-    ErrorLeagueLocked = 6
+    LeagueNotFound = 1
+    BadPassword = 2
+    Unspecified = 3
+    Full = 4
+    AlreadyMember = 5
+    LeagueLocked = 6
 
 
-class CMsgDOTAFantasyLeagueInfoResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueInfoResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorBadLeagueId = 2
+    Unspecified = 1
+    BadLeagueId = 2
 
 
-class CMsgDOTAFantasyLeagueMatchupsResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueMatchupsResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorBadLeagueId = 2
-    ErrorNoPermission = 3
+    Unspecified = 1
+    BadLeagueId = 2
+    NoPermission = 3
 
 
-class CMsgDOTAEditFantasyTeamResponseEResult(betterproto.Enum):
+class CMsgDotaEditFantasyTeamResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorInvalidTeamInfo = 2
-    ErrorNameAlreadyTaken = 3
-    ErrorNoPermission = 4
+    Unspecified = 1
+    InvalidTeamInfo = 2
+    NameAlreadyTaken = 3
+    NoPermission = 4
 
 
-class CMsgDOTAFantasyTeamScoreResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamScoreResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
-    ErrorOwnerNotInLeague = 3
+    Unspecified = 1
+    NoPermission = 2
+    OwnerNotInLeague = 3
 
 
-class CMsgDOTAFantasyTeamStandingsResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamStandingsResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyPlayerScoreResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyPlayerScoreResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyPlayerStandingsResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyPlayerStandingsResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyLeagueCreateResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueCreateResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorNoPermission = 1
-    ErrorBadSeasonId = 2
-    ErrorBadLeagueName = 3
-    ErrorBadTeamName = 4
-    ErrorUnspecified = 5
-    ErrorFailedLogoUpload = 6
-    ErrorNoTicket = 7
+    NoPermission = 1
+    BadSeasonId = 2
+    BadLeagueName = 3
+    BadTeamName = 4
+    Unspecified = 5
+    FailedLogoUpload = 6
+    NoTicket = 7
 
 
-class CMsgDOTAFantasyTeamCreateResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamCreateResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorNoPermission = 1
-    ErrorFailedLogoUpload = 2
-    ErrorBadFantasyLeagueId = 3
-    ErrorBadName = 4
-    ErrorFull = 5
-    ErrorAlreadyMember = 6
-    ErrorBadPassword = 7
-    ErrorUnspecified = 8
-    ErrorNoTicket = 9
-    ErrorLeagueLocked = 10
+    NoPermission = 1
+    FailedLogoUpload = 2
+    BadFantasyLeagueId = 3
+    BadName = 4
+    Full = 5
+    AlreadyMember = 6
+    BadPassword = 7
+    Unspecified = 8
+    NoTicket = 9
+    LeagueLocked = 10
 
 
-class CMsgDOTAFantasyLeagueEditInvitesResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueEditInvitesResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
+    Unspecified = 1
 
 
-class CMsgDOTAFantasyLeagueDraftPlayerResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeagueDraftPlayerResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorInvalidFantasyLeague = 2
-    ErrorFantasyLeagueNotDrafting = 3
-    ErrorOwnerNotInLeague = 4
-    ErrorNotOwnersTurn = 5
-    ErrorPlayerInvalid = 6
-    ErrorPlayerUnavailable = 7
-    ErrorPlayerNoValidSlots = 8
+    Unspecified = 1
+    InvalidFantasyLeague = 2
+    FantasyLeagueNotDrafting = 3
+    OwnerNotInLeague = 4
+    NotOwnersTurn = 5
+    PlayerInvalid = 6
+    PlayerUnavailable = 7
+    PlayerNoValidSlots = 8
 
 
-class CMsgDOTAFantasyTeamRosterSwapResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamRosterSwapResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorOwnerNotInLeague = 2
-    ErrorSlotsInvalid = 3
-    ErrorSlotLocked = 4
+    Unspecified = 1
+    OwnerNotInLeague = 2
+    SlotsInvalid = 3
+    SlotLocked = 4
 
 
-class CMsgDOTAFantasyTeamRosterAddDropResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamRosterAddDropResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorOwnerNotInLeague = 2
-    ErrorPlayerNotAvailable = 3
-    ErrorPlayerNotOnTeam = 4
-    ErrorTradeAlreadyPending = 5
+    Unspecified = 1
+    OwnerNotInLeague = 2
+    PlayerNotAvailable = 3
+    PlayerNotOnTeam = 4
+    TradeAlreadyPending = 5
 
 
-class CMsgDOTAFantasyTeamTradesResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamTradesResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyTeamTradeCancelResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamTradeCancelResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
-    ErrorNoTrade = 3
+    Unspecified = 1
+    NoPermission = 2
+    NoTrade = 3
 
 
-class CMsgDOTAFantasyTeamRosterResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyTeamRosterResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
-    ErrorOwnerNotInLeague = 3
+    Unspecified = 1
+    NoPermission = 2
+    OwnerNotInLeague = 3
 
 
-class CMsgDOTAFantasyPlayerHistoricalStatsResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyPlayerHisoricalStatsResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyMessagesResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyMessagesResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
+    Unspecified = 1
+    NoPermission = 2
 
 
-class CMsgDOTAFantasyRemoveOwnerResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyRemoveOwnerResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNoPermission = 2
-    ErrorLeagueLocked = 3
-    ErrorNotAMember = 4
+    Unspecified = 1
+    NoPermission = 2
+    LeagueLocked = 3
+    NotAMember = 4
 
 
-class CMsgDOTAFantasyScheduledMatchesResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyScheduledMatchesResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
+    Unspecified = 1
 
 
-class CMsgDOTAFantasyLeaveLeagueResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyLeaveLeagueResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNotMember = 2
-    ErrorLeagueNotFound = 3
-    ErrorDraftActive = 4
+    Unspecified = 1
+    NotMember = 2
+    LeagueNotFound = 3
+    DraftActive = 4
 
 
-class CMsgDOTAFantasyPlayerScoreDetailsResponseEResult(betterproto.Enum):
+class CMsgDotaFantasyPlayerScoreDetailsResponseEResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorNotMember = 2
+    Unspecified = 1
+    NotMember = 2
 
 
-class CMsgClientToGCGetPlayerCardRosterResponseResult(betterproto.Enum):
+class CMsgClientToGcGetPlayerCardRosterResponseResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorInvalidLeagueId = 2
-    ErrorInvalidTimestamp = 3
+    Unspecified = 1
+    InvalidLeagueId = 2
+    InvalidTimestamp = 3
 
 
-class CMsgClientToGCSetPlayerCardRosterResponseResult(betterproto.Enum):
+class CMsgClientToGcSetPlayerCardRosterResponseResult(betterproto.Enum):
     Success = 0
-    ErrorUnspecified = 1
-    ErrorInvalidLeagueId = 2
-    ErrorInvalidTimestamp = 3
-    ErrorPlayerCardNotOwned = 4
-    ErrorInvalidSlot = 5
-    ErrorFailedCardInfo = 6
-    ErrorAccountDuplicate = 7
-    ErrorLockedTimestamp = 8
+    Unspecified = 1
+    InvalidLeagueId = 2
+    InvalidTimestamp = 3
+    PlayerCardNotOwned = 4
+    InvalidSlot = 5
+    FailedCardInfo = 6
+    AccountDuplicate = 7
+    LockedTimestamp = 8
 
 
-class CMsgDOTAFantasyDPCLeagueStatusERosterStatus(betterproto.Enum):
+class CMsgDotaFantasyDpcLeagueStatusERosterStatus(betterproto.Enum):
     Unset = 0
     Partial = 1
     Full = 2
@@ -324,7 +324,7 @@ class CMsgDOTAFantasyDPCLeagueStatusERosterStatus(betterproto.Enum):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPlayerInfo(betterproto.Message):
+class CMsgDotaPlayerInfo(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
     country_code: str = betterproto.string_field(3)
@@ -338,20 +338,20 @@ class CMsgDOTAPlayerInfo(betterproto.Message):
     real_name: str = betterproto.string_field(11)
     birthdate: int = betterproto.uint32_field(12)
     total_earnings: int = betterproto.uint32_field(13)
-    results: List["CMsgDOTAPlayerInfoResults"] = betterproto.message_field(14)
+    results: List["CMsgDotaPlayerInfoResults"] = betterproto.message_field(14)
     team_url_logo: str = betterproto.string_field(15)
-    audit_entries: List["CMsgDOTAPlayerInfoAuditEntry"] = betterproto.message_field(16)
+    audit_entries: List["CMsgDotaPlayerInfoAuditEntry"] = betterproto.message_field(16)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPlayerInfoResults(betterproto.Message):
+class CMsgDotaPlayerInfoResults(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     placement: int = betterproto.uint32_field(2)
     earnings: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPlayerInfoAuditEntry(betterproto.Message):
+class CMsgDotaPlayerInfoAuditEntry(betterproto.Message):
     start_timestamp: int = betterproto.uint32_field(1)
     end_timestamp: int = betterproto.uint32_field(2)
     team_id: int = betterproto.uint32_field(3)
@@ -361,26 +361,26 @@ class CMsgDOTAPlayerInfoAuditEntry(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPlayerInfoList(betterproto.Message):
-    player_infos: List["CMsgDOTAPlayerInfo"] = betterproto.message_field(1)
+class CMsgDotaPlayerInfoList(betterproto.Message):
+    player_infos: List["CMsgDotaPlayerInfo"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTADPCProfileInfo(betterproto.Message):
-    player_info: "CMsgDOTAPlayerInfo" = betterproto.message_field(1)
-    prediction_info: "CMsgDOTADPCProfileInfoPredictionInfo" = betterproto.message_field(2)
-    fantasy_info: "CMsgDOTADPCProfileInfoFantasyInfo" = betterproto.message_field(3)
+class CMsgDotadpcProfileInfo(betterproto.Message):
+    player_info: "CMsgDotaPlayerInfo" = betterproto.message_field(1)
+    prediction_info: "CMsgDotadpcProfileInfoPredictionInfo" = betterproto.message_field(2)
+    fantasy_info: "CMsgDotadpcProfileInfoFantasyInfo" = betterproto.message_field(3)
     disabled_notifications: List[int] = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTADPCProfileInfoPredictionInfo(betterproto.Message):
+class CMsgDotadpcProfileInfoPredictionInfo(betterproto.Message):
     percent: int = betterproto.uint32_field(1)
     shard_winnings: int = betterproto.int32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTADPCProfileInfoFantasyInfo(betterproto.Message):
+class CMsgDotadpcProfileInfoFantasyInfo(betterproto.Message):
     top_90_finishes: int = betterproto.uint32_field(1)
     top_75_finishes: int = betterproto.uint32_field(2)
     top_50_finishes: int = betterproto.uint32_field(3)
@@ -388,18 +388,18 @@ class CMsgDOTADPCProfileInfoFantasyInfo(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTALeaderboards(betterproto.Message):
-    leaderboards: List["CMsgDOTALeaderboardsRegionLeaderboard"] = betterproto.message_field(2)
+class CMsgDotaLeaderboards(betterproto.Message):
+    leaderboards: List["CMsgDotaLeaderboardsRegionLeaderboard"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTALeaderboardsRegionLeaderboard(betterproto.Message):
+class CMsgDotaLeaderboardsRegionLeaderboard(betterproto.Message):
     division: int = betterproto.uint32_field(1)
     account_ids: List[int] = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTACreateFantasyLeagueRequest(betterproto.Message):
+class CMsgDotaCreateFantasyLeagueRequest(betterproto.Message):
     league_name: str = betterproto.string_field(1)
     league_logo: int = betterproto.uint64_field(2)
     selection_mode: "FantasySelectionMode" = betterproto.enum_field(3)
@@ -407,8 +407,8 @@ class CMsgDOTACreateFantasyLeagueRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTACreateFantasyLeagueResponse(betterproto.Message):
-    result: "CMsgDOTACreateFantasyLeagueResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaCreateFantasyLeagueResponse(betterproto.Message):
+    result: "CMsgDotaCreateFantasyLeagueResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -430,7 +430,7 @@ class CMsgFantasyLeagueScoring(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueInfo(betterproto.Message):
+class CMsgDotaFantasyLeagueInfo(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     commissioner_account_id: int = betterproto.uint32_field(2)
     fantasy_league_name: str = betterproto.string_field(3)
@@ -450,7 +450,7 @@ class CMsgDOTAFantasyLeagueInfo(betterproto.Message):
     slot_4: int = betterproto.uint32_field(22)
     slot_5: int = betterproto.uint32_field(23)
     bench_slots: int = betterproto.uint32_field(24)
-    owner_info: List["CMsgDOTAFantasyLeagueInfoOwnerInfo"] = betterproto.message_field(25)
+    owner_info: List["CMsgDotaFantasyLeagueInfoOwnerInfo"] = betterproto.message_field(25)
     players: List[int] = betterproto.uint32_field(26)
     time_zone: int = betterproto.uint32_field(27)
     season: int = betterproto.uint32_field(28)
@@ -458,60 +458,60 @@ class CMsgDOTAFantasyLeagueInfo(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueInfoOwnerInfo(betterproto.Message):
+class CMsgDotaFantasyLeagueInfoOwnerInfo(betterproto.Message):
     owner_account_id: int = betterproto.uint32_field(1)
     left_league: bool = betterproto.bool_field(2)
     player_account_id: List[int] = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueEditInfoRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueEditInfoRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
-    edit_info: "CMsgDOTAFantasyLeagueInfo" = betterproto.message_field(2)
+    edit_info: "CMsgDotaFantasyLeagueInfo" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueEditInfoResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueEditInfoResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueEditInfoResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueEditInfoResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueFindRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueFindRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     password: str = betterproto.string_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueFindResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueFindResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueFindResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueFindResponseEResult" = betterproto.enum_field(1)
     fantasy_league_name: str = betterproto.string_field(2)
     commissioner_name: str = betterproto.string_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueInfoRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueInfoRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueInfoResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueInfoResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueInfoResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueInfoResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueMatchupsRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueMatchupsRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueMatchupsResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueMatchupsResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueMatchupsResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueMatchupsResponseEResult" = betterproto.enum_field(1)
     fantasy_league_id: int = betterproto.uint32_field(2)
-    weekly_matchups: List["CMsgDOTAFantasyLeagueMatchupsResponseWeeklyMatchups"] = betterproto.message_field(3)
+    weekly_matchups: List["CMsgDotaFantasyLeagueMatchupsResponseWeeklyMatchups"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueMatchupsResponseMatchup(betterproto.Message):
+class CMsgDotaFantasyLeagueMatchupsResponseMatchup(betterproto.Message):
     owner_account_id_1: int = betterproto.uint32_field(1)
     owner_account_id_2: int = betterproto.uint32_field(2)
     score_1: float = betterproto.float_field(3)
@@ -519,14 +519,14 @@ class CMsgDOTAFantasyLeagueMatchupsResponseMatchup(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueMatchupsResponseWeeklyMatchups(betterproto.Message):
-    matchup: List["CMsgDOTAFantasyLeagueMatchupsResponseMatchup"] = betterproto.message_field(1)
+class CMsgDotaFantasyLeagueMatchupsResponseWeeklyMatchups(betterproto.Message):
+    matchup: List["CMsgDotaFantasyLeagueMatchupsResponseMatchup"] = betterproto.message_field(1)
     start_time: int = betterproto.uint32_field(2)
     end_time: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAEditFantasyTeamRequest(betterproto.Message):
+class CMsgDotaEditFantasyTeamRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     team_index: int = betterproto.uint32_field(2)
     team_name: str = betterproto.string_field(3)
@@ -534,27 +534,27 @@ class CMsgDOTAEditFantasyTeamRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAEditFantasyTeamResponse(betterproto.Message):
-    result: "CMsgDOTAEditFantasyTeamResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaEditFantasyTeamResponse(betterproto.Message):
+    result: "CMsgDotaEditFantasyTeamResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamInfoRequestByFantasyLeagueID(betterproto.Message):
+class CMsgDotaFantasyTeamInfoRequestByFantasyLeagueId(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamInfoRequestByOwnerAccountID(betterproto.Message):
+class CMsgDotaFantasyTeamInfoRequestByOwnerAccountId(betterproto.Message):
     owner_account_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamInfoResponse(betterproto.Message):
-    results: List["CMsgDOTAFantasyTeamInfo"] = betterproto.message_field(1)
+class CMsgDotaFantasyTeamInfoResponse(betterproto.Message):
+    results: List["CMsgDotaFantasyTeamInfo"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamInfo(betterproto.Message):
+class CMsgDotaFantasyTeamInfo(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     owner_account_id: int = betterproto.uint32_field(2)
     fantasy_team_index: int = betterproto.uint32_field(3)
@@ -566,7 +566,7 @@ class CMsgDOTAFantasyTeamInfo(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamScoreRequest(betterproto.Message):
+class CMsgDotaFantasyTeamScoreRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     owner_account_id: int = betterproto.uint32_field(2)
     fantasy_team_index: int = betterproto.uint32_field(3)
@@ -577,20 +577,20 @@ class CMsgDOTAFantasyTeamScoreRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamScoreResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamScoreResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyTeamScoreResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamScoreResponseEResult" = betterproto.enum_field(1)
     fantasy_team_score: float = betterproto.float_field(2)
-    fantasy_player_score: List["CMsgDOTAFantasyTeamScoreResponseCMsgPlayerScore"] = betterproto.message_field(3)
+    fantasy_player_score: List["CMsgDotaFantasyTeamScoreResponseCMsgPlayerScore"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamScoreResponseCMsgPlayerScore(betterproto.Message):
+class CMsgDotaFantasyTeamScoreResponseCMsgPlayerScore(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     score: float = betterproto.float_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamStandingsRequest(betterproto.Message):
+class CMsgDotaFantasyTeamStandingsRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     count: int = betterproto.uint32_field(2)
     filter_start_time: int = betterproto.uint32_field(3)
@@ -601,13 +601,13 @@ class CMsgDOTAFantasyTeamStandingsRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamStandingsResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamStandingsResponseEResult" = betterproto.enum_field(1)
-    team_scores: List["CMsgDOTAFantasyTeamStandingsResponseCMsgTeamScore"] = betterproto.message_field(3)
+class CMsgDotaFantasyTeamStandingsResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamStandingsResponseEResult" = betterproto.enum_field(1)
+    team_scores: List["CMsgDotaFantasyTeamStandingsResponseCMsgTeamScore"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamStandingsResponseCMsgTeamScore(betterproto.Message):
+class CMsgDotaFantasyTeamStandingsResponseCMsgTeamScore(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     owner_account_id: int = betterproto.uint32_field(2)
     fantasy_team_index: int = betterproto.uint32_field(3)
@@ -622,7 +622,7 @@ class CMsgDOTAFantasyTeamStandingsResponseCMsgTeamScore(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerScoreRequest(betterproto.Message):
+class CMsgDotaFantasyPlayerScoreRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     player_account_id: int = betterproto.uint32_field(2)
     filter_start_time: int = betterproto.uint32_field(3)
@@ -632,8 +632,8 @@ class CMsgDOTAFantasyPlayerScoreRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerScoreResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyPlayerScoreResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyPlayerScoreResponse(betterproto.Message):
+    result: "CMsgDotaFantasyPlayerScoreResponseEResult" = betterproto.enum_field(1)
     fantasy_league_id: int = betterproto.uint32_field(2)
     player_account_id: int = betterproto.uint32_field(3)
     player_name: str = betterproto.string_field(4)
@@ -641,7 +641,7 @@ class CMsgDOTAFantasyPlayerScoreResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerStandingsRequest(betterproto.Message):
+class CMsgDotaFantasyPlayerStandingsRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     count: int = betterproto.uint32_field(2)
     role: int = betterproto.uint32_field(3)
@@ -652,22 +652,22 @@ class CMsgDOTAFantasyPlayerStandingsRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerStandingsResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyPlayerStandingsResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyPlayerStandingsResponse(betterproto.Message):
+    result: "CMsgDotaFantasyPlayerStandingsResponseEResult" = betterproto.enum_field(1)
     fantasy_league_id: int = betterproto.uint32_field(2)
     role: int = betterproto.uint32_field(3)
-    player_scores: List["CMsgDOTAFantasyPlayerStandingsResponseCMsgPlayerScore"] = betterproto.message_field(4)
+    player_scores: List["CMsgDotaFantasyPlayerStandingsResponseCMsgPlayerScore"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerStandingsResponseCMsgPlayerScore(betterproto.Message):
+class CMsgDotaFantasyPlayerStandingsResponseCMsgPlayerScore(betterproto.Message):
     player_account_id: int = betterproto.uint32_field(1)
     player_name: str = betterproto.string_field(2)
     score: float = betterproto.float_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueCreateRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueCreateRequest(betterproto.Message):
     season_id: int = betterproto.uint32_field(1)
     fantasy_league_name: str = betterproto.string_field(2)
     password: str = betterproto.string_field(3)
@@ -677,13 +677,13 @@ class CMsgDOTAFantasyLeagueCreateRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueCreateResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueCreateResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueCreateResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueCreateResponseEResult" = betterproto.enum_field(1)
     fantasy_league_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamCreateRequest(betterproto.Message):
+class CMsgDotaFantasyTeamCreateRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     password: str = betterproto.string_field(2)
     team_name: str = betterproto.string_field(3)
@@ -692,36 +692,36 @@ class CMsgDOTAFantasyTeamCreateRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamCreateResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamCreateResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyTeamCreateResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamCreateResponseEResult" = betterproto.enum_field(1)
     fantasy_team_index: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueEditInvitesRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueEditInvitesRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     password: str = betterproto.string_field(2)
-    invite_change: List["CMsgDOTAFantasyLeagueEditInvitesRequestInviteChange"] = betterproto.message_field(3)
+    invite_change: List["CMsgDotaFantasyLeagueEditInvitesRequestInviteChange"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueEditInvitesRequestInviteChange(betterproto.Message):
+class CMsgDotaFantasyLeagueEditInvitesRequestInviteChange(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     invited: bool = betterproto.bool_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueEditInvitesResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueEditInvitesResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueEditInvitesResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueEditInvitesResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueDraftStatusRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueDraftStatusRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueDraftStatus(betterproto.Message):
+class CMsgDotaFantasyLeagueDraftStatus(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     draft_order: List[int] = betterproto.uint32_field(2)
     current_pick: int = betterproto.uint32_field(3)
@@ -732,19 +732,19 @@ class CMsgDOTAFantasyLeagueDraftStatus(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueDraftPlayerRequest(betterproto.Message):
+class CMsgDotaFantasyLeagueDraftPlayerRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     team_index: int = betterproto.uint32_field(2)
     player_account_id: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeagueDraftPlayerResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeagueDraftPlayerResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeagueDraftPlayerResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeagueDraftPlayerResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamRosterSwapRequest(betterproto.Message):
+class CMsgDotaFantasyTeamRosterSwapRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     team_index: int = betterproto.uint32_field(2)
     timestamp: int = betterproto.uint32_field(3)
@@ -753,12 +753,12 @@ class CMsgDOTAFantasyTeamRosterSwapRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamRosterSwapResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamRosterSwapResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyTeamRosterSwapResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamRosterSwapResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamRosterAddDropRequest(betterproto.Message):
+class CMsgDotaFantasyTeamRosterAddDropRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     team_index: int = betterproto.uint32_field(2)
     add_account_id: int = betterproto.uint32_field(5)
@@ -766,23 +766,23 @@ class CMsgDOTAFantasyTeamRosterAddDropRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamRosterAddDropResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamRosterAddDropResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyTeamRosterAddDropResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamRosterAddDropResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamTradesRequest(betterproto.Message):
+class CMsgDotaFantasyTeamTradesRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamTradesResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamTradesResponseEResult" = betterproto.enum_field(1)
-    trades: List["CMsgDOTAFantasyTeamTradesResponseTrade"] = betterproto.message_field(2)
+class CMsgDotaFantasyTeamTradesResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamTradesResponseEResult" = betterproto.enum_field(1)
+    trades: List["CMsgDotaFantasyTeamTradesResponseTrade"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamTradesResponseTrade(betterproto.Message):
+class CMsgDotaFantasyTeamTradesResponseTrade(betterproto.Message):
     timestamp: int = betterproto.uint32_field(1)
     owner_account_id_1: int = betterproto.uint32_field(2)
     owner_account_id_2: int = betterproto.uint32_field(3)
@@ -792,7 +792,7 @@ class CMsgDOTAFantasyTeamTradesResponseTrade(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamTradeCancelRequest(betterproto.Message):
+class CMsgDotaFantasyTeamTradeCancelRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     team_index_1: int = betterproto.uint32_field(3)
     owner_account_id_2: int = betterproto.uint32_field(4)
@@ -800,12 +800,12 @@ class CMsgDOTAFantasyTeamTradeCancelRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamTradeCancelResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamTradeCancelResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyTeamTradeCancelResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamTradeCancelResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamRosterRequest(betterproto.Message):
+class CMsgDotaFantasyTeamRosterRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     team_index: int = betterproto.uint32_field(2)
     owner_account_id: int = betterproto.uint32_field(3)
@@ -813,25 +813,25 @@ class CMsgDOTAFantasyTeamRosterRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyTeamRosterResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyTeamRosterResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyTeamRosterResponse(betterproto.Message):
+    result: "CMsgDotaFantasyTeamRosterResponseEResult" = betterproto.enum_field(1)
     player_account_ids: List[int] = betterproto.uint32_field(2)
     player_locked: List[bool] = betterproto.bool_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerHistoricalStatsRequest(betterproto.Message):
+class CMsgDotaFantasyPlayerHisoricalStatsRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerHistoricalStatsResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyPlayerHistoricalStatsResponseEResult" = betterproto.enum_field(1)
-    stats: List["CMsgDOTAFantasyPlayerHistoricalStatsResponsePlayerStats"] = betterproto.message_field(2)
+class CMsgDotaFantasyPlayerHisoricalStatsResponse(betterproto.Message):
+    result: "CMsgDotaFantasyPlayerHisoricalStatsResponseEResult" = betterproto.enum_field(1)
+    stats: List["CMsgDotaFantasyPlayerHisoricalStatsResponsePlayerStats"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerHistoricalStatsResponsePlayerScoreAccumulator(betterproto.Message):
+class CMsgDotaFantasyPlayerHisoricalStatsResponsePlayerScoreAccumulator(betterproto.Message):
     matches: int = betterproto.uint32_field(1)
     levels: float = betterproto.float_field(2)
     kills: float = betterproto.float_field(3)
@@ -849,37 +849,37 @@ class CMsgDOTAFantasyPlayerHistoricalStatsResponsePlayerScoreAccumulator(betterp
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerHistoricalStatsResponsePlayerStats(betterproto.Message):
+class CMsgDotaFantasyPlayerHisoricalStatsResponsePlayerStats(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     weeks: int = betterproto.uint32_field(2)
-    stats_premium: "CMsgDOTAFantasyPlayerHistoricalStatsResponsePlayerScoreAccumulator" = betterproto.message_field(4)
-    stats_professional: "CMsgDOTAFantasyPlayerHistoricalStatsResponsePlayerScoreAccumulator" = (
-        betterproto.message_field(5)
+    stats_premium: "CMsgDotaFantasyPlayerHisoricalStatsResponsePlayerScoreAccumulator" = betterproto.message_field(4)
+    stats_professional: "CMsgDotaFantasyPlayerHisoricalStatsResponsePlayerScoreAccumulator" = betterproto.message_field(
+        5
     )
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyMessageAdd(betterproto.Message):
+class CMsgDotaFantasyMessageAdd(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     message: str = betterproto.string_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyMessagesRequest(betterproto.Message):
+class CMsgDotaFantasyMessagesRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     start_message: int = betterproto.uint32_field(2)
     end_message: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyMessagesResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyMessagesResponseEResult" = betterproto.enum_field(1)
-    messages: List["CMsgDOTAFantasyMessagesResponseMessage"] = betterproto.message_field(2)
+class CMsgDotaFantasyMessagesResponse(betterproto.Message):
+    result: "CMsgDotaFantasyMessagesResponseEResult" = betterproto.enum_field(1)
+    messages: List["CMsgDotaFantasyMessagesResponseMessage"] = betterproto.message_field(2)
     num_total_messages: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyMessagesResponseMessage(betterproto.Message):
+class CMsgDotaFantasyMessagesResponseMessage(betterproto.Message):
     message_id: int = betterproto.uint32_field(1)
     message: str = betterproto.string_field(2)
     author_account_id: int = betterproto.uint32_field(3)
@@ -887,50 +887,50 @@ class CMsgDOTAFantasyMessagesResponseMessage(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyRemoveOwner(betterproto.Message):
+class CMsgDotaFantasyRemoveOwner(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     owner_account_id: int = betterproto.uint32_field(2)
     team_index: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyRemoveOwnerResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyRemoveOwnerResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyRemoveOwnerResponse(betterproto.Message):
+    result: "CMsgDotaFantasyRemoveOwnerResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyScheduledMatchesRequest(betterproto.Message):
+class CMsgDotaFantasyScheduledMatchesRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyScheduledMatchesResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyScheduledMatchesResponseEResult" = betterproto.enum_field(1)
-    scheduled_match_days: List["CMsgDOTAFantasyScheduledMatchesResponseScheduledMatchDays"] = betterproto.message_field(
+class CMsgDotaFantasyScheduledMatchesResponse(betterproto.Message):
+    result: "CMsgDotaFantasyScheduledMatchesResponseEResult" = betterproto.enum_field(1)
+    scheduled_match_days: List["CMsgDotaFantasyScheduledMatchesResponseScheduledMatchDays"] = betterproto.message_field(
         2
     )
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyScheduledMatchesResponseScheduledMatchDays(betterproto.Message):
+class CMsgDotaFantasyScheduledMatchesResponseScheduledMatchDays(betterproto.Message):
     timestamp: int = betterproto.uint32_field(1)
     team_ids: List[int] = betterproto.uint32_field(2)
     league_ids: List[int] = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeaveLeagueRequest(betterproto.Message):
+class CMsgDotaFantasyLeaveLeagueRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     fantasy_team_index: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyLeaveLeagueResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyLeaveLeagueResponseEResult" = betterproto.enum_field(1)
+class CMsgDotaFantasyLeaveLeagueResponse(betterproto.Message):
+    result: "CMsgDotaFantasyLeaveLeagueResponseEResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerScoreDetailsRequest(betterproto.Message):
+class CMsgDotaFantasyPlayerScoreDetailsRequest(betterproto.Message):
     fantasy_league_id: int = betterproto.uint32_field(1)
     player_account_id: int = betterproto.uint32_field(2)
     start_time: int = betterproto.uint32_field(3)
@@ -938,13 +938,13 @@ class CMsgDOTAFantasyPlayerScoreDetailsRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerScoreDetailsResponse(betterproto.Message):
-    result: "CMsgDOTAFantasyPlayerScoreDetailsResponseEResult" = betterproto.enum_field(1)
-    data: List["CMsgDOTAFantasyPlayerScoreDetailsResponsePlayerMatchData"] = betterproto.message_field(2)
+class CMsgDotaFantasyPlayerScoreDetailsResponse(betterproto.Message):
+    result: "CMsgDotaFantasyPlayerScoreDetailsResponseEResult" = betterproto.enum_field(1)
+    data: List["CMsgDotaFantasyPlayerScoreDetailsResponsePlayerMatchData"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyPlayerScoreDetailsResponsePlayerMatchData(betterproto.Message):
+class CMsgDotaFantasyPlayerScoreDetailsResponsePlayerMatchData(betterproto.Message):
     match_id: int = betterproto.uint64_field(1)
     series_id: int = betterproto.uint32_field(2)
     series_num: int = betterproto.uint32_field(3)
@@ -959,46 +959,46 @@ class CMsgDOTAFantasyPlayerScoreDetailsResponsePlayerMatchData(betterproto.Messa
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPassportVoteTeamGuess(betterproto.Message):
+class CMsgDotaPassportVoteTeamGuess(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     winner_id: int = betterproto.uint32_field(2)
     runnerup_id: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPassportVoteGenericSelection(betterproto.Message):
-    selection_index: "DOTA2013PassportSelectionIndices" = betterproto.enum_field(1)
+class CMsgDotaPassportVoteGenericSelection(betterproto.Message):
+    selection_index: "Dota2013PassportSelectionIndices" = betterproto.enum_field(1)
     selection: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPassportStampedPlayer(betterproto.Message):
+class CMsgDotaPassportStampedPlayer(betterproto.Message):
     steam_id: int = betterproto.uint64_field(1)
     stamp_level: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPassportPlayerCardChallenge(betterproto.Message):
+class CMsgDotaPassportPlayerCardChallenge(betterproto.Message):
     challenge_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAPassportVote(betterproto.Message):
-    team_votes: List["CMsgDOTAPassportVoteTeamGuess"] = betterproto.message_field(1)
-    generic_selections: List["CMsgDOTAPassportVoteGenericSelection"] = betterproto.message_field(2)
-    stamped_players: List["CMsgDOTAPassportStampedPlayer"] = betterproto.message_field(3)
-    player_card_challenges: List["CMsgDOTAPassportPlayerCardChallenge"] = betterproto.message_field(4)
+class CMsgDotaPassportVote(betterproto.Message):
+    team_votes: List["CMsgDotaPassportVoteTeamGuess"] = betterproto.message_field(1)
+    generic_selections: List["CMsgDotaPassportVoteGenericSelection"] = betterproto.message_field(2)
+    stamped_players: List["CMsgDotaPassportStampedPlayer"] = betterproto.message_field(3)
+    player_card_challenges: List["CMsgDotaPassportPlayerCardChallenge"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCGetPlayerCardRosterRequest(betterproto.Message):
+class CMsgClientToGcGetPlayerCardRosterRequest(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     timestamp: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCGetPlayerCardRosterResponse(betterproto.Message):
-    result: "CMsgClientToGCGetPlayerCardRosterResponseResult" = betterproto.enum_field(1)
+class CMsgClientToGcGetPlayerCardRosterResponse(betterproto.Message):
+    result: "CMsgClientToGcGetPlayerCardRosterResponseResult" = betterproto.enum_field(1)
     player_card_item_id: List[int] = betterproto.uint64_field(2)
     score: float = betterproto.float_field(3)
     finalized: bool = betterproto.bool_field(4)
@@ -1006,7 +1006,7 @@ class CMsgClientToGCGetPlayerCardRosterResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCSetPlayerCardRosterRequest(betterproto.Message):
+class CMsgClientToGcSetPlayerCardRosterRequest(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     timestamp: int = betterproto.uint32_field(2)
     slot: int = betterproto.uint32_field(3)
@@ -1015,20 +1015,20 @@ class CMsgClientToGCSetPlayerCardRosterRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgClientToGCSetPlayerCardRosterResponse(betterproto.Message):
-    result: "CMsgClientToGCSetPlayerCardRosterResponseResult" = betterproto.enum_field(1)
+class CMsgClientToGcSetPlayerCardRosterResponse(betterproto.Message):
+    result: "CMsgClientToGcSetPlayerCardRosterResponseResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyDPCLeagueStatus(betterproto.Message):
-    league_infos: List["CMsgDOTAFantasyDPCLeagueStatusLeagueInfo"] = betterproto.message_field(1)
+class CMsgDotaFantasyDpcLeagueStatus(betterproto.Message):
+    league_infos: List["CMsgDotaFantasyDpcLeagueStatusLeagueInfo"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAFantasyDPCLeagueStatusLeagueInfo(betterproto.Message):
+class CMsgDotaFantasyDpcLeagueStatusLeagueInfo(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
     league_name: str = betterproto.string_field(2)
     start_timestamp: int = betterproto.uint32_field(3)
     end_timestamp: int = betterproto.uint32_field(4)
     day_timestamps: List[int] = betterproto.uint32_field(5)
-    status: "CMsgDOTAFantasyDPCLeagueStatusERosterStatus" = betterproto.enum_field(8)
+    status: "CMsgDotaFantasyDpcLeagueStatusERosterStatus" = betterproto.enum_field(8)

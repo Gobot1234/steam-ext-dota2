@@ -27,7 +27,7 @@ class ETeamInviteResult(betterproto.Enum):
     ErrorUnspecified = 13
 
 
-class CMsgDOTACreateTeamResponseResult(betterproto.Enum):
+class CMsgDotaCreateTeamResponseResult(betterproto.Enum):
     Invalid = -1
     Success = 0
     NameEmpty = 1
@@ -49,7 +49,7 @@ class CMsgDOTACreateTeamResponseResult(betterproto.Enum):
     InvalidAccountType = 17
 
 
-class CMsgDOTAEditTeamDetailsResponseResult(betterproto.Enum):
+class CMsgDotaEditTeamDetailsResponseResult(betterproto.Enum):
     Success = 0
     FailureInvalidAccountType = 1
     FailureNotMember = 2
@@ -57,7 +57,7 @@ class CMsgDOTAEditTeamDetailsResponseResult(betterproto.Enum):
     FailureUnspecifiedError = 4
 
 
-class CMsgDOTAKickTeamMemberResponseResult(betterproto.Enum):
+class CMsgDotaKickTeamMemberResponseResult(betterproto.Enum):
     Success = 0
     FailureInvalidAccountType = 1
     FailureKickerNotAdmin = 2
@@ -66,7 +66,7 @@ class CMsgDOTAKickTeamMemberResponseResult(betterproto.Enum):
     FailureUnspecifiedError = 5
 
 
-class CMsgDOTATransferTeamAdminResponseResult(betterproto.Enum):
+class CMsgDotaTransferTeamAdminResponseResult(betterproto.Enum):
     Success = 0
     FailureInvalidAccountType = 1
     FailureNotAdmin = 2
@@ -75,7 +75,7 @@ class CMsgDOTATransferTeamAdminResponseResult(betterproto.Enum):
     FailureUnspecifiedError = 5
 
 
-class CMsgDOTALeaveTeamResponseResult(betterproto.Enum):
+class CMsgDotaLeaveTeamResponseResult(betterproto.Enum):
     Success = 0
     FailureNotMember = 1
     FailureTeamLocked = 2
@@ -83,27 +83,27 @@ class CMsgDOTALeaveTeamResponseResult(betterproto.Enum):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamMemberSDO(betterproto.Message):
+class CMsgDotaTeamMemberSdo(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     team_ids: List[int] = betterproto.uint32_field(2)
     profile_team_id: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamAdminSDO(betterproto.Message):
+class CMsgDotaTeamAdminSdo(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     team_ids: List[int] = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamMember(betterproto.Message):
+class CMsgDotaTeamMember(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     time_joined: int = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeam(betterproto.Message):
-    members: List["CMsgDOTATeamMember"] = betterproto.message_field(1)
+class CMsgDotaTeam(betterproto.Message):
+    members: List["CMsgDotaTeamMember"] = betterproto.message_field(1)
     team_id: int = betterproto.uint32_field(2)
     name: str = betterproto.string_field(3)
     tag: str = betterproto.string_field(4)
@@ -133,8 +133,8 @@ class CMsgDOTATeam(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInfo(betterproto.Message):
-    members: List["CMsgDOTATeamInfoMember"] = betterproto.message_field(1)
+class CMsgDotaTeamInfo(betterproto.Message):
+    members: List["CMsgDotaTeamInfoMember"] = betterproto.message_field(1)
     team_id: int = betterproto.uint32_field(2)
     name: str = betterproto.string_field(3)
     tag: str = betterproto.string_field(4)
@@ -152,42 +152,48 @@ class CMsgDOTATeamInfo(betterproto.Message):
     games_played_total: int = betterproto.uint32_field(19)
     games_played_matchmaking: int = betterproto.uint32_field(20)
     registered_member_account_ids: List[int] = betterproto.uint32_field(30)
-    audit_entries: List["CMsgDOTATeamInfoAuditEntry"] = betterproto.message_field(31)
+    audit_entries: List["CMsgDotaTeamInfoAuditEntry"] = betterproto.message_field(31)
     region: "ELeagueRegion" = betterproto.enum_field(29)
+    abbreviation: str = betterproto.string_field(32)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInfoMember(betterproto.Message):
+class CMsgDotaTeamInfoMember(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     time_joined: int = betterproto.uint32_field(2)
     admin: bool = betterproto.bool_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInfoAuditEntry(betterproto.Message):
+class CMsgDotaTeamInfoAuditEntry(betterproto.Message):
     audit_action: int = betterproto.uint32_field(1)
     timestamp: int = betterproto.uint32_field(2)
     account_id: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInfoRequest(betterproto.Message):
-    result: "CMsgDOTATeamInfo" = betterproto.message_field(1)
+class CMsgDotaTeamInfoRequest(betterproto.Message):
+    result: "CMsgDotaTeamInfo" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamsInfo(betterproto.Message):
+class CMsgDotaTeamsInfo(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
-    teams: List["CMsgDOTATeamInfo"] = betterproto.message_field(2)
+    teams: List["CMsgDotaTeamInfo"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAMyTeamInfoRequest(betterproto.Message):
+class CMsgDotaTeamInfoList(betterproto.Message):
+    teams: List["CMsgDotaTeamInfo"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class CMsgDotaMyTeamInfoRequest(betterproto.Message):
     pass
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTACreateTeam(betterproto.Message):
+class CMsgDotaCreateTeam(betterproto.Message):
     name: str = betterproto.string_field(1)
     tag: str = betterproto.string_field(2)
     logo: int = betterproto.uint64_field(3)
@@ -197,16 +203,17 @@ class CMsgDOTACreateTeam(betterproto.Message):
     country_code: str = betterproto.string_field(7)
     url: str = betterproto.string_field(8)
     pickup_team: bool = betterproto.bool_field(9)
+    abbreviation: str = betterproto.string_field(10)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTACreateTeamResponse(betterproto.Message):
-    result: "CMsgDOTACreateTeamResponseResult" = betterproto.enum_field(1)
+class CMsgDotaCreateTeamResponse(betterproto.Message):
+    result: "CMsgDotaCreateTeamResponseResult" = betterproto.enum_field(1)
     team_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAEditTeamDetails(betterproto.Message):
+class CMsgDotaEditTeamDetails(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
     tag: str = betterproto.string_field(3)
@@ -217,32 +224,33 @@ class CMsgDOTAEditTeamDetails(betterproto.Message):
     country_code: str = betterproto.string_field(8)
     url: str = betterproto.string_field(9)
     in_use_by_party: bool = betterproto.bool_field(10)
+    abbreviation: str = betterproto.string_field(11)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAEditTeamDetailsResponse(betterproto.Message):
-    result: "CMsgDOTAEditTeamDetailsResponseResult" = betterproto.enum_field(1)
+class CMsgDotaEditTeamDetailsResponse(betterproto.Message):
+    result: "CMsgDotaEditTeamDetailsResponseResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamProfileResponse(betterproto.Message):
+class CMsgDotaTeamProfileResponse(betterproto.Message):
     eresult: int = betterproto.uint32_field(1)
-    team: "CMsgDOTATeam" = betterproto.message_field(2)
+    team: "CMsgDotaTeam" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAProTeamListRequest(betterproto.Message):
+class CMsgDotaProTeamListRequest(betterproto.Message):
     pass
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAProTeamListResponse(betterproto.Message):
-    teams: List["CMsgDOTAProTeamListResponseTeamEntry"] = betterproto.message_field(1)
+class CMsgDotaProTeamListResponse(betterproto.Message):
+    teams: List["CMsgDotaProTeamListResponseTeamEntry"] = betterproto.message_field(1)
     eresult: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAProTeamListResponseTeamEntry(betterproto.Message):
+class CMsgDotaProTeamListResponseTeamEntry(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
     tag: str = betterproto.string_field(2)
     time_created: int = betterproto.uint32_field(3)
@@ -252,20 +260,20 @@ class CMsgDOTAProTeamListResponseTeamEntry(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInviteInviterToGC(betterproto.Message):
+class CMsgDotaTeamInviteInviterToGc(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     team_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInviteGCImmediateResponseToInviter(betterproto.Message):
+class CMsgDotaTeamInviteGcImmediateResponseToInviter(betterproto.Message):
     result: "ETeamInviteResult" = betterproto.enum_field(1)
     invitee_name: str = betterproto.string_field(2)
     required_play_time: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInviteGCRequestToInvitee(betterproto.Message):
+class CMsgDotaTeamInviteGcRequestToInvitee(betterproto.Message):
     inviter_account_id: int = betterproto.uint32_field(1)
     team_name: str = betterproto.string_field(2)
     team_tag: str = betterproto.string_field(3)
@@ -273,54 +281,54 @@ class CMsgDOTATeamInviteGCRequestToInvitee(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInviteInviteeResponseToGC(betterproto.Message):
+class CMsgDotaTeamInviteInviteeResponseToGc(betterproto.Message):
     result: "ETeamInviteResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInviteGCResponseToInviter(betterproto.Message):
+class CMsgDotaTeamInviteGcResponseToInviter(betterproto.Message):
     result: "ETeamInviteResult" = betterproto.enum_field(1)
     invitee_name: str = betterproto.string_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATeamInviteGCResponseToInvitee(betterproto.Message):
+class CMsgDotaTeamInviteGcResponseToInvitee(betterproto.Message):
     result: "ETeamInviteResult" = betterproto.enum_field(1)
     team_name: str = betterproto.string_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAKickTeamMember(betterproto.Message):
+class CMsgDotaKickTeamMember(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     team_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAKickTeamMemberResponse(betterproto.Message):
-    result: "CMsgDOTAKickTeamMemberResponseResult" = betterproto.enum_field(1)
+class CMsgDotaKickTeamMemberResponse(betterproto.Message):
+    result: "CMsgDotaKickTeamMemberResponseResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATransferTeamAdmin(betterproto.Message):
+class CMsgDotaTransferTeamAdmin(betterproto.Message):
     new_admin_account_id: int = betterproto.uint32_field(1)
     team_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATransferTeamAdminResponse(betterproto.Message):
-    result: "CMsgDOTATransferTeamAdminResponseResult" = betterproto.enum_field(1)
+class CMsgDotaTransferTeamAdminResponse(betterproto.Message):
+    result: "CMsgDotaTransferTeamAdminResponseResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTALeaveTeam(betterproto.Message):
+class CMsgDotaLeaveTeam(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTALeaveTeamResponse(betterproto.Message):
-    result: "CMsgDOTALeaveTeamResponseResult" = betterproto.enum_field(1)
+class CMsgDotaLeaveTeamResponse(betterproto.Message):
+    result: "CMsgDotaLeaveTeamResponseResult" = betterproto.enum_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTABetaParticipation(betterproto.Message):
+class CMsgDotaBetaParticipation(betterproto.Message):
     access_rights: int = betterproto.uint32_field(1)

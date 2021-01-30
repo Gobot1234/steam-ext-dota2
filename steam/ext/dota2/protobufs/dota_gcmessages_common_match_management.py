@@ -9,18 +9,18 @@ import betterproto
 
 from .dota_gcmessages_common import CMsgLobbyEventPoints
 from .dota_shared_enums import (
-    CDOTASaveGame,
+    CdotaSaveGame,
     CMsgPendingEventAward,
-    DOTABotDifficulty,
-    DOTACMPick,
-    DOTAGCTeam,
-    DOTAGameState,
-    DOTAGameVersion,
-    DOTALeaverStatus,
-    DOTALobbyVisibility,
-    DOTASelectionPriorityChoice,
-    DOTASelectionPriorityRules,
-    EDOTAMMRBoostType,
+    DotaBotDifficulty,
+    DotaCmPick,
+    DotaGameState,
+    DotaGameVersion,
+    DotaGcTeam,
+    DotaLeaverStatus,
+    DotaLobbyVisibility,
+    DotaSelectionPriorityChoice,
+    DotaSelectionPriorityRules,
+    EdotammrBoostType,
     EEvent,
     EMatchOutcome,
     ETourneyQueueDeadlineState,
@@ -54,22 +54,23 @@ class EPartyMatchmakingFlags(betterproto.Enum):
     LargeRankSpread = 1
 
 
-class EHighPriorityMMState(betterproto.Enum):
+class EHighPriorityMmState(betterproto.Enum):
     Unknown = 0
     MissingMMData = 1
     ResourceMissing = 2
     ManuallyDisabled = 3
-    Min_Enabled = 64
+    Enabled = 64
     AllRolesSelected = 65
     UsingResource = 66
     FiveStack = 67
     HighDemand = 68
 
 
-class LobbyDotaTVDelay(betterproto.Enum):
-    LobbyDotaTV_10 = 0
-    LobbyDotaTV_120 = 1
-    LobbyDotaTV_300 = 2
+class LobbyDotaTvDelay(betterproto.Enum):
+    _10 = 0
+    _120 = 1
+    _300 = 2
+    _900 = 3
 
 
 class LobbyDotaPauseSetting(betterproto.Enum):
@@ -99,14 +100,14 @@ class EMatchBehaviorScoreVariance(betterproto.Enum):
     High = 3
 
 
-class CSODOTAPartyState(betterproto.Enum):
-    UI = 0
-    FINDING_MATCH = 1
-    IN_MATCH = 2
+class CsodotaPartyState(betterproto.Enum):
+    Ui = 0
+    FindingMatch = 1
+    InMatch = 2
 
 
-class CSODOTALobbyState(betterproto.Enum):
-    UI = 0
+class CsodotaLobbyState(betterproto.Enum):
+    Ui = 0
     Readyup = 4
     Serversetup = 1
     Run = 2
@@ -115,7 +116,7 @@ class CSODOTALobbyState(betterproto.Enum):
     Serverassign = 6
 
 
-class CSODOTALobbyLobbyType(betterproto.Enum):
+class CsodotaLobbyLobbyType(betterproto.Enum):
     Invalid = -1
     CasualMatch = 0
     Practice = 1
@@ -131,7 +132,7 @@ class CSODOTALobbyLobbyType(betterproto.Enum):
     Gauntlet = 13
 
 
-class CMvpDataAccoladeMvpAccoladeType(betterproto.Enum):
+class CMvpDataMvpDatumMvpAccoladeMvpAccoladeType(betterproto.Enum):
     Kills = 1
     Deaths = 2
     Assists = 3
@@ -403,7 +404,7 @@ class CMvpDataAccoladeMvpAccoladeType(betterproto.Enum):
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTAPartyMember(betterproto.Message):
+class CsodotaPartyMember(betterproto.Message):
     partner_type: "PartnerAccountType" = betterproto.enum_field(1)
     is_coach: bool = betterproto.bool_field(2)
     region_ping_codes: List[int] = betterproto.uint32_field(4)
@@ -421,12 +422,12 @@ class CSODOTAPartyMember(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTAParty(betterproto.Message):
+class CsodotaParty(betterproto.Message):
     party_id: int = betterproto.uint64_field(1)
-    leader_id: float = betterproto.fixed64_field(2)
-    member_ids: List[float] = betterproto.fixed64_field(3)
+    leader_id: int = betterproto.fixed64_field(2)
+    member_ids: List[int] = betterproto.fixed64_field(3)
     game_modes: int = betterproto.uint32_field(4)
-    state: "CSODOTAPartyState" = betterproto.enum_field(6)
+    state: "CsodotaPartyState" = betterproto.enum_field(6)
     effective_started_matchmaking_time: int = betterproto.uint32_field(7)
     raw_started_matchmaking_time: int = betterproto.uint32_field(32)
     attempt_start_time: int = betterproto.uint32_field(33)
@@ -434,7 +435,7 @@ class CSODOTAParty(betterproto.Message):
     matchgroups: int = betterproto.uint32_field(11)
     low_priority_account_id: int = betterproto.uint32_field(19)
     match_type: "MatchType" = betterproto.enum_field(21)
-    bot_difficulty: "DOTABotDifficulty" = betterproto.enum_field(22)
+    bot_difficulty: "DotaBotDifficulty" = betterproto.enum_field(22)
     team_id: int = betterproto.uint32_field(23)
     team_name: str = betterproto.string_field(51)
     team_ui_logo: int = betterproto.uint64_field(52)
@@ -443,11 +444,11 @@ class CSODOTAParty(betterproto.Message):
     match_disabled_account_id: int = betterproto.uint32_field(25)
     matchmaking_max_range_minutes: int = betterproto.uint32_field(26)
     matchlanguages: int = betterproto.uint32_field(27)
-    members: List["CSODOTAPartyMember"] = betterproto.message_field(29)
+    members: List["CsodotaPartyMember"] = betterproto.message_field(29)
     low_priority_games_remaining: int = betterproto.uint32_field(35)
     open_for_join_requests: bool = betterproto.bool_field(40)
-    sent_invites: List["CSODOTAPartyInvite"] = betterproto.message_field(41)
-    recv_invites: List["CSODOTAPartyInvite"] = betterproto.message_field(42)
+    sent_invites: List["CsodotaPartyInvite"] = betterproto.message_field(41)
+    recv_invites: List["CsodotaPartyInvite"] = betterproto.message_field(42)
     account_flags: int = betterproto.uint32_field(43)
     region_select_flags: int = betterproto.uint32_field(44)
     exclusive_tournament_id: int = betterproto.uint32_field(45)
@@ -469,52 +470,52 @@ class CSODOTAParty(betterproto.Message):
     is_challenge_match: bool = betterproto.bool_field(65)
     party_search_beacon_active: bool = betterproto.bool_field(66)
     matchmaking_flags: int = betterproto.uint32_field(67)
-    high_priority_state: "EHighPriorityMMState" = betterproto.enum_field(68)
+    high_priority_state: "EHighPriorityMmState" = betterproto.enum_field(68)
     lane_selections_enabled: bool = betterproto.bool_field(69)
     custom_game_difficulty_mask: int = betterproto.uint32_field(70)
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTAPartyInvite(betterproto.Message):
+class CsodotaPartyInvite(betterproto.Message):
     group_id: int = betterproto.uint64_field(1)
-    sender_id: float = betterproto.fixed64_field(2)
+    sender_id: int = betterproto.fixed64_field(2)
     sender_name: str = betterproto.string_field(3)
-    members: List["CSODOTAPartyInvitePartyMember"] = betterproto.message_field(4)
+    members: List["CsodotaPartyInvitePartyMember"] = betterproto.message_field(4)
     team_id: int = betterproto.uint32_field(5)
     low_priority_status: bool = betterproto.bool_field(6)
     as_coach: bool = betterproto.bool_field(7)
-    invite_gid: float = betterproto.fixed64_field(8)
+    invite_gid: int = betterproto.fixed64_field(8)
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTAPartyInvitePartyMember(betterproto.Message):
+class CsodotaPartyInvitePartyMember(betterproto.Message):
     name: str = betterproto.string_field(1)
-    steam_id: float = betterproto.fixed64_field(2)
+    steam_id: int = betterproto.fixed64_field(2)
     is_coach: bool = betterproto.bool_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTALobbyInvite(betterproto.Message):
+class CsodotaLobbyInvite(betterproto.Message):
     group_id: int = betterproto.uint64_field(1)
-    sender_id: float = betterproto.fixed64_field(2)
+    sender_id: int = betterproto.fixed64_field(2)
     sender_name: str = betterproto.string_field(3)
-    members: List["CSODOTALobbyInviteLobbyMember"] = betterproto.message_field(4)
+    members: List["CsodotaLobbyInviteLobbyMember"] = betterproto.message_field(4)
     custom_game_id: int = betterproto.uint64_field(5)
-    invite_gid: float = betterproto.fixed64_field(6)
-    custom_game_crc: float = betterproto.fixed64_field(7)
-    custom_game_timestamp: float = betterproto.fixed32_field(8)
+    invite_gid: int = betterproto.fixed64_field(6)
+    custom_game_crc: int = betterproto.fixed64_field(7)
+    custom_game_timestamp: int = betterproto.fixed32_field(8)
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTALobbyInviteLobbyMember(betterproto.Message):
+class CsodotaLobbyInviteLobbyMember(betterproto.Message):
     name: str = betterproto.string_field(1)
-    steam_id: float = betterproto.fixed64_field(2)
+    steam_id: int = betterproto.fixed64_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class CMsgLeaverState(betterproto.Message):
     lobby_state: int = betterproto.uint32_field(1)
-    game_state: "DOTAGameState" = betterproto.enum_field(2)
+    game_state: "DotaGameState" = betterproto.enum_field(2)
     leaver_detected: bool = betterproto.bool_field(3)
     first_blood_happened: bool = betterproto.bool_field(4)
     discard_match_results: bool = betterproto.bool_field(5)
@@ -522,27 +523,27 @@ class CMsgLeaverState(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTALobbyMember(betterproto.Message):
-    id: float = betterproto.fixed64_field(1)
+class CsodotaLobbyMember(betterproto.Message):
+    id: int = betterproto.fixed64_field(1)
     hero_id: int = betterproto.uint32_field(2)
-    team: "DOTAGCTeam" = betterproto.enum_field(3)
+    team: "DotaGcTeam" = betterproto.enum_field(3)
     name: str = betterproto.string_field(6)
     slot: int = betterproto.uint32_field(7)
     party_id: int = betterproto.uint64_field(12)
     meta_level: int = betterproto.uint32_field(13)
     meta_xp: int = betterproto.uint32_field(14)
     meta_xp_awarded: int = betterproto.uint32_field(15)
-    leaver_status: "DOTALeaverStatus" = betterproto.enum_field(16)
+    leaver_status: "DotaLeaverStatus" = betterproto.enum_field(16)
     leaver_actions: int = betterproto.uint32_field(28)
     channel: int = betterproto.uint32_field(17)
     disabled_hero_id: List[int] = betterproto.uint32_field(20)
     partner_account_type: "PartnerAccountType" = betterproto.enum_field(21)
     enabled_hero_id: List[int] = betterproto.uint32_field(22)
-    coach_team: "DOTAGCTeam" = betterproto.enum_field(23)
+    coach_team: "DotaGcTeam" = betterproto.enum_field(23)
     coach_rating: int = betterproto.uint32_field(42)
     pwrd_cyber_cafe_id: int = betterproto.uint32_field(24)
     pwrd_cyber_cafe_name: str = betterproto.string_field(25)
-    disabled_random_hero_bits: List[float] = betterproto.fixed32_field(41)
+    disabled_random_hero_bits: List[int] = betterproto.fixed32_field(41)
     rank_change: int = betterproto.sint32_field(29)
     cameraman: bool = betterproto.bool_field(30)
     custom_game_product_ids: List[int] = betterproto.uint32_field(31)
@@ -552,15 +553,16 @@ class CSODOTALobbyMember(betterproto.Message):
     rank_tier_updated: bool = betterproto.bool_field(37)
     lane_selection_flags: int = betterproto.uint32_field(38)
     can_earn_rewards: bool = betterproto.bool_field(39)
-    live_spectator_team: "DOTAGCTeam" = betterproto.enum_field(40)
+    live_spectator_team: "DotaGcTeam" = betterproto.enum_field(40)
     was_mvp_last_game: bool = betterproto.bool_field(43)
     pending_awards: List["CMsgPendingEventAward"] = betterproto.message_field(44)
     pending_awards_on_victory: List["CMsgPendingEventAward"] = betterproto.message_field(45)
-    rank_mmr_boost_type: "EDOTAMMRBoostType" = betterproto.enum_field(46)
+    rank_mmr_boost_type: "EdotammrBoostType" = betterproto.enum_field(46)
     queue_point_adjustment: int = betterproto.sint32_field(47)
     rank_tier: int = betterproto.int32_field(48)
     title: int = betterproto.uint32_field(50)
     guild_id: int = betterproto.uint32_field(51)
+    reports_available: int = betterproto.uint32_field(52)
 
 
 @dataclass(eq=False, repr=False)
@@ -578,6 +580,7 @@ class CLobbyTeamDetails(betterproto.Message):
     is_challenge_match: bool = betterproto.bool_field(18)
     challenge_match_token_account: int = betterproto.uint64_field(19)
     team_logo_url: str = betterproto.string_field(20)
+    team_abbreviation: str = betterproto.string_field(21)
 
 
 @dataclass(eq=False, repr=False)
@@ -590,8 +593,9 @@ class CLobbyGuildDetails(betterproto.Message):
     guild_points: int = betterproto.uint32_field(6)
     guild_event: int = betterproto.uint32_field(7)
     guild_flags: int = betterproto.uint32_field(8)
-    team_for_guild: "DOTAGCTeam" = betterproto.enum_field(9)
+    team_for_guild: "DotaGcTeam" = betterproto.enum_field(9)
     guild_tag: str = betterproto.string_field(10)
+    guild_weekly_percentile: int = betterproto.uint32_field(11)
 
 
 @dataclass(eq=False, repr=False)
@@ -624,17 +628,21 @@ class CLobbyGuildChallenge(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTALobby(betterproto.Message):
+class CsodotaLobby(betterproto.Message):
     lobby_id: int = betterproto.uint64_field(1)
-    members: List["CSODOTALobbyMember"] = betterproto.message_field(2)
-    left_members: List["CSODOTALobbyMember"] = betterproto.message_field(7)
-    leader_id: float = betterproto.fixed64_field(11)
-    server_id: float = betterproto.fixed64_field(6)
+    v2_members: List["CsodotaLobbyMember"] = betterproto.message_field(2)
+    v2_left_members: List["CsodotaLobbyMember"] = betterproto.message_field(7)
+    all_members: List["CsodotaLobbyMember"] = betterproto.message_field(120)
+    member_indices: List[int] = betterproto.uint32_field(121)
+    left_member_indices: List[int] = betterproto.uint32_field(122)
+    free_member_indices: List[int] = betterproto.uint32_field(123)
+    leader_id: int = betterproto.fixed64_field(11)
+    server_id: int = betterproto.fixed64_field(6)
     game_mode: int = betterproto.uint32_field(3)
-    pending_invites: List[float] = betterproto.fixed64_field(10)
-    state: "CSODOTALobbyState" = betterproto.enum_field(4)
+    pending_invites: List[int] = betterproto.fixed64_field(10)
+    state: "CsodotaLobbyState" = betterproto.enum_field(4)
     connect: str = betterproto.string_field(5)
-    lobby_type: "CSODOTALobbyLobbyType" = betterproto.enum_field(12)
+    lobby_type: "CsodotaLobbyLobbyType" = betterproto.enum_field(12)
     allow_cheats: bool = betterproto.bool_field(13)
     fill_with_bots: bool = betterproto.bool_field(14)
     intro_mode: bool = betterproto.bool_field(15)
@@ -644,14 +652,14 @@ class CSODOTALobby(betterproto.Message):
     tournament_id: int = betterproto.uint32_field(19)
     tournament_game_id: int = betterproto.uint32_field(20)
     server_region: int = betterproto.uint32_field(21)
-    game_state: "DOTAGameState" = betterproto.enum_field(22)
+    game_state: "DotaGameState" = betterproto.enum_field(22)
     num_spectators: int = betterproto.uint32_field(23)
     matchgroup: int = betterproto.uint32_field(25)
-    cm_pick: "DOTACMPick" = betterproto.enum_field(28)
+    cm_pick: "DotaCmPick" = betterproto.enum_field(28)
     match_id: int = betterproto.uint64_field(30)
     allow_spectating: bool = betterproto.bool_field(31)
-    bot_difficulty_radiant: "DOTABotDifficulty" = betterproto.enum_field(36)
-    game_version: "DOTAGameVersion" = betterproto.enum_field(37)
+    bot_difficulty_radiant: "DotaBotDifficulty" = betterproto.enum_field(36)
+    game_version: "DotaGameVersion" = betterproto.enum_field(37)
     timed_reward_details: List["CLobbyTimedRewardDetails"] = betterproto.message_field(38)
     pass_key: str = betterproto.string_field(39)
     leagueid: int = betterproto.uint32_field(42)
@@ -664,7 +672,7 @@ class CSODOTALobby(betterproto.Message):
     loot_generated: int = betterproto.uint32_field(49)
     loot_awarded: int = betterproto.uint32_field(50)
     allchat: bool = betterproto.bool_field(51)
-    dota_tv_delay: "LobbyDotaTVDelay" = betterproto.enum_field(53)
+    dota_tv_delay: "LobbyDotaTvDelay" = betterproto.enum_field(53)
     custom_game_mode: str = betterproto.string_field(54)
     custom_map_name: str = betterproto.string_field(55)
     custom_difficulty: int = betterproto.uint32_field(56)
@@ -673,8 +681,8 @@ class CSODOTALobby(betterproto.Message):
     first_leaver_accountid: int = betterproto.uint32_field(59)
     series_id: int = betterproto.uint32_field(60)
     low_priority: bool = betterproto.bool_field(61)
-    extra_messages: List["CSODOTALobbyCExtraMsg"] = betterproto.message_field(62)
-    save_game: "CDOTASaveGame" = betterproto.message_field(63)
+    extra_messages: List["CsodotaLobbyCExtraMsg"] = betterproto.message_field(62)
+    save_game: "CdotaSaveGame" = betterproto.message_field(63)
     first_blood_happened: bool = betterproto.bool_field(65)
     match_outcome: "EMatchOutcome" = betterproto.enum_field(70)
     mass_disconnect: bool = betterproto.bool_field(67)
@@ -682,10 +690,10 @@ class CSODOTALobby(betterproto.Message):
     custom_min_players: int = betterproto.uint32_field(71)
     custom_max_players: int = betterproto.uint32_field(72)
     partner_type: "PartnerAccountType" = betterproto.enum_field(73)
-    visibility: "DOTALobbyVisibility" = betterproto.enum_field(75)
-    custom_game_crc: float = betterproto.fixed64_field(76)
+    visibility: "DotaLobbyVisibility" = betterproto.enum_field(75)
+    custom_game_crc: int = betterproto.fixed64_field(76)
     custom_game_auto_created_lobby: bool = betterproto.bool_field(77)
-    custom_game_timestamp: float = betterproto.fixed32_field(80)
+    custom_game_timestamp: int = betterproto.fixed32_field(80)
     previous_series_matches: List[int] = betterproto.uint64_field(81)
     previous_match_override: int = betterproto.uint64_field(82)
     custom_game_uses_account_records: bool = betterproto.bool_field(83)
@@ -695,19 +703,19 @@ class CSODOTALobby(betterproto.Message):
     weekend_tourney_division_id: int = betterproto.uint32_field(90)
     weekend_tourney_skill_level: int = betterproto.uint32_field(91)
     weekend_tourney_bracket_round: int = betterproto.uint32_field(92)
-    bot_difficulty_dire: "DOTABotDifficulty" = betterproto.enum_field(93)
+    bot_difficulty_dire: "DotaBotDifficulty" = betterproto.enum_field(93)
     bot_radiant: int = betterproto.uint64_field(94)
     bot_dire: int = betterproto.uint64_field(95)
     event_progression_enabled: List["EEvent"] = betterproto.enum_field(96)
-    selection_priority_rules: "DOTASelectionPriorityRules" = betterproto.enum_field(97)
+    selection_priority_rules: "DotaSelectionPriorityRules" = betterproto.enum_field(97)
     series_previous_selection_priority_team_id: int = betterproto.uint32_field(98)
     series_current_selection_priority_team_id: int = betterproto.uint32_field(99)
-    series_current_priority_team_choice: "DOTASelectionPriorityChoice" = betterproto.enum_field(100)
-    series_current_non_priority_team_choice: "DOTASelectionPriorityChoice" = betterproto.enum_field(101)
+    series_current_priority_team_choice: "DotaSelectionPriorityChoice" = betterproto.enum_field(100)
+    series_current_non_priority_team_choice: "DotaSelectionPriorityChoice" = betterproto.enum_field(101)
     series_current_selection_priority_used_coin_toss: bool = betterproto.bool_field(102)
     current_primary_event: "EEvent" = betterproto.enum_field(103)
     emergency_disabled_hero_ids: List[int] = betterproto.uint32_field(105)
-    custom_game_private_key: float = betterproto.fixed64_field(106)
+    custom_game_private_key: int = betterproto.fixed64_field(106)
     custom_game_penalties: bool = betterproto.bool_field(107)
     lan_host_ping_location: str = betterproto.string_field(109)
     league_node_id: int = betterproto.uint32_field(110)
@@ -719,10 +727,11 @@ class CSODOTALobby(betterproto.Message):
     guild_challenges: List["CLobbyGuildChallenge"] = betterproto.message_field(117)
     guild_details: List["CLobbyGuildDetails"] = betterproto.message_field(118)
     lobby_event_points: List["CMsgLobbyEventPoints"] = betterproto.message_field(119)
+    requested_hero_ids: List[int] = betterproto.uint32_field(124)
 
 
 @dataclass(eq=False, repr=False)
-class CSODOTALobbyCExtraMsg(betterproto.Message):
+class CsodotaLobbyCExtraMsg(betterproto.Message):
     id: int = betterproto.uint32_field(1)
     contents: bytes = betterproto.bytes_field(2)
 
@@ -771,3 +780,21 @@ class CMsgMatchMatchmakingStats(betterproto.Message):
     average_queue_time: int = betterproto.uint32_field(1)
     maximum_queue_time: int = betterproto.uint32_field(2)
     behavior_score_variance: "EMatchBehaviorScoreVariance" = betterproto.enum_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class CMvpData(betterproto.Message):
+    mvps: List["CMvpDataMvpDatum"] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class CMvpDataMvpDatum(betterproto.Message):
+    slot: int = betterproto.uint32_field(1)
+    accolades: List["CMvpDataMvpDatumMvpAccolade"] = betterproto.message_field(2)
+    account_id: int = betterproto.uint32_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class CMvpDataMvpDatumMvpAccolade(betterproto.Message):
+    type: "CMvpDataMvpDatumMvpAccoladeMvpAccoladeType" = betterproto.enum_field(1)
+    detail_value: float = betterproto.float_field(2)

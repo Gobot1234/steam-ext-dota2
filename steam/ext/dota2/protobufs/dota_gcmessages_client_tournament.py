@@ -20,39 +20,39 @@ class ETournamentEvent(betterproto.Enum):
     TeamAbandoned = 6
     ScheduledGameStarted = 7
     Canceled = 8
-    TeamParticipationTimedOutEntryFeeRefund = 9
-    TeamParticipationTimedOutEntryFeeForfeit = 10
-    TeamParticipationTimedOutGrantedVictory = 11
+    TeamParticipationTimedOut_EntryFeeRefund = 9
+    TeamParticipationTimedOut_EntryFeeForfeit = 10
+    TeamParticipationTimedOut_GrantedVictory = 11
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentInfo(betterproto.Message):
+class CMsgDotaTournamentInfo(betterproto.Message):
     league_id: int = betterproto.uint32_field(1)
-    phase_list: List["CMsgDOTATournamentInfoPhase"] = betterproto.message_field(2)
-    teams_list: List["CMsgDOTATournamentInfoTeam"] = betterproto.message_field(3)
-    upcoming_matches_list: List["CMsgDOTATournamentInfoUpcomingMatch"] = betterproto.message_field(4)
-    news_list: List["CMsgDOTATournamentInfoNews"] = betterproto.message_field(5)
+    phase_list: List["CMsgDotaTournamentInfoPhase"] = betterproto.message_field(2)
+    teams_list: List["CMsgDotaTournamentInfoTeam"] = betterproto.message_field(3)
+    upcoming_matches_list: List["CMsgDotaTournamentInfoUpcomingMatch"] = betterproto.message_field(4)
+    news_list: List["CMsgDotaTournamentInfoNews"] = betterproto.message_field(5)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentInfoPhaseGroup(betterproto.Message):
+class CMsgDotaTournamentInfoPhaseGroup(betterproto.Message):
     group_id: int = betterproto.uint32_field(1)
     group_name: str = betterproto.string_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentInfoPhase(betterproto.Message):
+class CMsgDotaTournamentInfoPhase(betterproto.Message):
     phase_id: int = betterproto.uint32_field(1)
     phase_name: str = betterproto.string_field(2)
     type_id: int = betterproto.uint32_field(3)
     iterations: int = betterproto.uint32_field(4)
     min_start_time: int = betterproto.uint32_field(5)
     max_start_time: int = betterproto.uint32_field(6)
-    group_list: List["CMsgDOTATournamentInfoPhaseGroup"] = betterproto.message_field(7)
+    group_list: List["CMsgDotaTournamentInfoPhaseGroup"] = betterproto.message_field(7)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentInfoTeam(betterproto.Message):
+class CMsgDotaTournamentInfoTeam(betterproto.Message):
     team_id: int = betterproto.uint32_field(1)
     name: str = betterproto.string_field(2)
     tag: str = betterproto.string_field(3)
@@ -61,7 +61,7 @@ class CMsgDOTATournamentInfoTeam(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentInfoUpcomingMatch(betterproto.Message):
+class CMsgDotaTournamentInfoUpcomingMatch(betterproto.Message):
     series_id: int = betterproto.uint32_field(1)
     team1_id: int = betterproto.uint32_field(2)
     team2_id: int = betterproto.uint32_field(3)
@@ -91,7 +91,7 @@ class CMsgDOTATournamentInfoUpcomingMatch(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentInfoNews(betterproto.Message):
+class CMsgDotaTournamentInfoNews(betterproto.Message):
     link: str = betterproto.string_field(1)
     title: str = betterproto.string_field(2)
     image: str = betterproto.string_field(3)
@@ -136,7 +136,7 @@ class CMsgWeekendTourneyLeave(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournament(betterproto.Message):
+class CMsgDotaTournament(betterproto.Message):
     tournament_id: int = betterproto.uint32_field(1)
     division_id: int = betterproto.uint32_field(2)
     schedule_time: int = betterproto.uint32_field(3)
@@ -145,14 +145,14 @@ class CMsgDOTATournament(betterproto.Message):
     state: "ETournamentState" = betterproto.enum_field(6)
     state_seq_num: int = betterproto.uint32_field(10)
     season_trophy_id: int = betterproto.uint32_field(11)
-    teams: List["CMsgDOTATournamentTeam"] = betterproto.message_field(7)
-    games: List["CMsgDOTATournamentGame"] = betterproto.message_field(8)
-    nodes: List["CMsgDOTATournamentNode"] = betterproto.message_field(9)
+    teams: List["CMsgDotaTournamentTeam"] = betterproto.message_field(7)
+    games: List["CMsgDotaTournamentGame"] = betterproto.message_field(8)
+    nodes: List["CMsgDotaTournamentNode"] = betterproto.message_field(9)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentTeam(betterproto.Message):
-    team_gid: float = betterproto.fixed64_field(1)
+class CMsgDotaTournamentTeam(betterproto.Message):
+    team_gid: int = betterproto.fixed64_field(1)
     node_or_state: int = betterproto.uint32_field(2)
     players: List[int] = betterproto.uint32_field(3)
     player_buyin: List[int] = betterproto.uint32_field(9)
@@ -165,9 +165,9 @@ class CMsgDOTATournamentTeam(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentGame(betterproto.Message):
+class CMsgDotaTournamentGame(betterproto.Message):
     node_idx: int = betterproto.uint32_field(1)
-    lobby_id: float = betterproto.fixed64_field(2)
+    lobby_id: int = betterproto.fixed64_field(2)
     match_id: int = betterproto.uint64_field(3)
     team_a_good: bool = betterproto.bool_field(4)
     state: "ETournamentGameState" = betterproto.enum_field(5)
@@ -175,7 +175,7 @@ class CMsgDOTATournamentGame(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentNode(betterproto.Message):
+class CMsgDotaTournamentNode(betterproto.Message):
     node_id: int = betterproto.uint32_field(1)
     team_idx_a: int = betterproto.uint32_field(2)
     team_idx_b: int = betterproto.uint32_field(3)
@@ -183,49 +183,49 @@ class CMsgDOTATournamentNode(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentStateChange(betterproto.Message):
+class CMsgDotaTournamentStateChange(betterproto.Message):
     new_tournament_id: int = betterproto.uint32_field(1)
     event: "ETournamentEvent" = betterproto.enum_field(2)
     new_tournament_state: "ETournamentState" = betterproto.enum_field(3)
-    game_changes: List["CMsgDOTATournamentStateChangeGameChange"] = betterproto.message_field(4)
-    team_changes: List["CMsgDOTATournamentStateChangeTeamChange"] = betterproto.message_field(5)
+    game_changes: List["CMsgDotaTournamentStateChangeGameChange"] = betterproto.message_field(4)
+    team_changes: List["CMsgDotaTournamentStateChangeTeamChange"] = betterproto.message_field(5)
     merged_tournament_ids: List[int] = betterproto.uint32_field(6)
     state_seq_num: int = betterproto.uint32_field(7)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentStateChangeGameChange(betterproto.Message):
+class CMsgDotaTournamentStateChangeGameChange(betterproto.Message):
     match_id: int = betterproto.uint64_field(1)
     new_state: "ETournamentGameState" = betterproto.enum_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentStateChangeTeamChange(betterproto.Message):
+class CMsgDotaTournamentStateChangeTeamChange(betterproto.Message):
     team_gid: int = betterproto.uint64_field(1)
     new_node_or_state: int = betterproto.uint32_field(2)
     old_node_or_state: int = betterproto.uint32_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentRequest(betterproto.Message):
+class CMsgDotaTournamentRequest(betterproto.Message):
     tournament_id: int = betterproto.uint32_field(1)
     client_tournament_gid: int = betterproto.uint64_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTATournamentResponse(betterproto.Message):
+class CMsgDotaTournamentResponse(betterproto.Message):
     result: int = betterproto.uint32_field(1)
-    tournament: "CMsgDOTATournament" = betterproto.message_field(2)
+    tournament: "CMsgDotaTournament" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAClearTournamentGame(betterproto.Message):
+class CMsgDotaClearTournamentGame(betterproto.Message):
     tournament_id: int = betterproto.uint32_field(1)
     game_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyPlayerSkillLevelStats(betterproto.Message):
+class CMsgDotaWeekendTourneyPlayerSkillLevelStats(betterproto.Message):
     skill_level: int = betterproto.uint32_field(1)
     times_won_0: int = betterproto.uint32_field(2)
     times_won_1: int = betterproto.uint32_field(3)
@@ -239,33 +239,33 @@ class CMsgDOTAWeekendTourneyPlayerSkillLevelStats(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyPlayerStats(betterproto.Message):
+class CMsgDotaWeekendTourneyPlayerStats(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     season_trophy_id: int = betterproto.uint32_field(2)
-    skill_levels: List["CMsgDOTAWeekendTourneyPlayerSkillLevelStats"] = betterproto.message_field(3)
+    skill_levels: List["CMsgDotaWeekendTourneyPlayerSkillLevelStats"] = betterproto.message_field(3)
     current_tier: int = betterproto.uint32_field(4)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyPlayerStatsRequest(betterproto.Message):
+class CMsgDotaWeekendTourneyPlayerStatsRequest(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     season_trophy_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyPlayerHistoryRequest(betterproto.Message):
+class CMsgDotaWeekendTourneyPlayerHistoryRequest(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
     season_trophy_id: int = betterproto.uint32_field(2)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyPlayerHistory(betterproto.Message):
+class CMsgDotaWeekendTourneyPlayerHistory(betterproto.Message):
     account_id: int = betterproto.uint32_field(1)
-    tournaments: List["CMsgDOTAWeekendTourneyPlayerHistoryTournament"] = betterproto.message_field(3)
+    tournaments: List["CMsgDotaWeekendTourneyPlayerHistoryTournament"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyPlayerHistoryTournament(betterproto.Message):
+class CMsgDotaWeekendTourneyPlayerHistoryTournament(betterproto.Message):
     tournament_id: int = betterproto.uint32_field(1)
     start_time: int = betterproto.uint32_field(2)
     tournament_tier: int = betterproto.uint32_field(3)
@@ -278,12 +278,12 @@ class CMsgDOTAWeekendTourneyPlayerHistoryTournament(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyParticipationDetails(betterproto.Message):
-    divisions: List["CMsgDOTAWeekendTourneyParticipationDetailsDivision"] = betterproto.message_field(1)
+class CMsgDotaWeekendTourneyParticipationDetails(betterproto.Message):
+    divisions: List["CMsgDotaWeekendTourneyParticipationDetailsDivision"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyParticipationDetailsTier(betterproto.Message):
+class CMsgDotaWeekendTourneyParticipationDetailsTier(betterproto.Message):
     tier: int = betterproto.uint32_field(1)
     players: int = betterproto.uint32_field(2)
     teams: int = betterproto.uint32_field(3)
@@ -295,7 +295,7 @@ class CMsgDOTAWeekendTourneyParticipationDetailsTier(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class CMsgDOTAWeekendTourneyParticipationDetailsDivision(betterproto.Message):
+class CMsgDotaWeekendTourneyParticipationDetailsDivision(betterproto.Message):
     division_id: int = betterproto.uint32_field(1)
     schedule_time: int = betterproto.uint32_field(2)
-    tiers: List["CMsgDOTAWeekendTourneyParticipationDetailsTier"] = betterproto.message_field(3)
+    tiers: List["CMsgDotaWeekendTourneyParticipationDetailsTier"] = betterproto.message_field(3)
