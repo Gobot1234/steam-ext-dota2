@@ -55,30 +55,19 @@ class Client(Client):
 
     if TYPE_CHECKING:
 
-        async def on_gc_connect(self, version: int) -> None:
+        async def on_gc_connect(self) -> None:
             """|coro|
             Called after the client receives the welcome message from the  GC.
-
-            Parameters
-            ----------
-            version: :class:`int`
-                The version loaded.
             """
 
-        async def on_gc_disconnect(self, reason: str) -> None:
+        async def on_gc_disconnect(self) -> None:
             """|coro|
             Called after the client receives the goodbye message from the  GC.
-
-            Parameters
-            ----------
-            reason: :class:`str`
-                The reason for the disconnect
             """
 
         async def on_gc_ready(self) -> None:
             """|coro|
-            Called after the client connects to the GC and has the :attr:`schema`, :meth:`Client.user.inventory` and set
-            up and account info (:meth:`is_premium` and :attr:`backpack_slots`).
+            Called after the client connects to the GC.
             """
 
 

@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 
 
 class GCState(ConnectionState):
-    gc_parsers: dict[Language, EventParser] = {}
+    gc_parsers: dict[Language, EventParser[Language]] = {}
     client: Client
 
     def __init__(self, client: Client, **kwargs):
