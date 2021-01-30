@@ -2,7 +2,7 @@
 
 An extension to interact with the DOTA 2 Game Coordinator for 
 [steam.py](https://github.com/Gobot1234/steam.py). `dota2.Client` and `dota2.Bot` are `steam.Client` and `commands.Bot` 
-subclasses respectively, so whatever you did with `steam`/`ext.commands` you can do with `ext.tf2`
+subclasses respectively, so whatever you did with `steam`/`ext.commands` you can do with `ext.dota2`
 
 ## Installation
 
