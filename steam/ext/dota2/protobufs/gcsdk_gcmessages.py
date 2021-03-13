@@ -7,8 +7,6 @@ from typing import List
 
 import betterproto
 
-from .steammessages import CgcSystemMsgGetAccountDetailsResponse
-
 
 class ESourceEngine(betterproto.Enum):
     Source1 = 0
@@ -29,6 +27,46 @@ class GcConnectionStatus(betterproto.Enum):
     NoSteam = 4
     Suspended = 5
     SteamGoingDown = 6
+
+
+@dataclass(eq=False, repr=False)
+class CgcSystemMsgGetAccountDetailsResponse(betterproto.Message):
+    eresult_deprecated: int = betterproto.uint32_field(1)
+    account_name: str = betterproto.string_field(2)
+    persona_name: str = betterproto.string_field(3)
+    is_profile_created: bool = betterproto.bool_field(26)
+    is_profile_public: bool = betterproto.bool_field(4)
+    is_inventory_public: bool = betterproto.bool_field(5)
+    is_vac_banned: bool = betterproto.bool_field(7)
+    is_cyber_cafe: bool = betterproto.bool_field(8)
+    is_school_account: bool = betterproto.bool_field(9)
+    is_limited: bool = betterproto.bool_field(10)
+    is_subscribed: bool = betterproto.bool_field(11)
+    package: int = betterproto.uint32_field(12)
+    is_free_trial_account: bool = betterproto.bool_field(13)
+    free_trial_expiration: int = betterproto.uint32_field(14)
+    is_low_violence: bool = betterproto.bool_field(15)
+    is_account_locked_down: bool = betterproto.bool_field(16)
+    is_community_banned: bool = betterproto.bool_field(17)
+    is_trade_banned: bool = betterproto.bool_field(18)
+    trade_ban_expiration: int = betterproto.uint32_field(19)
+    accountid: int = betterproto.uint32_field(20)
+    suspension_end_time: int = betterproto.uint32_field(21)
+    currency: str = betterproto.string_field(22)
+    steam_level: int = betterproto.uint32_field(23)
+    friend_count: int = betterproto.uint32_field(24)
+    account_creation_time: int = betterproto.uint32_field(25)
+    is_steamguard_enabled: bool = betterproto.bool_field(27)
+    is_phone_verified: bool = betterproto.bool_field(28)
+    is_two_factor_auth_enabled: bool = betterproto.bool_field(29)
+    two_factor_enabled_time: int = betterproto.uint32_field(30)
+    phone_verification_time: int = betterproto.uint32_field(31)
+    phone_id: int = betterproto.uint64_field(33)
+    is_phone_identifying: bool = betterproto.bool_field(34)
+    rt_identity_linked: int = betterproto.uint32_field(35)
+    rt_birth_date: int = betterproto.uint32_field(36)
+    txn_country_code: str = betterproto.string_field(37)
+    has_accepted_china_ssa: bool = betterproto.bool_field(38)
 
 
 @dataclass(eq=False, repr=False)

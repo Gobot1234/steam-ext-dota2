@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import List
 
 import betterproto
-from Downloads.files.dota_gcmessages_common import CMsgDotaMatch, CMsgDotaMatchMinimal
+from .dota_gcmessages_common import CMsgDotaMatch, CMsgDotaMatchMinimal
 
 
 class CMsgSpectateFriendGameResponseEWatchLiveResult(betterproto.Enum):
